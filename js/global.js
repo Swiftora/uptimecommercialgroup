@@ -143,11 +143,11 @@
           form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
         } else {
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
-          alert('Something went wrong. Please email us directly at Eric.R.Elder86@gmail.com');
+          alert('Something went wrong. Please email us directly at eric@uptimecommercialgroup.com');
         }
       } catch {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
-        alert('Something went wrong. Please email us directly at Eric.R.Elder86@gmail.com');
+        alert('Something went wrong. Please email us directly at eric@uptimecommercialgroup.com');
       }
     });
   });
@@ -160,5 +160,24 @@
       parent.addEventListener('mouseleave', () => t.style.animationPlayState = 'running');
     }
   });
+
+
+  /* -- MOBILE MENU TOGGLE -- */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMid = document.querySelector('.nav-mid');
+  if (navToggle && navMid) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navMid.classList.toggle('open');
+      document.body.style.overflow = navMid.classList.contains('open') ? 'hidden' : '';
+    });
+    navMid.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMid.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
 
 })();
