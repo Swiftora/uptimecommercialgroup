@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Uptime Commercial</title>
+<meta name="description" content="GTM strategy, fractional CRO/CCO leadership, channel design, service monetization, pipeline discipline, and commercial due diligence for manufacturers and technology companies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<style>
+/* SERVICES PAGE */
+.eng-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
+.eng-card {
+  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
+  padding: 48px 44px; position: relative; transition: background 0.25s;
+}
+.eng-card:hover { background: rgba(221,217,208,0.05); }
+.eng-flag {
+  font-family: var(--mono); font-size: 9px; font-weight: 300;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(196,162,74,0.25);
+  padding: 5px 11px; display: inline-block; margin-bottom: 36px;
+}
+.eng-n {
+  font-family: var(--serif); font-size: 56px; font-weight: 300;
+  color: rgba(196,162,74,0.09); line-height: 1;
+  position: absolute; top: 36px; right: 40px;
+  letter-spacing: -0.03em; user-select: none;
+}
+.eng-card h3 {
+  font-family: var(--serif); font-size: clamp(22px,2.5vw,32px);
+  font-weight: 300; color: var(--paper); line-height: 1.15; margin-bottom: 6px;
+}
+.eng-sub {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 300;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(196,162,74,0.5); margin-bottom: 22px;
+}
+.eng-body { font-size: 14px; color: var(--dim); line-height: 1.82; font-weight: 400; margin-bottom: 28px; }
+.eng-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.eng-list li {
+  font-size: 13px; color: rgba(221,217,208,0.38);
+  display: flex; align-items: flex-start; gap: 12px;
+  line-height: 1.55; font-weight: 400;
+}
+.eng-list li::before {
+  content: '—'; color: var(--gold); opacity: 0.4;
+  font-family: var(--mono); font-size: 11px; flex-shrink: 0;
+}
+
+/* SERVICE DETAIL SECTIONS */
+.svc-section {
+  padding: 100px 0; scroll-margin-top: 68px;
+}
+.svc-section:nth-child(even) { background: rgba(221,217,208,0.02); }
+.svc-grid { display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
+.svc-left {}
+.svc-left-label {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 300;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px; display: block;
+}
+.svc-left h2 {
+  font-family: var(--serif); font-size: clamp(30px,3.5vw,48px);
+  font-weight: 300; color: var(--paper); line-height: 1.08;
+  letter-spacing: -0.02em; margin-bottom: 24px;
+}
+.svc-left h2 em { font-style: italic; color: var(--gold2); }
+.svc-left p {
+  font-size: 15px; color: var(--dim); line-height: 1.82; font-weight: 400;
+  margin-bottom: 32px;
+}
+.svc-right {}
+.svc-right-intro {
+  font-family: var(--serif); font-style: italic;
+  font-size: 20px; font-weight: 300;
+  color: rgba(221,217,208,0.6); line-height: 1.5;
+  margin-bottom: 32px; padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+.svc-right p {
+  font-size: 14.5px; color: var(--dim); line-height: 1.85;
+  font-weight: 400; margin-bottom: 20px;
+}
+.svc-right p:last-of-type { margin-bottom: 0; }
+.svc-outcomes {
+  margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--rule);
+}
+.svc-outcomes-label {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 300;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(221,217,208,0.25); margin-bottom: 18px;
+}
+.outcomes-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.outcomes-list li {
+  font-size: 13.5px; color: rgba(221,217,208,0.5);
+  display: flex; align-items: flex-start; gap: 12px;
+  line-height: 1.55; font-weight: 400;
+}
+.outcomes-list li::before {
+  content: ''; width: 4px; height: 4px; background: var(--gold);
+  border-radius: 50%; flex-shrink: 0; margin-top: 7px; opacity: 0.5;
+}
+
+/* WHO IT'S FOR */
+.for-block {
+  margin-top: 36px; padding: 22px 24px;
+  border-left: 2px solid rgba(196,162,74,0.28);
+  background: rgba(196,162,74,0.03);
+}
+.for-label {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 300;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(196,162,74,0.5); margin-bottom: 8px;
+}
+.for-text { font-size: 14px; color: var(--dim); line-height: 1.72; font-weight: 400; }
+
+/* CTA */
+.svc-cta {
+  border: 1px solid var(--rule); padding: 56px 60px;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 48px; flex-wrap: wrap;
+}
+.svc-cta h3 {
+  font-family: var(--serif); font-size: clamp(22px,2.8vw,36px);
+  font-weight: 300; color: var(--paper); line-height: 1.15;
+}
+.svc-cta h3 em { font-style: italic; color: var(--gold2); }
+.cta-btns { display: flex; gap: 14px; flex-wrap: wrap; flex-shrink: 0; }
+
+@media (max-width: 1024px) {
+  .eng-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr; gap: 48px; }
+  .svc-cta { flex-direction: column; align-items: flex-start; padding: 40px 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cur-dot" id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+<div id="prog"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Uptime <em>Commercial</em></a>
+  <ul class="nav-mid">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-label">Services & Capabilities</div>
+    <h1 class="page-h1">The full commercial<br>architecture, <em>built.</em></h1>
+    <p class="page-intro">We work across every dimension of go-to-market — not a single point of the funnel. Because isolated fixes don't produce durable results.</p>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ENGAGEMENT MODELS -->
+<section class="sec" id="engagements">
+  <div class="w">
+    <div class="rv">
+      <span class="sec-label">Engagement Models</span>
+      <h2 class="sec-h">How we work<br><em>together.</em></h2>
+      <p class="sec-lead" style="margin-top:12px;">Every engagement starts with a clear diagnostic. The model depends on what you need built and how fast.</p>
+    </div>
+    <div class="eng-grid">
+      <div class="eng-card rv">
+        <div class="eng-flag">Ongoing · Embedded</div>
+        <div class="eng-n">01</div>
+        <h3>Fractional CRO / CCO</h3>
+        <div class="eng-sub">Senior leadership. Flexible commitment.</div>
+        <p class="eng-body">For companies that need experienced commercial leadership without a full-time hire. We integrate into your organization, own the commercial function, and build toward something that doesn't require us indefinitely. Typically structured as a defined number of days per month, scoped to your stage and priorities.</p>
+        <ul class="eng-list">
+          <li>Own commercial targets across all revenue streams</li>
+          <li>Pipeline inspection and forecast cadence</li>
+          <li>Channel strategy and partner governance</li>
+          <li>CRM and RevOps infrastructure</li>
+          <li>Team development and standard work</li>
+          <li>Board and investor commercial reporting</li>
+          <li>Cross-functional alignment (product, ops, finance)</li>
+        </ul>
+      </div>
+      <div class="eng-card rv d1">
+        <div class="eng-flag">Project-Based · Defined Scope</div>
+        <div class="eng-n">02</div>
+        <h3>GTM Strategy & Execution</h3>
+        <div class="eng-sub">Diagnostic. Roadmap. Implementation.</div>
+        <p class="eng-body">A structured engagement that starts with a clear read of where you actually are — benchmarked against what high-performing companies in similar situations have built — then delivers a prioritized plan and works through it with your team. The deliverable is a working commercial system, not a presentation.</p>
+        <ul class="eng-list">
+          <li>GTM readiness assessment with scored gap analysis</li>
+          <li>Prioritized roadmap with KPIs per initiative</li>
+          <li>Execution support through implementation</li>
+          <li>Pricing architecture and packaging design</li>
+          <li>Service monetization and renewal motion build</li>
+          <li>Channel coverage and rules of engagement design</li>
+          <li>AI and automation integration where applicable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICE 01 -->
+<section class="svc-section" id="service-gtm">
+  <div class="w">
+    <div class="svc-grid">
+      <div class="svc-left rv">
+        <span class="svc-left-label">01 — Service GTM</span>
+        <h2>Service GTM &<br><em>Lifecycle<br>Monetization</em></h2>
+        <p>For companies where the installed base far outpaces the service revenue it should be generating — and where aftermarket growth is the highest-margin, lowest-CAC opportunity on the table.</p>
+        <div class="for-block">
+          <div class="for-label">This engagement is right for you if</div>
+          <p class="for-text">You've built a significant installed base but service revenue feels opportunistic rather than systematic. Attach rates are low, renewals are reactive, and the service P&L doesn't reflect the value you're actually delivering.</p>
+        </div>
+      </div>
+      <div class="svc-right rv d1">
+        <p class="svc-right-intro">"Service revenue is the highest-margin opportunity most manufacturers have — and the most consistently underdeveloped. The gap between what's in the installed base and what's on service contract is usually the most direct path to EBITDA improvement available."</p>
+        <p>We build the full lifecycle monetization architecture: service packaging and tiered pricing, attach motions embedded at point of sale, 90-day-out renewal processes with CRM tracking and ownership, and the ARR visibility infrastructure that lets leadership forecast recurring revenue with confidence.</p>
+        <p>This isn't conceptual. We've built these systems inside companies that went from treating services as a cost center to running them as a distinct, growing P&L line — typically doubling service revenue within 12-18 months of implementation when the installed base exists to support it.</p>
+        <div class="svc-outcomes">
+          <div class="svc-outcomes-label">What gets built</div>
+          <ul class="outcomes-list">
+            <li>Service tier architecture with standard packaging and published pricing</li>
+            <li>Attach motion integrated into new product and equipment sales process</li>
+            <li>Renewal tracking, outreach cadence, and ARR forecasting in CRM</li>
+            <li>Service sales playbook and rep enablement materials</li>
+            <li>Productivity and utilization model for service delivery teams</li>
+            <li>Service-specific KPIs and inspection cadence for leadership</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICE 02 -->
+<section class="svc-section" id="channel">
+  <div class="w">
+    <div class="svc-grid">
+      <div class="svc-left rv">
+        <span class="svc-left-label">02 — Channel</span>
+        <h2>Channel &<br><em>Distribution<br>Strategy</em></h2>
+        <p>For companies where the coverage model has grown organically rather than strategically — and where the result is channel conflict, margin leakage, and inconsistent customer experience.</p>
+        <div class="for-block">
+          <div class="for-label">This engagement is right for you if</div>
+          <p class="for-text">You're running a mix of direct sellers and manufacturer reps with undefined boundaries. Channel conflict is frequent. Your best reps are covering accounts your distributors should own. Margin varies wildly by channel and you're not sure why.</p>
+        </div>
+      </div>
+      <div class="svc-right rv d1">
+        <p class="svc-right-intro">"Most channel problems aren't partner problems — they're governance problems. When the rules of engagement are undefined, the best reps fill the vacuum however benefits them, and the company pays for it in margin and customer confusion."</p>
+        <p>We design and implement the full coverage model: territory and account segmentation, rep-to-direct transition planning and execution where warranted, distributor selection and tiering criteria, rules of engagement documentation, deal registration process, and conflict resolution framework.</p>
+        <p>We've managed the rep-to-direct transition in under-performing territories — one of the highest-stakes commercial changes a company can make — and built hybrid direct/indirect models that improved both margin control and customer coverage simultaneously.</p>
+        <div class="svc-outcomes">
+          <div class="svc-outcomes-label">What gets built</div>
+          <ul class="outcomes-list">
+            <li>Account and territory segmentation with clear coverage ownership</li>
+            <li>Direct vs. channel decision framework for new and existing accounts</li>
+            <li>Partner tiering model with performance criteria and incentive structure</li>
+            <li>Rules of engagement documentation and deal registration process</li>
+            <li>Channel conflict resolution process and governance structure</li>
+            <li>Partner scorecard and quarterly business review framework</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICE 03 -->
+<section class="svc-section" id="pipeline">
+  <div class="w">
+    <div class="svc-grid">
+      <div class="svc-left rv">
+        <span class="svc-left-label">03 — Pipeline</span>
+        <h2>Pipeline &<br><em>Forecast<br>Discipline</em></h2>
+        <p>For companies where the forecast is a negotiation rather than a measurement — and where leadership doesn't trust the CRM data enough to make decisions from it.</p>
+        <div class="for-block">
+          <div class="for-label">This engagement is right for you if</div>
+          <p class="for-text">Your forecast accuracy is consistently off by 20%+. CRM adoption is low. Deals sit in the same stage for weeks. The pipeline review meeting is a discussion about what deals might close rather than an inspection of what evidence supports each stage.</p>
+        </div>
+      </div>
+      <div class="svc-right rv d1">
+        <p class="svc-right-intro">"A reliable forecast isn't a technology problem — it's a process and culture problem. The CRM is only as good as the discipline that feeds it, and that discipline has to be built, not mandated."</p>
+        <p>We build the full pipeline governance infrastructure: CRM data model and stage gate criteria, role-based entry standards and next-step requirements, weekly inspection cadence with defined questions, forecast methodology separating commit from upside, and executive dashboards that reflect actual pipeline health rather than wishful thinking.</p>
+        <p>We've taken organizations from ±30% forecast variance to consistent sub-10% accuracy — not by adding technology, but by building the human operating cadences that make the technology meaningful.</p>
+        <div class="svc-outcomes">
+          <div class="svc-outcomes-label">What gets built</div>
+          <ul class="outcomes-list">
+            <li>CRM stage gate criteria with evidence requirements per stage</li>
+            <li>Role-based CRM standards and training</li>
+            <li>Weekly pipeline inspection framework with defined questions</li>
+            <li>Forecast methodology (commit vs. upside vs. pipeline)</li>
+            <li>Executive pipeline and forecast dashboards</li>
+            <li>AI-assisted pipeline audit running on automated schedule</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICE 04 -->
+<section class="svc-section" id="pricing">
+  <div class="w">
+    <div class="svc-grid">
+      <div class="svc-left rv">
+        <span class="svc-left-label">04 — Pricing</span>
+        <h2>Pricing &<br><em>Discount<br>Governance</em></h2>
+        <p>For companies where margin erosion is happening deal by deal — and where nobody has a clear picture of how much is being discounted, by whom, on what, and for what reason.</p>
+        <div class="for-block">
+          <div class="for-label">This engagement is right for you if</div>
+          <p class="for-text">Your reps discount freely because there's no framework to push back against. List price is a starting point for negotiation rather than a defensible anchor. Gross margin varies significantly by rep and by deal and you don't have systematic visibility into why.</p>
+        </div>
+      </div>
+      <div class="svc-right rv d1">
+        <p class="svc-right-intro">"Uncontrolled discounting is the most common margin leak in commercial organizations — and often the fastest to recover once a governance system is in place. Most companies recover 2-4 margin points within the first year."</p>
+        <p>We build the full pricing governance architecture: value-based pricing frameworks that give reps a story to tell rather than a number to defend, tiered offering structure that creates natural anchoring, discount approval matrix with clear thresholds and rationale requirements, and the CRM logging that creates visibility into discount trends over time.</p>
+        <p>We also build the enablement that makes it stick — the ROI tools, the competitive positioning materials, and the objection handling frameworks that let reps defend price rather than immediately concede it.</p>
+        <div class="svc-outcomes">
+          <div class="svc-outcomes-label">What gets built</div>
+          <ul class="outcomes-list">
+            <li>Value-based pricing framework with customer-facing ROI tools</li>
+            <li>Tiered offering structure (entry, standard, premium)</li>
+            <li>Discount approval matrix with CRM-logged rationale</li>
+            <li>Quarterly discount audit and margin trend reporting</li>
+            <li>Sales enablement for value selling and price defense</li>
+            <li>Competitive pricing intelligence and positioning guide</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICE 05 -->
+<section class="svc-section" id="key-accounts">
+  <div class="w">
+    <div class="svc-grid">
+      <div class="svc-left rv">
+        <span class="svc-left-label">05 — Key Accounts</span>
+        <h2>Key Account &<br><em>Enterprise<br>Expansion</em></h2>
+        <p>For companies with large, complex customers who represent multi-year revenue opportunity — but where the account relationship is transactional rather than strategic.</p>
+        <div class="for-block">
+          <div class="for-label">This engagement is right for you if</div>
+          <p class="for-text">Your top 10 accounts generate a disproportionate share of revenue but there's no structured expansion program. Multi-site opportunities exist but aren't being systematically pursued. Executive relationships are shallow. Account plans exist in name only.</p>
+        </div>
+      </div>
+      <div class="svc-right rv d1">
+        <p class="svc-right-intro">"The best new business is usually sitting inside your existing accounts. A structured key account program consistently generates 15-30% incremental revenue from the installed base without adding headcount."</p>
+        <p>We build formal KAM programs from the ground up: account tiering criteria, account plan templates, executive sponsorship model, multi-site expansion playbook, and the quarterly review cadence that keeps the relationship moving rather than managing the status quo.</p>
+        <p>We've personally closed single orders exceeding $1.5M by applying a repeatable enterprise pursuit motion to accounts that were previously treated as routine — and built the internal infrastructure to make that motion scalable across the organization.</p>
+        <div class="svc-outcomes">
+          <div class="svc-outcomes-label">What gets built</div>
+          <ul class="outcomes-list">
+            <li>Account tiering model with strategic vs. transactional segmentation</li>
+            <li>Account plan template with expansion mapping and stakeholder matrix</li>
+            <li>Executive sponsorship program and cadence</li>
+            <li>Multi-site pursuit playbook and opportunity qualification framework</li>
+            <li>Quarterly business review structure for top accounts</li>
+            <li>KAM dashboard and expansion pipeline tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICE 06 -->
+<section class="svc-section" id="ma">
+  <div class="w">
+    <div class="svc-grid">
+      <div class="svc-left rv">
+        <span class="svc-left-label">06 — M&A Support</span>
+        <h2>Commercial Due<br>Diligence &<br><em>M&A Support</em></h2>
+        <p>For PE sponsors and acquirers who need an operator's assessment of commercial infrastructure — not a consultant's checklist — before making a capital allocation decision.</p>
+        <div class="for-block">
+          <div class="for-label">This engagement is right for you if</div>
+          <p class="for-text">You're evaluating an acquisition target with a commercial story that needs pressure-testing. Revenue concentration, channel dependency, service attachment rates, and forecast quality all need to be assessed by someone who's built and managed these systems — not just analyzed them.</p>
+        </div>
+      </div>
+      <div class="svc-right rv d1">
+        <p class="svc-right-intro">"Commercial due diligence done by someone who's actually managed a P&L looks very different from standard market analysis. We assess what exists, what's missing, and what it will take to get to the revenue thesis — with the specificity that comes from having built these systems ourselves."</p>
+        <p>We provide operator-lens commercial assessments: GTM architecture review, revenue quality and concentration analysis, channel dependency and transition risk, service attach and retention analysis, CRM quality assessment, and talent evaluation of the commercial leadership team.</p>
+        <p>We also support post-close integration — commercial integration planning, system standardization, and the operational build that moves the acquired company from its current state toward the performance thesis the acquisition was predicated on.</p>
+        <div class="svc-outcomes">
+          <div class="svc-outcomes-label">What gets delivered</div>
+          <ul class="outcomes-list">
+            <li>GTM architecture assessment with risk and opportunity scoring</li>
+            <li>Revenue quality analysis (concentration, churn, service attach)</li>
+            <li>Channel dependency and transition risk assessment</li>
+            <li>CRM and pipeline quality review</li>
+            <li>Commercial leadership team assessment</li>
+            <li>Post-close integration roadmap and commercial build plan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SERVICES CTA -->
+<section class="sec-sm">
+  <div class="w">
+    <div class="svc-cta rv">
+      <h3>Not sure which service<br>fits your situation? <em>Let's talk.</em></h3>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn-primary">Start the Conversation</a>
+        <a href="diagnostic.html" class="btn-secondary">Take the Free Diagnostic</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<footer>
+  <div class="w">
+    <div class="foot-inner">
+      <div>
+        <div class="foot-brand">Uptime <em>Commercial</em></div>
+        <p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p>
+      </div>
+      <div class="foot-links-row">
+        <div class="foot-col">
+          <div class="foot-col-title">Services</div>
+          <ul>
+            <li><a href="#service-gtm">Service GTM</a></li>
+            <li><a href="#channel">Channel Strategy</a></li>
+            <li><a href="#pipeline">Pipeline Discipline</a></li>
+            <li><a href="#pricing">Pricing Governance</a></li>
+            <li><a href="#key-accounts">Key Accounts</a></li>
+            <li><a href="#ma">M&A Support</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <div class="foot-col-title">Company</div>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="insights.html">Insights</a></li>
+            <li><a href="diagnostic.html">GTM Diagnostic</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-copy">© 2026 Uptime Commercial Group. All rights reserved.</div>
+      <div class="foot-legal">uptimecommercialgroup.com</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+</body>
+</html>

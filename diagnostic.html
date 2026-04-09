@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM & AI Maturity Diagnostic · Uptime Commercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #111214;
+  --ink2: #2a2d33;
+  --mid: #6b7280;
+  --muted: #9ca3af;
+  --faint: #e5e7eb;
+  --bg: #fafaf9;
+  --white: #ffffff;
+  --amber: #b45309;
+  --amber-light: #fef3c7;
+  --amber-mid: #d97706;
+  --amber-border: #fcd34d;
+  --red-soft: #fef2f2;
+  --red: #dc2626;
+  --yellow-soft: #fffbeb;
+  --green-soft: #f0fdf4;
+  --green: #16a34a;
+  --blue-soft: #eff6ff;
+  --blue: #2563eb;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Instrument Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 6px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ─── */
+.page { min-height: 100vh; }
+.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+.container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── SCREENS ─── */
+.screen { display: none; animation: fadeIn 0.35s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ─── NAV ─── */
+.nav {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--faint);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-avatar {
+  width: 36px; height: 36px;
+  background: var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.nav-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.nav-title {
+  font-size: 11px;
+  color: var(--mid);
+  line-height: 1;
+}
+.nav-cta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amber);
+  text-decoration: none;
+  border: 1px solid var(--amber-border);
+  background: var(--amber-light);
+  padding: 7px 14px;
+  border-radius: 6px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: #fde68a; }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 72px 0 60px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--amber-light);
+  border: 1px solid var(--amber-border);
+  color: var(--amber);
+  font-size: 11px;
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow span { width: 6px; height: 6px; background: var(--amber-mid); border-radius: 50%; }
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 6vw, 58px);
+  line-height: 1.12;
+  color: var(--ink);
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-lead {
+  font-size: 18px;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 36px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--sans);
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--ink2); box-shadow: 0 4px 16px rgba(0,0,0,0.15); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--mid);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--faint);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--sans);
+}
+.btn-secondary:hover { border-color: #d1d5db; color: var(--ink); background: var(--white); }
+
+.hero-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── PROOF STRIP ─── */
+.proof-strip {
+  padding: 28px 0;
+  border-top: 1px solid var(--faint);
+  border-bottom: 1px solid var(--faint);
+  background: var(--white);
+  margin-bottom: 64px;
+}
+.proof-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.proof-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.proof-val {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--ink);
+  line-height: 1;
+}
+.proof-label {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.proof-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--faint);
+  flex-shrink: 0;
+}
+
+/* ─── BIO SECTION ─── */
+.bio-section {
+  padding-bottom: 64px;
+}
+.bio-card {
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-radius: 12px;
+  padding: 36px 40px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.bio-intro {
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.bio-body {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.bio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bio-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--faint);
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.bio-credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bio-cred {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--faint);
+}
+.bio-cred-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 1px;
+}
+.bio-cred-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.bio-cred-sub {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.4;
+}
+
+/* ─── WHAT I HELP WITH ─── */
+.services-section {
+  padding-bottom: 64px;
+}
+.section-label {
+  font-size: 11px;
+  font-family: var(--mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--mid);
+  max-width: 540px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-radius: 10px;
+  padding: 22px 22px;
+  transition: all 0.2s;
+}
+.service-card:hover {
+  box-shadow: var(--shadow);
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+}
+.service-icon {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.service-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.service-desc {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+/* ─── DIAGNOSTIC CTA BANNER ─── */
+.diag-banner {
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 48px 48px;
+  margin-bottom: 64px;
+  position: relative;
+  overflow: hidden;
+}
+.diag-banner::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(217,119,6,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+.diag-banner-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber-mid);
+  margin-bottom: 14px;
+}
+.diag-banner h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 4vw, 34px);
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.diag-banner p {
+  font-size: 15px;
+  color: #9ca3af;
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+.btn-amber {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--amber-mid);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--sans);
+}
+.btn-amber:hover { background: var(--amber); box-shadow: 0 4px 20px rgba(180,83,9,0.4); }
+
+/* ─── ASSESSMENT SCREEN ─── */
+.assess-header {
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--faint);
+  margin-bottom: 40px;
+}
+.assess-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.assess-section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--amber);
+  background: var(--amber-light);
+  border: 1px solid var(--amber-border);
+  padding: 5px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.assess-progress-wrap { flex: 1; max-width: 240px; }
+.assess-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-family: var(--mono);
+}
+.progress-track {
+  height: 3px;
+  background: var(--faint);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--amber-mid);
+  border-radius: 3px;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.assess-section-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--ink);
+  margin-top: 12px;
+  line-height: 1.25;
+}
+.assess-section-desc {
+  font-size: 14px;
+  color: var(--mid);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* ─── QUESTIONS ─── */
+.question-block {
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-radius: 10px;
+  padding: 28px 30px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.question-block.answered {
+  border-color: #d1fae5;
+  box-shadow: 0 0 0 1px #d1fae5;
+}
+.q-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.q-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.45;
+}
+.q-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.options { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1px solid var(--faint);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+  font-family: var(--sans);
+}
+.opt:hover { background: var(--white); border-color: #d1d5db; }
+.opt.selected {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+.opt-radio {
+  width: 18px; height: 18px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.opt.selected .opt-radio {
+  border-color: var(--blue);
+  background: var(--blue);
+}
+.opt.selected .opt-radio::after {
+  content: '';
+  width: 6px; height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+.opt-label {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.5;
+  transition: color 0.15s;
+  padding-top: 1px;
+}
+.opt.selected .opt-label { color: var(--ink); }
+
+/* ─── INTAKE FORM ─── */
+.intake-section {
+  padding-bottom: 64px;
+}
+.intake-card {
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-radius: 12px;
+  padding: 36px 40px;
+  box-shadow: var(--shadow);
+}
+.intake-heading {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.intake-sub {
+  font-size: 14px;
+  color: var(--mid);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-field.full { grid-column: 1 / -1; }
+.form-label {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--mono);
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.form-label .req { color: var(--amber-mid); }
+.form-control {
+  background: var(--bg);
+  border: 1px solid var(--faint);
+  border-radius: 7px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--ink);
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+.form-control:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(147,197,253,0.25);
+  background: var(--white);
+}
+.form-control::placeholder { color: var(--muted); }
+select.form-control { appearance: none; cursor: pointer; }
+.form-error {
+  font-size: 11px;
+  color: var(--red);
+  margin-top: -4px;
+  display: none;
+}
+.form-error.visible { display: block; }
+
+/* ─── NAV BUTTONS ─── */
+.assess-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--faint);
+}
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--faint);
+  color: var(--mid);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s;
+}
+.btn-back:hover { border-color: #d1d5db; color: var(--ink); }
+.btn-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 26px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s;
+}
+.btn-next:hover:not(:disabled) { background: var(--ink2); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.btn-next:disabled { opacity: 0.38; cursor: not-allowed; }
+.btn-next.amber-btn { background: var(--amber-mid); }
+.btn-next.amber-btn:hover:not(:disabled) { background: var(--amber); }
+
+/* ─── LOADING ─── */
+.loading-screen {
+  padding: 120px 0;
+  text-align: center;
+}
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.loader-dot {
+  width: 8px; height: 8px;
+  background: var(--amber-mid);
+  border-radius: 50%;
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+.loader-dot:nth-child(2) { animation-delay: 0.2s; }
+.loader-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes loaderPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+.loading-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.loading-sub {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ─── RESULTS ─── */
+.results-screen { padding-bottom: 80px; }
+.results-hero {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--faint);
+  margin-bottom: 48px;
+}
+.results-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.results-company {
+  font-family: var(--serif);
+  font-size: clamp(28px,4vw,40px);
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+.score-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.score-big { line-height: 1; }
+.score-number {
+  font-family: var(--serif);
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.score-number.low { color: var(--red); }
+.score-number.mid { color: #b45309; }
+.score-number.high { color: var(--green); }
+.score-suffix {
+  font-family: var(--sans);
+  font-size: 22px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.score-tier-wrap { padding-bottom: 8px; }
+.score-tier {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.score-desc {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+}
+.score-bar-wrap {
+  height: 6px;
+  background: var(--faint);
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1) 0.3s;
+}
+.score-bar-fill.low { background: linear-gradient(90deg, #fca5a5, var(--red)); }
+.score-bar-fill.mid { background: linear-gradient(90deg, #fcd34d, var(--amber-mid)); }
+.score-bar-fill.high { background: linear-gradient(90deg, #86efac, var(--green)); }
+.results-summary {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.75;
+  max-width: 640px;
+  padding: 20px 24px;
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-left: 3px solid var(--amber-mid);
+  border-radius: 0 8px 8px 0;
+}
+
+/* ─── DIMENSION CARDS ─── */
+.dim-section { margin-bottom: 48px; }
+.dim-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.dim-card {
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+.dim-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.dim-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  max-width: 160px;
+}
+.dim-score {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+}
+.dim-score.low { color: var(--red); }
+.dim-score.mid { color: var(--amber-mid); }
+.dim-score.high { color: var(--green); }
+.dim-bar {
+  height: 3px;
+  background: var(--faint);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.dim-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s cubic-bezier(0.4,0,0.2,1) 0.5s;
+}
+.dim-fill.low { background: var(--red); }
+.dim-fill.mid { background: var(--amber-mid); }
+.dim-fill.high { background: var(--green); }
+.dim-status {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── REC CARDS ─── */
+.rec-section { margin-bottom: 48px; }
+.rh {
+  margin-bottom: 20px;
+}
+.rec-card {
+  background: var(--white);
+  border: 1px solid var(--faint);
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.rec-badge {
+  flex-shrink: 0;
+  min-width: 80px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 3px;
+}
+.rec-badge.critical { background: var(--red-soft); color: var(--red); border: 1px solid #fecaca; }
+.rec-badge.high { background: var(--yellow-soft); color: var(--amber); border: 1px solid var(--amber-border); }
+.rec-badge.medium { background: var(--green-soft); color: var(--green); border: 1px solid #bbf7d0; }
+.rec-dim {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.rec-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.rec-body {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+/* ─── CONTACT CTA ─── */
+.contact-cta {
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 44px 44px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-cta::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(217,119,6,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-top {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber-mid);
+  margin-bottom: 12px;
+}
+.cta-h {
+  font-family: var(--serif);
+  font-size: clamp(22px,3vw,30px);
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.cta-p {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+.cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.btn-white:hover { background: #f9fafb; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.cta-email {
+  font-size: 13px;
+  color: #6b7280;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+}
+
+/* ─── PRINT ─── */
+.print-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--faint);
+  color: var(--mid);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.15s;
+}
+.btn-ghost:hover { border-color: #d1d5db; color: var(--ink); }
+
+/* ─── FOOTER ─── */
+.footer {
+  margin-top: 64px;
+  padding: 28px 0;
+  border-top: 1px solid var(--faint);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink);
+}
+.footer-copy {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .bio-card { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-field.full { grid-column: 1; }
+  .dim-grid { grid-template-columns: 1fr; }
+  .diag-banner, .intake-card, .contact-cta { padding: 28px 24px; }
+  .score-number { font-size: 60px; }
+  .proof-inner { gap: 24px; }
+}
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  .nav, .hero-actions, .diag-banner, .btn-primary, .btn-secondary,
+  .btn-amber, .btn-back, .btn-next, .btn-white, .btn-ghost,
+  .assess-nav, .print-row, .footer { display: none !important; }
+  body { background: white; color: black; }
+  .results-screen { padding: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── STICKY NAV ─── -->
+<nav class="nav">
+  <div class="container-wide nav-inner">
+    <div class="nav-brand">
+      <div class="nav-avatar" style="background:#c4a24a;color:#0a0e14;font-family:monospace;font-size:11px;font-weight:700">UC</div>
+      <div>
+        <div class="nav-name">Uptime Commercial</div>
+        <div class="nav-title">Industrial GTM · VP Sales & Customer Success</div>
+      </div>
+    </div>
+    <a href="index.html" class="nav-cta">← Back to Site</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SCREEN: LANDING                        -->
+<!-- ══════════════════════════════════════ -->
+<div id="screen-landing" class="screen active page">
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow"><span></span>Free GTM Diagnostic · Industrial & Aerospace</div>
+      <h1>Where is your commercial<br>engine <em>leaving money?</em></h1>
+      <p class="hero-lead">Most manufacturing and technology companies have strong products and talented people — but the commercial infrastructure holding it together is underdeveloped. This diagnostic tells you exactly where the gaps are across six dimensions, including AI and automation readiness.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showIntake()">Take the Free Diagnostic →</button>
+        <button class="btn-secondary" onclick="scrollToBio()">About Eric ↓</button>
+      </div>
+      <div class="hero-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        No email required to get results. Takes ~10 minutes.
+      </div>
+    </div>
+
+    <!-- PROOF STRIP -->
+    <div class="proof-strip">
+      <div class="proof-inner">
+        <div class="proof-item">
+          <span class="proof-val">15+</span>
+          <span class="proof-label">Years industrial GTM</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-val">$55M</span>
+          <span class="proof-label">Commercial portfolio owned</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-val">2.4×</span>
+          <span class="proof-label">Services P&L turned around</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-val">3%→18%</span>
+          <span class="proof-label">EBITDA margin expanded</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-val">3×</span>
+          <span class="proof-label">Ownership models navigated</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIO -->
+    <div class="bio-section" id="bio-section">
+      <div class="section-label">About Eric</div>
+      <div class="bio-card">
+        <div>
+          <div class="bio-intro">I've spent 15 years inside industrial technology companies building the commercial infrastructure that turns good products into predictable revenue.</div>
+          <p class="bio-body">I've spent 15+ years inside manufacturing and technology companies — leading commercial teams, owning P&Ls, running channel transformations, and rebuilding service GTM from scratch. I've been in the rooms where the hard commercial decisions get made, and I understand the difference between a strategy that sounds right and one that holds when a quarter goes sideways.<br><br>Uptime Commercial works with business owners and PE operating partners to build the commercial infrastructure that makes revenue predictable — and applies AI and automation to make that infrastructure self-sustaining.</p>
+          <div class="bio-tags">
+            <span class="bio-tag">Services GTM</span>
+            <span class="bio-tag">Channel Strategy</span>
+            <span class="bio-tag">RevOps</span>
+            <span class="bio-tag">P&L Turnaround</span>
+            <span class="bio-tag">Industrial</span>
+            <span class="bio-tag">Aerospace</span>
+            <span class="bio-tag">PE-Backed</span>
+          </div>
+        </div>
+        <div class="bio-credentials">
+          <div class="bio-cred">
+            <div class="bio-cred-icon">🏭</div>
+            <div>
+              <div class="bio-cred-title">Ascential Technologies (AEA Investors)</div>
+              <div class="bio-cred-sub">VP Sales Americas & Global Customer Success · 2024–Present</div>
+            </div>
+          </div>
+          <div class="bio-cred">
+            <div class="bio-cred-icon">⚡</div>
+            <div>
+              <div class="bio-cred-title">Fluke Reliability / PRUFTECHNIK (Fortive)</div>
+              <div class="bio-cred-sub">Sales Director → NA East Leader → Services P&L Owner · 2012–2024</div>
+            </div>
+          </div>
+          <div class="bio-cred">
+            <div class="bio-cred-icon">✍️</div>
+            <div>
+              <div class="bio-cred-title">Published Author</div>
+              <div class="bio-cred-sub">Advanced Manufacturing, Quality Magazine, AISTech Conference Proceedings</div>
+            </div>
+          </div>
+          <div class="bio-cred">
+            <div class="bio-cred-icon">🎓</div>
+            <div>
+              <div class="bio-cred-title">Certified Reliability Leader</div>
+              <div class="bio-cred-sub">Reliabilityweb.com · FAA A&P License · Penn College of Technology</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT I HELP WITH -->
+    <div class="services-section">
+      <div class="section-label">What I Help With</div>
+      <h2 class="section-heading">Not just service revenue.<br>The whole commercial engine.</h2>
+      <p class="section-sub">I work across every dimension of industrial GTM — from the strategy layer down to the operating cadences that make it stick.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <div class="service-name">Service GTM & Lifecycle Monetization</div>
+          <div class="service-desc">Attach motions, renewal packaging, ARR mechanics, and service P&L architecture that actually scales.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🗺️</div>
+          <div class="service-name">Channel & Distribution Strategy</div>
+          <div class="service-desc">Rep-to-direct transitions, hybrid coverage design, distributor governance, and channel ROE that eliminates conflict.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <div class="service-name">Pipeline & Forecast Discipline</div>
+          <div class="service-desc">CRM transformation, stage hygiene, inspection cadences, and forecast methodology that gives PE boards confidence.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💰</div>
+          <div class="service-name">Pricing & Discount Governance</div>
+          <div class="service-desc">Value-based pricing frameworks, tiered packaging, discount approval matrices, and margin protection mechanisms.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <div class="service-name">Key Account & Enterprise Expansion</div>
+          <div class="service-desc">Multi-site account strategy, exec sponsorship models, and expansion playbooks for $500K+ opportunity pursuit.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤝</div>
+          <div class="service-name">Commercial Due Diligence & M&A</div>
+          <div class="service-desc">GTM assessment, commercial integration planning, and revenue quality analysis for PE-backed acquisition targets.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGNOSTIC CTA BANNER -->
+    <div class="diag-banner">
+      <div class="diag-banner-label">Free · 10 Minutes · Instant Results</div>
+      <h2>Find out where your GTM and AI maturity<br>are holding revenue back.</h2>
+      <p>Answer 18 questions across six commercial dimensions — including AI and automation maturity. Get a scored, prioritized diagnostic with specific recommendations tailored to your situation.</p>
+      <button class="btn-amber" onclick="showIntake()">Start the Diagnostic →</button>
+    </div>
+
+  </div><!-- /container -->
+
+  <div class="container-wide">
+    <div class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">Uptime Commercial Group</div>
+        <div class="footer-copy">uptimecommercialgroup.com · eric@uptimecommercialgroup.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SCREEN: INTAKE FORM                    -->
+<!-- ══════════════════════════════════════ -->
+<div id="screen-intake" class="screen page">
+  <div class="container">
+    <div style="padding: 40px 0 0;">
+      <button class="btn-back" onclick="showLanding()">← Back</button>
+    </div>
+    <div class="assess-header">
+      <div class="assess-meta">
+        <div class="assess-section-pill">Before We Start</div>
+      </div>
+      <div class="assess-section-title">Quick intro — so your results are calibrated</div>
+      <div class="assess-section-desc">Takes 60 seconds. Your answers shape the benchmarks and recommendations you'll receive.</div>
+    </div>
+
+    <div class="intake-section">
+      <div class="intake-card">
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label">Your Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="f-name" placeholder="Jane Smith">
+            <div class="form-error" id="err-name">Please enter your name</div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Company Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="f-company" placeholder="Acme Industrial">
+            <div class="form-error" id="err-company">Please enter your company name</div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Your Role</label>
+            <select class="form-control" id="f-role">
+              <option value="">Select your role</option>
+              <option value="owner">Business Owner / Founder</option>
+              <option value="ceo">CEO / President</option>
+              <option value="vp_sales">VP / Director of Sales</option>
+              <option value="vp_ops">VP / Director of Operations</option>
+              <option value="gm">General Manager</option>
+              <option value="pe">PE / Investment Professional</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Annual Revenue</label>
+            <select class="form-control" id="f-revenue">
+              <option value="">Select range</option>
+              <option value="u5">Under $5M</option>
+              <option value="5to15">$5M – $15M</option>
+              <option value="15to50">$15M – $50M</option>
+              <option value="50to150">$50M – $150M</option>
+              <option value="o150">Over $150M</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Primary Market <span class="req">*</span></label>
+            <select class="form-control" id="f-market">
+              <option value="">Select market</option>
+              <option value="aerospace">Aerospace & Defense</option>
+              <option value="industrial">Industrial Manufacturing</option>
+              <option value="reliability">Reliability / Condition Monitoring</option>
+              <option value="oil_gas">Oil & Gas / Energy</option>
+              <option value="automation">Factory Automation / Robotics</option>
+              <option value="mro">MRO / Aftermarket Services</option>
+              <option value="other">Other Industrial</option>
+            </select>
+            <div class="form-error" id="err-market">Please select your market</div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Current Sales Model</label>
+            <select class="form-control" id="f-model">
+              <option value="">Select model</option>
+              <option value="direct">Direct Sales Only</option>
+              <option value="reps">Manufacturer Reps Only</option>
+              <option value="dist">Distributor Network</option>
+              <option value="hybrid">Hybrid (Direct + Channel)</option>
+              <option value="undefined">Not Formally Defined</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Services as % of Revenue</label>
+            <select class="form-control" id="f-svc">
+              <option value="">Select range</option>
+              <option value="u10">Under 10%</option>
+              <option value="10to25">10% – 25%</option>
+              <option value="25to40">25% – 40%</option>
+              <option value="o40">Over 40%</option>
+              <option value="none">We don't sell services</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Biggest Commercial Challenge</label>
+            <select class="form-control" id="f-challenge">
+              <option value="">Select the closest fit</option>
+              <option value="forecast">Forecast unpredictability</option>
+              <option value="services">Growing service/recurring revenue</option>
+              <option value="channel">Channel conflict or coverage gaps</option>
+              <option value="margin">Margin erosion / discount control</option>
+              <option value="scale">Scaling the sales team</option>
+              <option value="crm">CRM adoption and data quality</option>
+              <option value="enterprise">Winning larger accounts</option>
+              <option value="ai">Implementing AI in our sales operations</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="assess-nav">
+      <button class="btn-back" onclick="showLanding()">← Back</button>
+      <button class="btn-next amber-btn" onclick="startAssessment()">Begin Diagnostic →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SCREEN: ASSESSMENT                     -->
+<!-- ══════════════════════════════════════ -->
+<div id="screen-assessment" class="screen page">
+  <div class="container">
+    <div class="assess-header">
+      <div class="assess-meta">
+        <div class="assess-section-pill" id="section-pill">Section 1 of 5</div>
+        <div class="assess-progress-wrap">
+          <div class="assess-progress-label">
+            <span>Questions answered</span>
+            <span id="q-count">0 / 15</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="assess-section-title" id="section-title">Loading...</div>
+      <div class="assess-section-desc" id="section-desc"></div>
+    </div>
+
+    <div id="questions-wrap"></div>
+
+    <div class="assess-nav">
+      <button class="btn-back" id="btn-prev" onclick="prevSection()">← Previous</button>
+      <button class="btn-next" id="btn-next" onclick="nextSection()" disabled>Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SCREEN: LOADING                        -->
+<!-- ══════════════════════════════════════ -->
+<div id="screen-loading" class="screen page">
+  <div class="container">
+    <div class="loading-screen">
+      <div class="loader">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+      <div class="loading-title">Analyzing your responses…</div>
+      <div class="loading-sub">Building your personalized GTM diagnostic report</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SCREEN: RESULTS                        -->
+<!-- ══════════════════════════════════════ -->
+<div id="screen-results" class="screen page">
+  <div class="container">
+    <div class="results-screen" id="results-body"></div>
+  </div>
+</div>
+
+<!-- ─── FOOTER (all screens except landing) ─── -->
+
+<script>
+/* ══════════════════════════════════════════
+   DATA
+══════════════════════════════════════════ */
+const SECTIONS = [
+  {
+    id: 'pipeline',
+    name: 'Pipeline & Forecast Discipline',
+    pill: 'Section 1 of 6 · Pipeline',
+    desc: 'How predictable and visible is your revenue engine?',
+    questions: [
+      {
+        id: 'crm',
+        text: 'How would you honestly describe your CRM data quality today?',
+        hint: 'Think about stage accuracy, next steps, close dates, and deal completeness.',
+        opts: [
+          { score: 1, label: 'Minimal use — most pipeline lives in spreadsheets or people\'s heads.' },
+          { score: 2, label: 'Used but unreliable — stale deals, missing fields, stages don\'t reflect reality.' },
+          { score: 3, label: 'Reasonably populated but no stage gate enforcement or next-step discipline.' },
+          { score: 4, label: 'Well-governed — role-based standards, hygiene enforced, dashboards are trusted.' },
+        ]
+      },
+      {
+        id: 'forecast',
+        text: 'How accurate is your sales forecast vs. actual bookings?',
+        hint: 'Compare your typical commit to what actually closes within the period.',
+        opts: [
+          { score: 1, label: 'We don\'t formally forecast — bookings are largely a surprise at period end.' },
+          { score: 2, label: 'We forecast but miss by more than 25% regularly — low confidence in the number.' },
+          { score: 3, label: 'Within 15–25% typically — decent visibility but still significant quarter-end push.' },
+          { score: 4, label: 'Consistently within 10% — reliable commit methodology, board-ready number.' },
+        ]
+      },
+      {
+        id: 'cadence',
+        text: 'How structured is your pipeline inspection cadence?',
+        hint: 'Think about formal deal reviews vs. informal gut-feel check-ins.',
+        opts: [
+          { score: 1, label: 'No formal pipeline review — deals discussed only when a problem surfaces.' },
+          { score: 2, label: 'Monthly or quarterly reviews but unstructured, no standard format.' },
+          { score: 3, label: 'Weekly or bi-weekly reviews exist but lack consistent inspection framework.' },
+          { score: 4, label: 'Weekly structured review with defined questions, stage gates, and deal governance.' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'service_gtm',
+    name: 'Service Revenue & Lifecycle Monetization',
+    pill: 'Section 2 of 6 · Services',
+    desc: 'How systematically do you sell, attach, and renew service revenue?',
+    questions: [
+      {
+        id: 'attach',
+        text: 'How mature is your service attach motion at point of product sale?',
+        hint: 'Whether services are proactively bundled and proposed alongside new equipment sales.',
+        opts: [
+          { score: 1, label: 'No formal attach motion — services are sold reactively when customers call.' },
+          { score: 2, label: 'Occasionally mentioned but no structured playbook or attach expectation.' },
+          { score: 3, label: 'Attach process exists but is inconsistent — depends on the individual rep.' },
+          { score: 4, label: 'Attach is built into the sales process with standard packaging and quota.' },
+        ]
+      },
+      {
+        id: 'renewal',
+        text: 'How mature is your service renewal motion?',
+        hint: 'Whether renewals are tracked, forecasted, and owned by a specific role with a specific cadence.',
+        opts: [
+          { score: 1, label: 'No formal renewal process — contracts lapse and we re-sell reactively.' },
+          { score: 2, label: 'Someone tracks renewals in a spreadsheet but no systematic outreach.' },
+          { score: 3, label: 'Tracked in CRM with some automation but execution is inconsistent.' },
+          { score: 4, label: '90-day-out renewal motion with CRM tracking, ARR visibility, and owned accountability.' },
+        ]
+      },
+      {
+        id: 'packaging',
+        text: 'How are your service offerings packaged and priced?',
+        hint: 'Whether you have tiered, standard offerings or purely custom proposals for every deal.',
+        opts: [
+          { score: 1, label: 'Everything is quoted custom — no standard packaging or published pricing.' },
+          { score: 2, label: 'A loose menu exists but pricing varies widely depending on who quotes it.' },
+          { score: 3, label: 'Standard tiers exist but aren\'t consistently used or enforced across the team.' },
+          { score: 4, label: 'Defined, tiered service packages (e.g. Essential / Advanced / Elite) with governance.' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'channel',
+    name: 'Channel Coverage & Partner Management',
+    pill: 'Section 3 of 6 · Channel',
+    desc: 'How well-designed and governed is your go-to-market coverage model?',
+    questions: [
+      {
+        id: 'roe',
+        text: 'How clearly defined is your direct vs. channel coverage model?',
+        hint: 'Whether reps, distributors, and direct sellers have documented territories and rules of engagement.',
+        opts: [
+          { score: 1, label: 'Coverage is undefined — overlap is common and channel conflict is frequent.' },
+          { score: 2, label: 'Rough territories exist but no formal rules of engagement or governance docs.' },
+          { score: 3, label: 'Coverage model on paper but not consistently enforced or understood in the field.' },
+          { score: 4, label: 'Documented ROE, territory maps, deal registration, and conflict resolution process.' },
+        ]
+      },
+      {
+        id: 'partner_perf',
+        text: 'How do you manage performance accountability with channel partners?',
+        hint: 'Whether partners have quotas, business plans, and regular structured reviews.',
+        opts: [
+          { score: 1, label: 'No formal performance management — we take what partners bring us.' },
+          { score: 2, label: 'Informal check-ins but no documented targets or partner business plans.' },
+          { score: 3, label: 'Annual targets set but mid-year reviews are inconsistent and rarely drive action.' },
+          { score: 4, label: 'Quarterly business reviews, documented plans, tiered incentives tied to performance.' },
+        ]
+      },
+      {
+        id: 'enablement',
+        text: 'How well-enabled are your channel partners to sell and support services?',
+        hint: 'Whether partners have training, tools, and incentive to sell services — not just hardware.',
+        opts: [
+          { score: 1, label: 'Partners have minimal training and no service-specific tools or collateral.' },
+          { score: 2, label: 'Basic product training exists but partners are not equipped to sell services.' },
+          { score: 3, label: 'Some service training done but not systematic and partner adoption is low.' },
+          { score: 4, label: 'Partners trained on services with co-selling playbooks and deal support from us.' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'pricing',
+    name: 'Pricing Discipline & Value Selling',
+    pill: 'Section 4 of 6 · Pricing',
+    desc: 'How well do you protect and communicate the value of what you sell?',
+    questions: [
+      {
+        id: 'discounts',
+        text: 'How disciplined is your discount governance?',
+        hint: 'Whether discounting requires approval, is tracked, and is tied to deal strategy.',
+        opts: [
+          { score: 1, label: 'Discounting is uncontrolled — reps discount freely to close deals.' },
+          { score: 2, label: 'General sense of limits but no formal approval workflow in place.' },
+          { score: 3, label: 'Thresholds exist with manager approval required, but not always enforced.' },
+          { score: 4, label: 'Tiered approval matrix with CRM-logged rationale and quarterly discount audits.' },
+        ]
+      },
+      {
+        id: 'value',
+        text: 'How consistently does your team sell on value vs. price?',
+        hint: 'Whether reps can articulate ROI, total cost of ownership, or uptime/downtime impact.',
+        opts: [
+          { score: 1, label: 'We lead with price — we compete primarily on cost.' },
+          { score: 2, label: 'Some reps talk value but there\'s no consistent framework or supporting tools.' },
+          { score: 3, label: 'Value messaging exists in marketing but field adoption is inconsistent.' },
+          { score: 4, label: 'Reps trained in value-based selling with ROI tools and customer-facing proof points.' },
+        ]
+      },
+      {
+        id: 'packaging_p',
+        text: 'How well do you package and price for different customer segments?',
+        hint: 'Whether you have differentiated offerings for SMB vs. enterprise, or price purely by cost-plus.',
+        opts: [
+          { score: 1, label: 'One-size-fits-all pricing — no segmentation by account size or value delivered.' },
+          { score: 2, label: 'Some informal variation but no defined segmentation framework.' },
+          { score: 3, label: 'Basic segmentation exists but pricing decisions aren\'t consistently applied.' },
+          { score: 4, label: 'Defined pricing tiers by segment with governance and quarterly review cadence.' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'org',
+    name: 'Commercial Operating Infrastructure',
+    pill: 'Section 5 of 6 · Operating Cadence',
+    desc: 'How repeatable and scalable is your commercial operating model?',
+    questions: [
+      {
+        id: 'playbooks',
+        text: 'Does your team have documented, actively used sales playbooks?',
+        hint: 'For new logo, expansion, renewal, and enterprise pursuit — not just onboarding docs.',
+        opts: [
+          { score: 1, label: 'No playbooks — reps operate on instinct and tribal knowledge.' },
+          { score: 2, label: 'Some documented processes exist but outdated or rarely consulted.' },
+          { score: 3, label: 'Playbooks exist for some motions and are used by part of the team.' },
+          { score: 4, label: 'Current, actively used playbooks with regular enablement and field inspection.' },
+        ]
+      },
+      {
+        id: 'key_acct',
+        text: 'How mature is your key account / enterprise expansion capability?',
+        hint: 'Multi-site strategy, executive relationships, formal account planning, and expansion motions.',
+        opts: [
+          { score: 1, label: 'No key account program — all accounts treated the same way.' },
+          { score: 2, label: 'A few top accounts get extra attention but no structured approach.' },
+          { score: 3, label: 'Key accounts designated with some account plans but inconsistent execution.' },
+          { score: 4, label: 'Formal KAM program with tiered accounts, exec sponsorship, and expansion motions.' },
+        ]
+      },
+      {
+        id: 'voc',
+        text: 'How systematically do you capture and act on Voice of Customer (VoC)?',
+        hint: 'Whether field insights flow back to product, pricing, and GTM decisions.',
+        opts: [
+          { score: 1, label: 'No formal VoC process — product decisions made without field or customer input.' },
+          { score: 2, label: 'Customer feedback collected informally but rarely influences decisions.' },
+          { score: 3, label: 'Periodic surveys or win/loss reviews exist but findings aren\'t acted on.' },
+          { score: 4, label: 'Structured VoC loop — win/loss analysis, customer councils, closed-loop product feedback.' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'ai_automation',
+    name: 'AI & Automation Maturity',
+    pill: 'Section 6 of 6 · AI & Automation',
+    desc: 'How effectively are you using AI and automation in your commercial operations?',
+    questions: [
+      {
+        id: 'ai_pipeline',
+        text: 'How automated is your pipeline review and sales reporting process?',
+        hint: 'Think about how your team currently produces pipeline status, forecast updates, and deal hygiene reports.',
+        opts: [
+          { score: 1, label: 'Entirely manual — someone pulls CRM data by hand and assembles a spreadsheet or slide deck.' },
+          { score: 2, label: 'Basic CRM dashboards exist but someone still has to interpret and summarize them each week.' },
+          { score: 3, label: 'Some automation in place — reports run on a schedule but still require manual cleanup or narrative.' },
+          { score: 4, label: 'Fully automated pipeline audit — AI flags issues, summarizes deal health, and delivers to leadership without manual effort.' },
+        ]
+      },
+      {
+        id: 'ai_research',
+        text: 'How does your team currently prepare for prospect and account conversations?',
+        hint: 'Think about the research and account prep work that happens before an outreach or customer meeting.',
+        opts: [
+          { score: 1, label: 'Minimal prep — reps go in with general product knowledge and rely on instinct.' },
+          { score: 2, label: 'Manual research — reps individually Google the company, check LinkedIn, maybe pull news.' },
+          { score: 3, label: 'Some templates or prompts exist to guide research, but the work is still done manually by each rep.' },
+          { score: 4, label: 'AI-assisted account intelligence — structured briefs with buying signals, context, and recommended approach generated automatically.' },
+        ]
+      },
+      {
+        id: 'ai_adoption',
+        text: 'How would you describe your sales team's current use of AI tools in their day-to-day work?',
+        hint: 'Across outreach, proposals, follow-ups, meeting prep — not just awareness of AI, but actual usage.',
+        opts: [
+          { score: 1, label: 'No meaningful AI usage — the team is aware of tools like ChatGPT but not applying them in commercial work.' },
+          { score: 2, label: 'A few individuals experiment with AI tools on their own, but there is no team-wide adoption or guidance.' },
+          { score: 3, label: 'Some AI tools are being used for specific tasks (drafting, research) but inconsistently and without a framework.' },
+          { score: 4, label: 'AI is embedded in the commercial workflow — outreach, proposals, prep, and reporting all have AI-assisted components with team-wide adoption.' },
+        ]
+      },
+    ]
+  }
+];
+
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let curSection = 0;
+let answers = {};
+let intake = {};
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showLanding() { showScreen('landing'); }
+function scrollToBio() {
+  document.getElementById('bio-section').scrollIntoView({ behavior: 'smooth' });
+}
+function showIntake() { showScreen('intake'); }
+
+function startAssessment() {
+  // Validate required fields
+  let valid = true;
+  const name = document.getElementById('f-name').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  const market = document.getElementById('f-market').value;
+
+  if (!name) { document.getElementById('err-name').classList.add('visible'); valid = false; }
+  else { document.getElementById('err-name').classList.remove('visible'); }
+  if (!company) { document.getElementById('err-company').classList.add('visible'); valid = false; }
+  else { document.getElementById('err-company').classList.remove('visible'); }
+  if (!market) { document.getElementById('err-market').classList.add('visible'); valid = false; }
+  else { document.getElementById('err-market').classList.remove('visible'); }
+
+  if (!valid) return;
+
+  intake = {
+    name, company, market,
+    role: document.getElementById('f-role').value,
+    revenue: document.getElementById('f-revenue').value,
+    model: document.getElementById('f-model').value,
+    svc: document.getElementById('f-svc').value,
+    challenge: document.getElementById('f-challenge').value,
+  };
+
+  curSection = 0;
+  answers = {};
+  showScreen('assessment');
+  renderSection();
+}
+
+/* ══════════════════════════════════════════
+   ASSESSMENT RENDERING
+══════════════════════════════════════════ */
+function renderSection() {
+  const sec = SECTIONS[curSection];
+  document.getElementById('section-pill').textContent = sec.pill;
+  document.getElementById('section-title').textContent = sec.name;
+  document.getElementById('section-desc').textContent = sec.desc;
+
+  const totalQs = SECTIONS.reduce((a, s) => a + s.questions.length, 0);
+  const answered = Object.keys(answers).length;
+  document.getElementById('q-count').textContent = answered + ' / ' + totalQs;
+  document.getElementById('prog-fill').style.width = Math.round((answered / totalQs) * 100) + '%';
+
+  const prevBtn = document.getElementById('btn-prev');
+  prevBtn.style.visibility = curSection > 0 ? 'visible' : 'hidden';
+
+  const wrap = document.getElementById('questions-wrap');
+  wrap.innerHTML = '';
+
+  const qOffset = SECTIONS.slice(0, curSection).reduce((a, s) => a + s.questions.length, 0);
+
+  sec.questions.forEach((q, qi) => {
+    const block = document.createElement('div');
+    block.className = 'question-block' + (answers[q.id] !== undefined ? ' answered' : '');
+    block.id = 'qb-' + q.id;
+    block.innerHTML = `
+      <div class="q-num">Question ${qOffset + qi + 1} of ${totalQs}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-hint">${q.hint}</div>
+      <div class="options">
+        ${q.opts.map((o, oi) => `
+          <button class="opt${answers[q.id] === oi ? ' selected' : ''}"
+            onclick="selectAnswer('${q.id}', ${oi}, ${o.score}, this)">
+            <div class="opt-radio"></div>
+            <span class="opt-label">${o.label}</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+    wrap.appendChild(block);
+  });
+
+  updateNextBtn();
+}
+
+function selectAnswer(qId, optIdx, score, el) {
+  answers[qId] = { idx: optIdx, score };
+  const block = document.getElementById('qb-' + qId);
+  block.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  block.classList.add('answered');
+
+  const totalQs = SECTIONS.reduce((a, s) => a + s.questions.length, 0);
+  const answered = Object.keys(answers).length;
+  document.getElementById('q-count').textContent = answered + ' / ' + totalQs;
+  document.getElementById('prog-fill').style.width = Math.round((answered / totalQs) * 100) + '%';
+
+  updateNextBtn();
+}
+
+function updateNextBtn() {
+  const sec = SECTIONS[curSection];
+  const allAnswered = sec.questions.every(q => answers[q.id] !== undefined);
+  const btn = document.getElementById('btn-next');
+  btn.disabled = !allAnswered;
+  const isLast = curSection === SECTIONS.length - 1;
+  btn.textContent = isLast ? 'Generate My Report →' : 'Continue →';
+  if (isLast && allAnswered) {
+    btn.classList.add('amber-btn');
+  } else {
+    btn.classList.remove('amber-btn');
+  }
+}
+
+function prevSection() {
+  if (curSection > 0) { curSection--; renderSection(); window.scrollTo({top:0}); }
+}
+
+function nextSection() {
+  if (curSection < SECTIONS.length - 1) {
+    curSection++;
+    renderSection();
+    window.scrollTo({top:0});
+  } else {
+    runAnalysis();
+  }
+}
+
+/* ══════════════════════════════════════════
+   SCORING
+══════════════════════════════════════════ */
+function computeScores() {
+  const dims = {};
+  SECTIONS.forEach(sec => {
+    const scores = sec.questions.map(q => answers[q.id]?.score || 1);
+    const avg = scores.reduce((a,b) => a+b, 0) / scores.length;
+    dims[sec.id] = { name: sec.name, avg, pct: Math.round(avg * 25) };
+  });
+  const overall = Math.round(Object.values(dims).reduce((a,d) => a + d.avg, 0) / SECTIONS.length * 25);
+  return { dims, overall };
+}
+
+function scoreTier(pct) {
+  if (pct >= 80) return { label: 'Advanced', color: 'high' };
+  if (pct >= 65) return { label: 'Established', color: 'high' };
+  if (pct >= 48) return { label: 'Emerging', color: 'mid' };
+  if (pct >= 32) return { label: 'Developing', color: 'mid' };
+  return { label: 'Early Stage', color: 'low' };
+}
+
+function dimColor(pct) {
+  if (pct >= 65) return 'high';
+  if (pct >= 42) return 'mid';
+  return 'low';
+}
+
+function dimStatus(pct) {
+  if (pct >= 65) return 'Solid Foundation';
+  if (pct >= 42) return 'Developing';
+  return 'Critical Gap';
+}
+
+/* ══════════════════════════════════════════
+   FALLBACK INTELLIGENCE (no API needed)
+══════════════════════════════════════════ */
+function buildFallbackReport(dims, overall) {
+  const sorted = Object.entries(dims).sort((a,b) => a[1].avg - b[1].avg);
+  const weakest = sorted[0];
+  const strongest = sorted[sorted.length - 1];
+  const tier = scoreTier(overall);
+
+  // Market-aware context
+  const marketCtx = {
+    aerospace: 'aerospace and defense',
+    industrial: 'industrial manufacturing',
+    reliability: 'reliability and condition monitoring',
+    oil_gas: 'oil & gas and energy',
+    automation: 'factory automation',
+    mro: 'MRO and aftermarket services',
+    other: 'industrial'
+  }[intake.market] || 'industrial';
+
+  // Service mix context
+  const svcCtx = {
+    none: 'with no current service revenue',
+    u10: 'with a nascent services business (under 10% of revenue)',
+    '10to25': 'with a developing services mix (10–25% of revenue)',
+    '25to40': 'with a meaningful services business (25–40% of revenue)',
+    o40: 'where services represent a significant portion (40%+) of revenue'
+  }[intake.svc] || '';
+
+  // Challenge-aware
+  const challengeHint = {
+    forecast: 'Forecast predictability is your stated primary challenge — this diagnostic confirms the root cause.',
+    services: 'Growing service revenue is your stated focus — the gap analysis below pinpoints exactly where to start.',
+    channel: 'Channel conflict and coverage are your stated pain points — the data here reflects that clearly.',
+    margin: 'Margin erosion is your stated challenge — discount governance and value-selling maturity are the levers.',
+    scale: 'Scaling the sales team is your stated goal — infrastructure gaps must be closed before headcount helps.',
+    crm: 'CRM adoption is your stated challenge — this diagnostic surfaces the underlying process issues driving it.',
+    enterprise: 'Winning larger accounts is your stated goal — the key account and enterprise motion gaps are mapped below.',
+    ai: 'AI adoption in sales ops is your stated goal — the AI & Automation dimension below shows exactly where to start.'
+  }[intake.challenge] || '';
+
+  // Summaries by score band
+  let summary = '';
+  if (overall >= 65) {
+    summary = `${intake.company} has meaningful commercial infrastructure in place — the fundamentals exist. The opportunity is to systematize and enforce what's already working rather than build from scratch. In ${marketCtx} ${svcCtx}, companies at this maturity level typically unlock the next growth tier by closing specific operating cadence gaps rather than adding headcount. ${challengeHint}`;
+  } else if (overall >= 42) {
+    summary = `${intake.company} has pockets of solid commercial practice alongside meaningful structural gaps. The pattern is common in ${marketCtx} companies ${svcCtx}: strong product knowledge and customer relationships, but the operating infrastructure to monetize them predictably is underdeveloped. The recommendations below address the highest-leverage gaps first. ${challengeHint}`;
+  } else {
+    summary = `${intake.company} is operating with limited commercial infrastructure — significant revenue and margin are being left on the table. This is a common profile in ${marketCtx} companies ${svcCtx} that have grown on product strength and relationships but haven't invested in the operating architecture that makes growth predictable and scalable. The path forward is a phased commercial build. ${challengeHint}`;
+  }
+
+  // Generate targeted recommendations
+  const recs = [];
+
+  // Always include the weakest dimension
+  const weakRecMap = {
+    pipeline: [
+      { priority: 'critical', title: 'Implement a Weekly Pipeline Inspection Cadence', body: 'Industrial companies with sub-10% forecast variance consistently cite weekly structured pipeline review as the single highest-impact change. Define 5–7 standard inspection questions, enforce CRM stage gate discipline, and separate "forecast commit" from "pipeline" clearly. This is the foundation everything else builds on.' },
+    ],
+    service_gtm: [
+      { priority: 'critical', title: 'Package Services Into Sellable Tiers Before Anything Else', body: 'Custom-quoted services suppress attach rates and create margin variance. Define 3 service tiers (Essential / Advanced / Elite or equivalent) with fixed scope and list pricing. This alone typically increases average service deal size 40–70% by giving reps a starting point and giving customers clear choices — and it enables an attach motion overnight.' },
+    ],
+    channel: [
+      { priority: 'critical', title: 'Document Rules of Engagement Before Next Channel Hire', body: 'Channel conflict and coverage ambiguity are margin and morale killers. Start with a one-page ROE document: who owns which accounts, how deal registration works, and what happens in conflict. In rep-heavy industrial models, this single document reduces friction faster than any compensation change.' },
+    ],
+    pricing: [
+      { priority: 'critical', title: 'Implement a Discount Approval Matrix This Quarter', body: 'Uncontrolled discounting is the most common margin leak in industrial sales organizations — and the easiest to close. Define a tiered matrix: reps own 0–5%, managers own 5–15%, director+ owns above that. Log rationale in CRM. Review trends quarterly. Companies that implement this recover 2–5 margin points in the first year.' },
+    ],
+    org: [
+      { priority: 'critical', title: 'Build a Single Key Account Playbook First', body: 'Before building a formal KAM program, identify your top 10 accounts and create one standard account plan template. Run quarterly executive reviews on those 10. This produces more expansion revenue than any sales training program because it systematizes the multi-site pursuit motion that industrial companies underinvest in.' },
+    ]
+  };
+
+  if (weakRecMap[weakest[0]]) recs.push(weakRecMap[weakest[0]][0]);
+
+  // Add dimension-specific recs based on scores
+  if (dims.service_gtm.pct < 60 && weakest[0] !== 'service_gtm') {
+    recs.push({ priority: 'high', dim: 'Service GTM', title: 'Define a 90-Day Service Renewal Motion', body: 'The gap between reactive and proactive renewal is almost entirely a process gap. Assign a renewal owner, set a 90-day-out outreach trigger in CRM, create a standard renewal proposal template. In reliability and industrial services, companies that implement this typically improve renewal rates by 15–25 points within two quarters.' });
+  }
+  if (dims.pipeline.pct < 60 && weakest[0] !== 'pipeline') {
+    recs.push({ priority: 'high', dim: 'Pipeline', title: 'Establish CRM Stage Gate Discipline Before Adding Headcount', body: 'More reps into a broken pipeline process produces more noise, not more revenue. Define clear stage entry criteria (what evidence is required to advance a deal), make stage advancement a manager-inspection moment, and track average stage duration. This surfaces real bottlenecks — usually proposal quality or demo-to-close conversion — faster than any dashboard.' });
+  }
+  if (dims.pricing.pct < 60 && weakest[0] !== 'pricing') {
+    recs.push({ priority: 'high', dim: 'Pricing', title: 'Build One ROI Tool for Your Most Common Use Case', body: 'Value-based selling stalls when reps can\'t quantify the business case. Build a simple Excel or web-based ROI calculator for your top use case (uptime value, cost avoidance, efficiency gain). Industrial buyers respond to downtime cost and productivity math faster than any other value lever. One good tool used consistently beats a library of collateral that\'s never opened.' });
+  }
+  if (dims.channel.pct < 60 && weakest[0] !== 'channel') {
+    recs.push({ priority: 'high', dim: 'Channel', title: 'Score Your Channel Partners Before This Year Ends', body: 'Not all rep firms and distributors are equal, and treating them equally suppresses your top performers. Create a simple 4-factor scorecard: revenue vs. target, activity (pipeline generated), capability (technical training completion), and strategic fit. Tier partners into A/B/C and differentiate your support investment accordingly.' });
+  }
+  if (dims.org.pct < 65) {
+    recs.push({ priority: 'medium', dim: 'Operating Cadence', title: 'Establish a Monthly Commercial Operating Review', body: 'A monthly review that covers pipeline health, forecast, service attach rate, and key account status creates accountability without micromanagement. The cadence forces cross-functional alignment (sales, service, ops) and surfaces problems 30–60 days earlier than they would otherwise appear. In PE-backed environments, this is also the foundation of board-ready commercial reporting.' });
+  }
+
+  // Add a services-specific rec if relevant
+  if (intake.svc && intake.svc !== 'none' && dims.service_gtm.pct >= 50) {
+    recs.push({ priority: 'medium', dim: 'Service GTM', title: 'Map Your Installed Base for Expansion Revenue', body: 'Installed base targeting is consistently the highest-ROI prospecting activity in industrial services — yet most companies manage it manually or not at all. Create a CRM view of all accounts with active equipment, filter by last service date, contract expiry, and product generation, and run a quarterly "expansion sweep" on the top 20% of accounts by revenue potential. This motion alone typically generates 15–30% of incremental service revenue.' });
+  }
+
+  return { summary, tier, recs: recs.slice(0, 5), strengths: buildStrengths(dims) };
+}
+
+function buildStrengths(dims) {
+  const strengths = [];
+  Object.entries(dims).forEach(([key, d]) => {
+    if (d.pct >= 65) {
+      const msgs = {
+        pipeline: 'Your pipeline and forecast discipline is a genuine asset — the ability to call a number with confidence is rare in industrial SMBs and creates real PE/board credibility.',
+        service_gtm: 'Your service GTM maturity is ahead of most industrial peers — a systematized service attach and renewal motion is a significant competitive moat.',
+        channel: 'Your channel governance is solid — defined ROE and partner accountability structures reduce conflict and make channel expansion far less risky.',
+        pricing: 'Your pricing discipline is a margin protector — the ability to sell on value rather than price is the single biggest profitability lever in industrial markets.',
+        org: 'Your commercial operating infrastructure is a scale enabler — documented playbooks and key account programs mean new reps ramp faster and top accounts grow more predictably.'
+      };
+      if (msgs[key]) strengths.push(msgs[key]);
+    }
+  });
+  return strengths;
+}
+
+/* ══════════════════════════════════════════
+   ANALYSIS & RENDER
+══════════════════════════════════════════ */
+function runAnalysis() {
+  showScreen('loading');
+
+  const { dims, overall } = computeScores();
+
+  // Try API, always fall back gracefully
+  const prompt = buildPrompt(dims, overall);
+
+  // Small delay for UX
+  setTimeout(async () => {
+    let report = null;
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const raw = (data.content || []).map(c => c.text || '').join('');
+        const clean = raw.replace(/```json|```/g, '').trim();
+        report = JSON.parse(clean);
+      }
+    } catch(e) { /* fall through */ }
+
+    if (!report) report = buildFallbackReport(dims, overall);
+    renderResults(dims, overall, report);
+  }, 2200);
+}
+
+function buildPrompt(dims, overall) {
+  const dimLines = Object.entries(dims).map(([k, d]) =>
+    `${d.name}: ${d.pct}/100`
+  ).join('\n');
+  const intake_str = `Name: ${intake.name}, Company: ${intake.company}, Role: ${intake.role}, Revenue: ${intake.revenue}, Market: ${intake.market}, Sales model: ${intake.model}, Services %: ${intake.svc}, Biggest challenge: ${intake.challenge}`;
+  return `You are Eric Elder — a senior industrial GTM advisor with 15 years in industrial technology, aerospace, reliability equipment, and services P&L leadership. You've run $17M–$55M commercial portfolios at Fortive and PE-backed companies. You are direct, specific, and use real industrial GTM vocabulary (attach rates, ARR, rep-to-direct, stage hygiene, renewal motion, ROE).
+
+A prospect just completed your GTM Readiness Diagnostic:
+${intake_str}
+Overall Score: ${overall}/100
+${dimLines}
+
+Return ONLY valid JSON (no markdown, no preamble):
+{
+  "summary": "3-sentence executive assessment. Direct, specific, references their market and score. Name the systemic pattern.",
+  "tier": "one of: Early Stage | Developing | Emerging | Established | Advanced",
+  "strengths": ["strength1 — specific to their scores", "strength2 if warranted"],
+  "recs": [
+    {
+      "priority": "critical|high|medium",
+      "dim": "Short dimension name",
+      "title": "Action-oriented title",
+      "body": "2–3 sentences. Specific. Reference real industrial GTM mechanics: attach rates, ARR, stage hygiene, rep-to-direct, discount matrices, installed base targeting. No generic consulting language."
+    }
+  ]
+}
+4–5 recommendations, ordered by priority. Calibrate to their market, revenue, and stated challenge.`;
+}
+
+function renderResults(dims, overall, report) {
+  const tier = scoreTier(overall);
+  const colorClass = tier.color;
+
+  const dimCards = Object.entries(dims).map(([key, d]) => {
+    const c = dimColor(d.pct);
+    return `
+      <div class="dim-card">
+        <div class="dim-top">
+          <div class="dim-name">${d.name}</div>
+          <div class="dim-score ${c}">${d.pct}</div>
+        </div>
+        <div class="dim-bar"><div class="dim-fill ${c}" style="width:0%" data-w="${d.pct}%"></div></div>
+        <div class="dim-status">${dimStatus(d.pct)}</div>
+      </div>
+    `;
+  }).join('');
+
+  const strengthCards = (report.strengths || []).length > 0
+    ? (report.strengths || []).map(s => `
+        <div class="rec-card">
+          <span style="font-size:18px;margin-top:2px;flex-shrink:0">✓</span>
+          <div class="rec-body"><div class="rec-body">${s}</div></div>
+        </div>
+      `).join('')
+    : '';
+
+  const recCards = (report.recs || []).map(r => `
+    <div class="rec-card">
+      <div class="rec-badge ${r.priority}">${r.priority}</div>
+      <div>
+        <div class="rec-dim">${r.dim || ''}</div>
+        <div class="rec-title">${r.title}</div>
+        <div class="rec-body">${r.body}</div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('results-body').innerHTML = `
+    <div class="results-hero">
+      <div class="results-eyebrow">GTM Readiness Report · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
+      <div class="results-company">${intake.company}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--muted);font-family:var(--sans);font-weight:400">${intake.name} · ${intake.market ? intake.market.replace(/_/g,' ') : ''}</span></div>
+      <div class="score-row">
+        <div class="score-big">
+          <span class="score-number ${colorClass}">${overall}</span><span class="score-suffix">/100</span>
+        </div>
+        <div class="score-tier-wrap">
+          <div class="score-tier">${report.tier || tier.label}</div>
+          <div class="score-desc">GTM Readiness · 5 Dimensions · 15 Questions</div>
+        </div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-fill ${colorClass}" id="main-bar" style="width:0%"></div>
+      </div>
+      <div class="results-summary">${report.summary}</div>
+    </div>
+
+    <div class="dim-section">
+      <div class="rh">
+        <div class="section-label">Dimension Breakdown</div>
+        <h3 style="font-family:var(--serif);font-size:26px;color:var(--ink);">How you score across each commercial dimension</h3>
+      </div>
+      <div class="dim-grid">${dimCards}</div>
+    </div>
+
+    ${strengthCards ? `
+    <div class="rec-section">
+      <div class="rh">
+        <div class="section-label">Observed Strengths</div>
+        <h3 style="font-family:var(--serif);font-size:26px;color:var(--ink);">Where your commercial foundation is solid</h3>
+      </div>
+      ${strengthCards}
+    </div>` : ''}
+
+    <div class="rec-section">
+      <div class="rh">
+        <div class="section-label">Prioritized Recommendations</div>
+        <h3 style="font-family:var(--serif);font-size:26px;color:var(--ink);">Where to focus, in order of revenue impact</h3>
+      </div>
+      ${recCards}
+    </div>
+
+    <div class="contact-cta">
+      <div class="cta-top">Ready to Act on This?</div>
+      <h2 class="cta-h">Let's turn this diagnostic into a 90-day commercial action plan.</h2>
+      <p class="cta-p">I work directly with industrial SMBs and PE-backed companies to close the gaps surfaced here — not as a generalist, but as someone who has built these exact operating systems inside companies like yours.</p>
+      <div class="cta-buttons">
+        <a href="https://www.linkedin.com/in/eric-elder" target="_blank" class="btn-white">Connect on LinkedIn →</a>
+        <a href="mailto:eric@uptimecommercialgroup.com?subject=GTM Diagnostic - ${encodeURIComponent(intake.company)}&body=Hi Eric, I just completed your GTM diagnostic and scored ${overall}/100. I'd like to discuss a few of the recommendations." class="btn-amber">Email Eric Directly</a>
+      </div>
+      <div class="cta-email" style="margin-top:16px;">eric@uptimecommercialgroup.com</div>
+    </div>
+
+    <div class="print-row">
+      <button class="btn-ghost" onclick="window.print()">🖨 Print / Save as PDF</button>
+      <button class="btn-ghost" onclick="retake()">↺ Retake Assessment</button>
+    </div>
+  `;
+
+  showScreen('results');
+
+  // Animate bars after render
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const mainBar = document.getElementById('main-bar');
+      if (mainBar) mainBar.style.width = overall + '%';
+      document.querySelectorAll('.dim-fill').forEach(el => {
+        const w = el.dataset.w;
+        if (w) el.style.width = w;
+      });
+    }, 100);
+  });
+}
+
+function retake() {
+  answers = {};
+  curSection = 0;
+  showScreen('landing');
+}
+</script>
+</body>
+</html>
