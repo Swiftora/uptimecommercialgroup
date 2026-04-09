@@ -23,8 +23,8 @@ body {
   --paper:    #ddd9d0;
   --gold:     #c4a24a;
   --gold2:    #e2bc62;
-  --dim:      rgba(221,217,208,0.42);
-  --dim2:     rgba(221,217,208,0.65);
+  --dim:      rgba(221,217,208,0.58);
+  --dim2:     rgba(221,217,208,0.78);
   --rule:     rgba(221,217,208,0.10);
   --rule2:    rgba(221,217,208,0.06);
   --serif:    'Cormorant Garamond', Georgia, serif;
@@ -91,7 +91,7 @@ nav.solid {
   position: absolute; left: 50%; transform: translateX(-50%);
 }
 .nav-mid a {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 300;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--dim); text-decoration: none;
   transition: color 0.2s; white-space: nowrap;
@@ -104,7 +104,7 @@ nav.solid {
   opacity: 0.7;
 }
 .nav-cta {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 400;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--bg); background: var(--gold);
   padding: 10px 20px; text-decoration: none;
@@ -129,18 +129,18 @@ footer {
 }
 .foot-brand em { font-style: normal; color: var(--gold); }
 .foot-tagline {
-  font-size: 12.5px; color: var(--dim); line-height: 1.65;
+  font-size: 13px; color: var(--dim); line-height: 1.65;
   margin-top: 10px; max-width: 260px; font-weight: 400;
 }
 .foot-col-title {
-  font-family: var(--mono); font-size: 9.5px; font-weight: 300;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(221,217,208,0.55); margin-bottom: 14px;
+  color: rgba(221,217,208,0.65); margin-bottom: 14px;
 }
 .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
 .foot-col ul a {
-  font-family: var(--sans); font-size: 13px; font-weight: 400;
-  color: rgba(221,217,208,0.38); text-decoration: none;
+  font-family: var(--sans); font-size: 13.5px; font-weight: 400;
+  color: rgba(221,217,208,0.55); text-decoration: none;
   transition: color 0.2s;
 }
 .foot-col ul a:hover { color: var(--gold); }
@@ -152,12 +152,12 @@ footer {
   align-items: center; flex-wrap: wrap; gap: 12px;
 }
 .foot-copy {
-  font-family: var(--mono); font-size: 10px; font-weight: 300;
-  color: rgba(221,217,208,0.45); letter-spacing: 0.08em;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: rgba(221,217,208,0.58); letter-spacing: 0.08em;
 }
 .foot-legal {
-  font-family: var(--mono); font-size: 10px; font-weight: 300;
-  color: rgba(221,217,208,0.45); letter-spacing: 0.06em;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: rgba(221,217,208,0.58); letter-spacing: 0.06em;
 }
 
 /* ── REVEAL ANIMATION ── */
@@ -198,7 +198,7 @@ footer {
   to   { opacity:1; transform:translateY(0); }
 }
 .page-label {
-  font-family: var(--mono); font-size: 10px; font-weight: 300;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
   letter-spacing: 0.24em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 28px;
   display: flex; align-items: center; gap: 14px;
@@ -221,7 +221,7 @@ footer {
 .sec { padding: 100px 0; }
 .sec-sm { padding: 72px 0; }
 .sec-label {
-  font-family: var(--mono); font-size: 10px; font-weight: 300;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 20px; display: block;
 }
@@ -234,13 +234,13 @@ footer {
 }
 .sec-h em { font-style: italic; color: var(--gold2); }
 .sec-lead {
-  font-size: 15.5px; color: var(--dim2); line-height: 1.8;
+  font-size: 16px; color: var(--dim2); line-height: 1.8;
   font-weight: 400; max-width: 540px;
 }
 
 /* ── BUTTONS ── */
 .btn-primary {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 400;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--bg); background: var(--gold);
   padding: 13px 24px; text-decoration: none;
@@ -249,9 +249,9 @@ footer {
 }
 .btn-primary:hover { background: var(--gold2); }
 .btn-secondary {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 300;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--dim2); border: 1px solid rgba(221,217,208,0.18);
+  color: var(--dim2); border: 1px solid rgba(221,217,208,0.25);
   padding: 12px 24px; text-decoration: none;
   transition: all 0.2s; display: inline-block;
   background: transparent; cursor: pointer;
@@ -264,9 +264,9 @@ footer {
 .fld { display: flex; flex-direction: column; gap: 7px; }
 .fld.full { grid-column: 1/-1; }
 .flbl {
-  font-family: var(--mono); font-size: 9.5px; font-weight: 300;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(221,217,208,0.55);
+  color: rgba(221,217,208,0.65);
 }
 .finput {
   background: rgba(221,217,208,0.04);
@@ -278,12 +278,12 @@ footer {
   -webkit-appearance: none;
 }
 .finput:focus { border-color: rgba(196,162,74,0.45); }
-.finput::placeholder { color: rgba(221,217,208,0.38); }
+.finput::placeholder { color: rgba(221,217,208,0.45); }
 select.finput { appearance: none; cursor: pointer; }
 select.finput option { background: #141920; color: var(--paper); }
 textarea.finput { min-height: 96px; resize: none; }
 .fsub {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 400;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--bg); background: var(--gold);
   border: none; padding: 14px 26px; cursor: pointer;
