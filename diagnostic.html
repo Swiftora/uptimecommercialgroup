@@ -12,11 +12,18 @@
 <link rel="canonical" href="https://uptimecommercialgroup.com/diagnostic.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
 <style>
+/* ─── BRIDGE OLD VARS TO NEW STYLESHEET TOKENS ─── */
+body {
+  --bg: var(--ink);
+  --dim: #9a9590;
+  --dim2: #cdc9c0;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* ─── DIAGNOSTIC OVERRIDES ─── */
-/* Uses global.css tokens: --bg, --paper, --gold, --gold2, --dim, --dim2, --rule, --serif, --sans, --mono */
 
 /* ─── SCREENS ─── */
 .screen { display: none; animation: fadeIn 0.35s var(--ease); }
@@ -121,12 +128,12 @@
 .dbtn-secondary {
   font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--dim2); border: 1px solid rgba(221,217,208,0.25);
+  color: var(--dim2); border: 1px solid rgba(240,237,230,0.25);
   padding: 13px 24px; text-decoration: none;
   transition: all 0.2s; display: inline-block;
   background: transparent; cursor: pointer;
 }
-.dbtn-secondary:hover { color: var(--paper); border-color: rgba(221,217,208,0.42); }
+.dbtn-secondary:hover { color: var(--paper); border-color: rgba(240,237,230,0.42); }
 .dbtn-back {
   font-family: var(--mono); font-size: 11px; font-weight: 400;
   letter-spacing: 0.14em; text-transform: uppercase;
@@ -134,7 +141,7 @@
   border: 1px solid var(--rule); padding: 12px 22px;
   cursor: pointer; transition: all 0.2s;
 }
-.dbtn-back:hover { color: var(--paper); border-color: rgba(221,217,208,0.3); }
+.dbtn-back:hover { color: var(--paper); border-color: rgba(240,237,230,0.3); }
 .dbtn-next {
   font-family: var(--mono); font-size: 11.5px; font-weight: 400;
   letter-spacing: 0.18em; text-transform: uppercase;
@@ -151,7 +158,7 @@
   border: 1px solid var(--rule); padding: 11px 20px;
   cursor: pointer; transition: all 0.2s;
 }
-.dbtn-ghost:hover { color: var(--paper); border-color: rgba(221,217,208,0.3); }
+.dbtn-ghost:hover { color: var(--paper); border-color: rgba(240,237,230,0.3); }
 
 /* ─── ASSESS HEADER ─── */
 .assess-header {
@@ -187,7 +194,7 @@
 .question-block {
   border: 1px solid var(--rule); padding: 28px 32px;
   margin-bottom: 14px; transition: border-color 0.2s;
-  background: rgba(221,217,208,0.02);
+  background: rgba(240,237,230,0.02);
 }
 .question-block.answered { border-color: rgba(196,162,74,0.25); }
 .q-num {
@@ -205,16 +212,16 @@
 .options { display: flex; flex-direction: column; gap: 8px; }
 .opt {
   display: flex; align-items: flex-start; gap: 14px;
-  padding: 14px 18px; background: rgba(221,217,208,0.02);
+  padding: 14px 18px; background: rgba(240,237,230,0.02);
   border: 1px solid var(--rule); cursor: pointer;
   transition: all 0.15s; text-align: left; width: 100%;
   font-family: var(--sans);
 }
-.opt:hover { background: rgba(221,217,208,0.04); border-color: rgba(221,217,208,0.18); }
+.opt:hover { background: rgba(240,237,230,0.04); border-color: rgba(240,237,230,0.18); }
 .opt.selected { background: rgba(196,162,74,0.06); border-color: rgba(196,162,74,0.3); }
 .opt-radio {
   width: 16px; height: 16px;
-  border: 1.5px solid rgba(221,217,208,0.25);
+  border: 1.5px solid rgba(240,237,230,0.25);
   border-radius: 50%; flex-shrink: 0; margin-top: 2px;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.15s;
@@ -234,7 +241,7 @@
 .intake-section { padding-bottom: 40px; }
 .intake-card {
   border: 1px solid var(--rule); padding: 40px 44px;
-  background: rgba(221,217,208,0.02);
+  background: rgba(240,237,230,0.02);
 }
 .intake-heading {
   font-family: var(--serif); font-size: 28px; font-weight: 300;
@@ -252,14 +259,14 @@
 }
 .form-label .req { color: var(--gold); }
 .form-control {
-  background: rgba(221,217,208,0.04); border: 1px solid var(--rule);
+  background: rgba(240,237,230,0.04); border: 1px solid var(--rule);
   padding: 13px 15px; font-size: 14px; font-weight: 400;
   color: var(--paper); font-family: var(--sans);
   outline: none; width: 100%; transition: border-color 0.2s;
   -webkit-appearance: none;
 }
 .form-control:focus { border-color: rgba(196,162,74,0.45); }
-.form-control::placeholder { color: rgba(221,217,208,0.38); }
+.form-control::placeholder { color: rgba(240,237,230,0.38); }
 select.form-control { appearance: none; cursor: pointer; }
 select.form-control option { background: #141920; color: var(--paper); }
 .form-error {
@@ -353,10 +360,10 @@ select.form-control option { background: #141920; color: var(--paper); }
 .dim-section { margin-bottom: 52px; }
 .dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .dim-card {
-  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
+  background: rgba(240,237,230,0.03); border: 1px solid var(--rule);
   padding: 22px 24px; transition: background 0.2s;
 }
-.dim-card:hover { background: rgba(221,217,208,0.05); }
+.dim-card:hover { background: rgba(240,237,230,0.05); }
 .dim-top {
   display: flex; justify-content: space-between;
   align-items: center; margin-bottom: 12px;
@@ -391,10 +398,10 @@ select.form-control option { background: #141920; color: var(--paper); }
 .rec-card {
   border: 1px solid var(--rule); padding: 24px 28px;
   margin-bottom: 10px; display: flex; gap: 18px;
-  align-items: flex-start; background: rgba(221,217,208,0.02);
+  align-items: flex-start; background: rgba(240,237,230,0.02);
   transition: background 0.2s;
 }
-.rec-card:hover { background: rgba(221,217,208,0.04); }
+.rec-card:hover { background: rgba(240,237,230,0.04); }
 .rec-badge {
   flex-shrink: 0; min-width: 76px;
   padding: 4px 10px; font-family: var(--mono);
@@ -501,21 +508,18 @@ select.form-control option { background: #141920; color: var(--paper); }
 </head>
 <body>
 
-<div class="cur-dot" id="cdot"></div>
-<div class="cur-ring" id="cring"></div>
-<div id="prog"></div>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
 
 <nav id="nav">
-  <a href="index.html" class="nav-logo">Uptime <em>Commercial</em></a>
-  <ul class="nav-mid">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="insights.html">Insights</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
-  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="index.html" class="nav-brand">Uptime <em>Commercial</em></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="insights.html">Insights</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
+  </div>
 </nav>
 
 <!-- ══════════════════════════════════════ -->
@@ -734,7 +738,7 @@ select.form-control option { background: #141920; color: var(--paper); }
   </div>
 </div>
 
-<script src="js/global.js"></script>
+<script src="main.js"></script>
 <script>
 /* ══════════════════════════════════════════
    DATA

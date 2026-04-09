@@ -4,456 +4,131 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Uptime Commercial — GTM Advisory for Manufacturers & Technology Companies</title>
-<meta name="description" content="We help manufacturers and technology companies build commercial infrastructure that makes revenue predictable. Fractional CRO/CCO, GTM strategy, and AI-augmented sales operations.">
-<meta property="og:title" content="Uptime Commercial — GTM Advisory for Manufacturers & Technology Companies">
-<meta property="og:description" content="We help manufacturers and technology companies build commercial infrastructure that makes revenue predictable.">
+<meta name="description" content="Revenue advisory and AI-augmented commercial systems for manufacturers and technology companies. Fractional CRO, GTM strategy, and pipeline discipline.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
+<meta property="og:title" content="Uptime Commercial Group — GTM Advisory for Manufacturers & Technology Companies">
+<meta property="og:description" content="Revenue advisory and AI-augmented commercial systems for manufacturers and technology companies. Fractional CRO, GTM strategy, and pipeline discipline.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://uptimecommercialgroup.com/">
 <link rel="canonical" href="https://uptimecommercialgroup.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/global.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
-<style>
-/* ── HOME-SPECIFIC STYLES ── */
-
-/* HERO */
-.hero {
-  min-height: 100vh; padding-top: 68px;
-  display: grid; grid-template-rows: 1fr auto;
-  position: relative; overflow: hidden;
-}
-.hero::after {
-  content: ''; position: absolute;
-  top: -10%; right: -5%;
-  width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(196,162,74,0.055) 0%, transparent 68%);
-  pointer-events: none;
-}
-.hero-body {
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: end; gap: 0;
-  padding: 80px 56px 64px;
-  max-width: 1160px; margin: 0 auto; width: 100%;
-  animation: hup 1s cubic-bezier(0.4,0,0.2,1) 0.1s both;
-}
-.hero-right { padding-left: 72px; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 6px; }
-@keyframes hup { from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);} }
-.hero-label {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 32px;
-  display: flex; align-items: center; gap: 14px;
-}
-.hero-label::before { content:''; width:32px; height:1px; background:var(--gold); opacity:0.6; }
-.hero h1 {
-  font-family: var(--serif); font-size: clamp(52px,7.5vw,108px);
-  font-weight: 300; line-height: 0.96;
-  letter-spacing: -0.025em; color: var(--paper);
-}
-.hero h1 em { font-style: italic; color: var(--gold2); }
-.hero-tagline {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--dim); margin-bottom: 22px;
-}
-.hero-statement {
-  font-family: var(--sans); font-size: 16px; font-weight: 400;
-  line-height: 1.78; color: var(--dim2);
-  max-width: 400px; margin-bottom: 44px;
-}
-.hero-btns { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.hero-foot {
-  border-top: 1px solid var(--rule); padding: 20px 0;
-  overflow: hidden;
-  animation: hup 1s cubic-bezier(0.4,0,0.2,1) 0.6s both;
-}
-.ticker-track {
-  display: flex; gap: 0;
-  animation: tick 28s linear infinite; width: max-content;
-}
-.ticker-item {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(221,217,208,0.38); padding: 0 36px;
-  border-right: 1px solid var(--rule); white-space: nowrap;
-}
-@keyframes tick { from{transform:translateX(0);}to{transform:translateX(-50%);} }
-
-/* ABOUT STRIP */
-.about-strip { padding: 100px 0; }
-.about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 88px; align-items: start; }
-.about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 52px; margin-top: 32px; }
-.about-body p { font-size: 14.5px; color: var(--dim); line-height: 1.84; font-weight: 400; }
-.scope-block { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--rule); }
-.scope-lbl {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(221,217,208,0.45); margin-bottom: 11px;
-}
-.scope-text {
-  font-family: var(--serif); font-style: italic;
-  font-size: 19px; font-weight: 300;
-  color: rgba(221,217,208,0.52); line-height: 1.52;
-}
-.icp-block { margin-top: 32px; padding: 22px 24px; border-left: 2px solid rgba(196,162,74,0.3); background: rgba(196,162,74,0.035); }
-.icp-block p { font-size: 14.5px; color: var(--dim); line-height: 1.82; font-weight: 400; }
-
-/* SERVICE LIST */
-.svc-list { margin-top: 60px; }
-.svc-item {
-  display: grid; grid-template-columns: 52px 1fr 180px;
-  gap: 36px; align-items: start;
-  padding: 34px 0; border-top: 1px solid var(--rule);
-  position: relative;
-}
-.svc-item:last-child { border-bottom: 1px solid var(--rule); }
-.svc-n {
-  font-family: var(--mono); font-size: 11px; font-weight: 300;
-  color: rgba(196,162,74,0.4); letter-spacing: 0.1em; padding-top: 4px;
-}
-.svc-name {
-  font-family: var(--serif); font-size: clamp(19px,2.2vw,28px);
-  font-weight: 300; color: var(--paper); line-height: 1.15; margin-bottom: 10px;
-  transition: color 0.22s;
-}
-.svc-item:hover .svc-name { color: var(--gold2); }
-.svc-desc { font-size: 13.5px; color: var(--dim); line-height: 1.75; max-width: 500px; font-weight: 400; }
-.svc-tags { display: flex; flex-direction: column; gap: 5px; padding-top: 4px; }
-.svc-tag {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.13em; text-transform: uppercase;
-  color: rgba(221,217,208,0.42);
-}
-.svc-arr {
-  position: absolute; right: 0; top: 36px;
-  font-size: 15px; color: var(--gold);
-  opacity: 0; transform: translateX(-10px);
-  transition: all 0.22s ease; font-family: var(--mono);
-}
-.svc-item:hover .svc-arr { opacity: 1; transform: translateX(0); }
-
-/* ENGAGEMENT CARDS */
-.eng-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
-.eng-card {
-  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
-  padding: 48px 44px; position: relative; transition: background 0.25s;
-}
-.eng-card:hover { background: rgba(221,217,208,0.05); }
-.eng-flag {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); border: 1px solid rgba(196,162,74,0.25);
-  padding: 5px 11px; display: inline-block; margin-bottom: 36px;
-}
-.eng-n {
-  font-family: var(--serif); font-size: 56px; font-weight: 300;
-  color: rgba(196,162,74,0.09); line-height: 1;
-  position: absolute; top: 36px; right: 40px; letter-spacing: -0.03em; user-select: none;
-}
-.eng-card h3 {
-  font-family: var(--serif); font-size: clamp(22px,2.5vw,32px);
-  font-weight: 300; color: var(--paper); line-height: 1.15; margin-bottom: 6px;
-}
-.eng-sub {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: rgba(196,162,74,0.5); margin-bottom: 22px;
-}
-.eng-body { font-size: 14px; color: var(--dim); line-height: 1.82; font-weight: 400; margin-bottom: 28px; }
-.eng-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.eng-list li {
-  font-size: 13.5px; color: rgba(221,217,208,0.55);
-  display: flex; align-items: flex-start; gap: 12px;
-  line-height: 1.55; font-weight: 400;
-}
-.eng-list li::before {
-  content: '—'; color: var(--gold); opacity: 0.4;
-  font-family: var(--mono); font-size: 11px; flex-shrink: 0;
-}
-
-/* AI SECTION */
-.ai-section { background: var(--bg2); }
-.ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: start; }
-.ai-caveat {
-  margin-top: 24px; padding: 20px 22px;
-  border-left: 2px solid rgba(196,162,74,0.3);
-  background: rgba(196,162,74,0.035);
-}
-.ai-caveat p {
-  font-family: var(--mono); font-size: 12px; font-weight: 400;
-  color: rgba(221,217,208,0.55); line-height: 1.72; letter-spacing: 0.04em;
-}
-.ai-list { display: flex; flex-direction: column; padding-top: 8px; }
-.ai-it { padding: 26px 0; border-top: 1px solid var(--rule); }
-.ai-it:last-child { border-bottom: 1px solid var(--rule); }
-.ai-it-n {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.15em; color: rgba(196,162,74,0.38); margin-bottom: 8px;
-}
-.ai-it-title { font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--paper); margin-bottom: 8px; line-height: 1.2; }
-.ai-it-desc { font-size: 13.5px; color: var(--dim); line-height: 1.75; font-weight: 400; }
-.term {
-  background: rgba(255,255,255,0.025); border: 1px solid var(--rule);
-  margin-top: 36px; overflow: hidden;
-}
-.term-top {
-  background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--rule);
-  padding: 11px 16px; display: flex; align-items: center; gap: 7px;
-}
-.td { width: 9px; height: 9px; border-radius: 50%; }
-.td-r{background:#ff5f56;} .td-y{background:#ffbd2e;} .td-g{background:#27c93f;}
-.term-lbl {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  color: rgba(221,217,208,0.38); margin-left: auto; letter-spacing: 0.1em;
-}
-.term-body {
-  padding: 20px 18px; font-family: var(--mono);
-  font-size: 12px; line-height: 2.05;
-  color: rgba(221,217,208,0.48); font-weight: 400;
-}
-.tc{color:#5cc98a;} .ta{color:#c4a24a;} .tb{color:#6ea8e8;} .tm{color:rgba(221,217,208,0.38);}
-
-/* TESTIMONIALS */
-.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 52px; }
-.tcard {
-  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
-  padding: 40px 32px; display: flex; flex-direction: column;
-  position: relative; transition: background 0.22s;
-}
-.tcard:hover { background: rgba(221,217,208,0.05); }
-.tcard-q {
-  font-family: var(--serif); font-size: 58px; font-weight: 300;
-  color: var(--gold); opacity: 0.18; line-height: 1; margin-bottom: 14px; user-select: none;
-}
-.tcard-text {
-  font-family: var(--serif); font-style: italic; font-size: 16px;
-  font-weight: 300; color: rgba(221,217,208,0.68);
-  line-height: 1.72; flex: 1; margin-bottom: 28px;
-}
-.tcard-foot { border-top: 1px solid var(--rule); padding-top: 20px; }
-.tcard-name { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--paper); margin-bottom: 3px; }
-.tcard-role { font-family: var(--mono); font-size: 11px; font-weight: 400; color: rgba(221,217,208,0.45); letter-spacing: 0.08em; }
-
-/* DIAGNOSTIC STRIP */
-.diag-wrap {
-  border: 1px solid var(--rule); padding: 64px 70px;
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 72px; align-items: center;
-  position: relative; overflow: hidden;
-}
-.diag-wrap::before {
-  content: ''; position: absolute; top: -50px; right: -50px;
-  width: 260px; height: 260px;
-  background: radial-gradient(circle, rgba(196,162,74,0.07) 0%, transparent 65%);
-  pointer-events: none;
-}
-.diag-h {
-  font-family: var(--serif); font-size: clamp(24px,3vw,42px);
-  font-weight: 300; color: var(--paper); line-height: 1.1;
-  letter-spacing: -0.02em; margin-bottom: 12px;
-}
-.diag-h em { font-style: italic; color: var(--gold2); }
-.diag-p { font-size: 14px; color: var(--dim); line-height: 1.78; font-weight: 400; max-width: 400px; }
-.diag-right {
-  display: flex; flex-direction: column; align-items: flex-end;
-  gap: 10px; flex-shrink: 0; position: relative; z-index: 1;
-}
-.diag-note {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  color: rgba(221,217,208,0.42); letter-spacing: 0.14em;
-  text-transform: uppercase; text-align: right;
-}
-
-/* CONTACT STRIP */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 88px; align-items: start; }
-.contact-p { font-size: 15px; color: var(--dim); line-height: 1.85; font-weight: 400; margin-bottom: 40px; max-width: 360px; }
-.clinks { display: flex; flex-direction: column; gap: 12px; }
-.clink {
-  display: flex; align-items: center; gap: 14px;
-  text-decoration: none; padding: 16px 20px;
-  border: 1px solid var(--rule); transition: all 0.2s;
-}
-.clink:hover { border-color: rgba(196,162,74,0.28); background: rgba(196,162,74,0.04); }
-.clink:hover .clink-label { color: var(--gold2); }
-.clink-icon { flex-shrink: 0; display: flex; align-items: center; }
-.clink-icon svg { stroke: var(--gold); opacity: 0.65; }
-.clink-label { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--dim2); transition: color 0.2s; }
-
-@media (max-width: 1024px) {
-  .hero-body { padding: 60px 36px 52px; grid-template-columns: 1fr; gap: 52px; }
-  .hero-right { padding-left: 0; }
-  .about-grid, .ai-grid, .contact-grid { grid-template-columns: 1fr; gap: 52px; }
-  .about-body { gap: 28px 36px; }
-  .eng-grid { grid-template-columns: 1fr; }
-  .testi-grid { grid-template-columns: 1fr; }
-  .svc-item { grid-template-columns: 44px 1fr; gap: 24px; }
-  .svc-tags, .svc-arr { display: none; }
-  .diag-wrap { grid-template-columns: 1fr; padding: 44px 32px; gap: 32px; }
-  .diag-right { align-items: flex-start; }
-  .term { display: none; }
-}
-@media (max-width: 640px) {
-  .about-body { grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(44px,13vw,80px); }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
 
-<div class="cur-dot" id="cdot"></div>
-<div class="cur-ring" id="cring"></div>
-<div id="prog"></div>
-
-<!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo">Uptime <em>Commercial</em></a>
-  <ul class="nav-mid">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="insights.html">Insights</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
-  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="index.html" class="nav-brand">Uptime <em>Commercial</em></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="insights.html">Insights</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Start the Conversation</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-body">
-    <div class="hero-left">
-      <div class="hero-label">Commercial Advisory · Est. 2026</div>
-      <h1>Most companies<br>don't have a<br>product problem.<br>They have a<br><em>revenue problem.</em></h1>
-    </div>
-    <div class="hero-right">
-      <div class="hero-tagline">GTM Strategy · Fractional CRO · AI-Augmented Sales</div>
-      <p class="hero-statement">We partner with manufacturers and technology companies to build the commercial infrastructure that turns product capability into predictable revenue — the operating systems, coverage models, and team discipline that hold when markets shift and boards ask hard questions.</p>
-      <div class="hero-btns">
-        <a href="services.html" class="btn-primary">Our Services</a>
-        <a href="diagnostic.html" class="btn-secondary">Free GTM Diagnostic</a>
-      </div>
-    </div>
-  </div>
-  <div class="hero-foot">
-    <div class="ticker-track">
-      <span class="ticker-item">GTM Strategy</span><span class="ticker-item">Fractional CRO</span><span class="ticker-item">Channel Design</span><span class="ticker-item">Service Monetization</span><span class="ticker-item">Pipeline Discipline</span><span class="ticker-item">Pricing Governance</span><span class="ticker-item">CRM Transformation</span><span class="ticker-item">AI-Augmented Sales</span><span class="ticker-item">Commercial Due Diligence</span><span class="ticker-item">Key Account Expansion</span>
-      <span class="ticker-item">GTM Strategy</span><span class="ticker-item">Fractional CRO</span><span class="ticker-item">Channel Design</span><span class="ticker-item">Service Monetization</span><span class="ticker-item">Pipeline Discipline</span><span class="ticker-item">Pricing Governance</span><span class="ticker-item">CRM Transformation</span><span class="ticker-item">AI-Augmented Sales</span><span class="ticker-item">Commercial Due Diligence</span><span class="ticker-item">Key Account Expansion</span>
+<section class="hero">
+  <div class="r">
+    <div class="hero-eyebrow">Commercial Advisory · Est. 2026</div>
+    <h1>Most companies don't have a product problem.<br>They have a <em>revenue problem.</em></h1>
+    <div class="hero-sub">GTM Strategy · Fractional CRO · AI-Augmented Sales</div>
+    <p class="hero-body">We partner with manufacturers and technology companies to build the commercial infrastructure that turns product capability into predictable revenue — the operating systems, coverage models, and team discipline that hold when markets shift and boards ask hard questions.</p>
+    <div class="hero-btns">
+      <a href="services.html" class="btn-primary">Our Services</a>
+      <a href="diagnostic.html" class="btn-outline">Free GTM Diagnostic</a>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>GTM Strategy</span><span>Fractional CRO</span><span>Channel Design</span><span>Service Monetization</span><span>Pipeline Discipline</span><span>Pricing Governance</span><span>CRM Transformation</span><span>AI-Augmented Sales</span><span>Commercial Due Diligence</span><span>Key Account Expansion</span>
+    <span>GTM Strategy</span><span>Fractional CRO</span><span>Channel Design</span><span>Service Monetization</span><span>Pipeline Discipline</span><span>Pricing Governance</span><span>CRM Transformation</span><span>AI-Augmented Sales</span><span>Commercial Due Diligence</span><span>Key Account Expansion</span>
+  </div>
+</div>
 
-<!-- ABOUT STRIP -->
-<section class="about-strip" id="about">
-  <div class="w">
-    <div class="about-grid">
-      <div class="rv">
-        <span class="sec-label">Who We Are</span>
-        <h2 class="sec-h">Operators who've<br>run the numbers,<br>not just <em>read them.</em></h2>
-        <div class="scope-block">
-          <div class="scope-lbl">Scope</div>
-          <p class="scope-text">Hardware. Software. Services. Direct, channel, and lifecycle revenue — across private, public, and PE-backed organizations.</p>
-        </div>
-        <div style="margin-top:28px;">
-          <a href="about.html" class="btn-secondary">Our Story →</a>
-        </div>
+<section class="who">
+  <div class="container">
+    <span class="section-label r">Who We Are</span>
+    <div class="who-grid">
+      <div class="who-left r">
+        <h2>Operators who've run the numbers, not just <em>read them.</em></h2>
+        <div class="who-scope">Scope</div>
+        <p class="who-scope-body">Hardware. Software. Services. Direct, channel, and lifecycle revenue — across private, public, and PE-backed organizations.</p>
+        <a href="about.html" class="who-link">Our Story →</a>
       </div>
-      <div class="rv d1">
-        <div class="about-body">
-          <p>We've led commercial teams inside manufacturing and technology companies — owned the P&L, run the pipeline reviews, navigated the board conversations. We know the difference between a strategy that sounds right in a presentation and one that holds when a quarter goes sideways.</p>
-          <p>Our network brings together commercial leadership, systems engineering, technical automation, and specialist marketing — practitioners who can advise and build simultaneously, not hand off a document and disappear.</p>
-        </div>
-        <div class="icp-block">
-          <p>Most GTM problems aren't strategy problems — they're execution infrastructure problems. Unclear coverage. No forecast discipline. Service revenue left on the table. Discount behavior that erodes margin deal by deal. These are solvable. We've solved them before, inside companies like yours.</p>
-        </div>
+      <div class="who-right r">
+        <p>We've led commercial teams inside manufacturing and technology companies — owned the P&L, run the pipeline reviews, navigated the board conversations. We know the difference between a strategy that sounds right in a presentation and one that <strong>holds when a quarter goes sideways.</strong></p>
+        <p>Most GTM problems aren't strategy problems — they're execution infrastructure problems. Unclear coverage. No forecast discipline. Service revenue left on the table. Discount behavior that erodes margin deal by deal. <strong>These are solvable.</strong></p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<hr class="section-rule">
 
-<!-- SERVICES PREVIEW -->
-<section class="sec" id="services">
-  <div class="w">
-    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:0;">
-      <div>
-        <span class="sec-label">Core Capabilities</span>
-        <h2 class="sec-h">What we build<br><em>with you.</em></h2>
-      </div>
-      <a href="services.html" class="btn-secondary" style="flex-shrink:0;margin-bottom:14px;">View All Services →</a>
+<section class="caps">
+  <div class="container">
+    <div class="caps-head r">
+      <h2 class="s-head">What we build <em>with you.</em></h2>
+      <a href="services.html" class="who-link">View All Services →</a>
     </div>
-    <div class="svc-list">
-      <div class="svc-item rv">
-        <div class="svc-n">01</div>
-        <div class="svc-body">
-          <div class="svc-name">Service GTM & Lifecycle Monetization</div>
-          <div class="svc-desc">Attach motions, renewal mechanics, and service P&L architecture for companies where aftermarket revenue is underbuilt relative to the installed base they've already sold into.</div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">Attach Rate</span><span class="svc-tag">ARR Design</span><span class="svc-tag">Renewal Motion</span></div>
-        <div class="svc-arr">→</div>
+    <div class="caps-grid">
+      <div class="card r">
+        <span class="card-num">01</span>
+        <h3>Service GTM & Lifecycle Monetization</h3>
+        <p>Attach motions, renewal mechanics, and service P&L architecture for companies where aftermarket revenue is underbuilt relative to the installed base.</p>
+        <div class="card-tags"><span>Attach Rate</span><span>ARR Design</span><span>Renewal Motion</span></div>
       </div>
-      <div class="svc-item rv">
-        <div class="svc-n">02</div>
-        <div class="svc-body">
-          <div class="svc-name">Channel & Distribution Strategy</div>
-          <div class="svc-desc">Rep-to-direct transitions, hybrid coverage design, and distributor governance that eliminate channel conflict and sharpen partner-driven growth.</div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">Coverage Model</span><span class="svc-tag">Partner ROE</span><span class="svc-tag">Hybrid GTM</span></div>
-        <div class="svc-arr">→</div>
+      <div class="card r">
+        <span class="card-num">02</span>
+        <h3>Channel & Distribution Strategy</h3>
+        <p>Rep-to-direct transitions, hybrid coverage design, and distributor governance that eliminate channel conflict and sharpen partner-driven growth.</p>
+        <div class="card-tags"><span>Coverage Model</span><span>Partner ROE</span><span>Hybrid GTM</span></div>
       </div>
-      <div class="svc-item rv">
-        <div class="svc-n">03</div>
-        <div class="svc-body">
-          <div class="svc-name">Pipeline & Forecast Discipline</div>
-          <div class="svc-desc">CRM transformation, stage hygiene, and inspection cadences that convert gut-feel forecasting into a number leadership can defend to investors and boards.</div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">CRM Governance</span><span class="svc-tag">Stage Hygiene</span><span class="svc-tag">Forecast Accuracy</span></div>
-        <div class="svc-arr">→</div>
+      <div class="card r">
+        <span class="card-num">03</span>
+        <h3>Pipeline & Forecast Discipline</h3>
+        <p>CRM transformation, stage hygiene, and inspection cadences that convert gut-feel forecasting into a number leadership can defend to boards.</p>
+        <div class="card-tags"><span>CRM Governance</span><span>Stage Hygiene</span><span>Forecast Accuracy</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<hr class="section-rule">
 
-<!-- ENGAGEMENTS -->
-<section class="sec" id="engagements">
-  <div class="w">
-    <div class="rv">
-      <span class="sec-label">Engagements</span>
-      <h2 class="sec-h">Two ways to work<br>with <em>Uptime Commercial.</em></h2>
-    </div>
-    <div class="eng-grid">
-      <div class="eng-card rv">
-        <div class="eng-flag">Ongoing · Embedded</div>
-        <div class="eng-n">01</div>
+<section class="engage" style="padding:120px 48px">
+  <div class="container">
+    <span class="section-label r">Engagements</span>
+    <h2 class="s-head r">Two ways to work with <em>Uptime Commercial.</em></h2>
+    <div class="engage-grid" style="margin-top:48px">
+      <div class="engage-card r">
+        <div class="engage-type">Ongoing · Embedded</div>
+        <span class="engage-num">01</span>
         <h3>Fractional CRO / CCO</h3>
-        <div class="eng-sub">Senior leadership. Flexible commitment.</div>
-        <p class="eng-body">For companies that need experienced commercial leadership without a full-time hire. We integrate into your organization, own the function, and build toward something that doesn't require us indefinitely.</p>
-        <ul class="eng-list">
+        <div class="engage-subtitle">Senior leadership. Flexible commitment.</div>
+        <p>For companies that need experienced commercial leadership without a full-time hire. We integrate into your organization, own the function, and build toward a handoff — not a dependency.</p>
+        <ul>
           <li>Own commercial targets across revenue streams</li>
           <li>Pipeline inspection and forecast cadence</li>
-          <li>Channel strategy and partner governance</li>
-          <li>CRM and RevOps infrastructure build</li>
-          <li>Team development and standard work</li>
-          <li>Board and investor commercial reporting</li>
+          <li>CRM, RevOps, and channel infrastructure</li>
+          <li>Board and investor reporting</li>
         </ul>
       </div>
-      <div class="eng-card rv d1">
-        <div class="eng-flag">Project-Based · Defined Scope</div>
-        <div class="eng-n">02</div>
+      <div class="engage-card r">
+        <div class="engage-type">Project-Based · Defined Scope</div>
+        <span class="engage-num">02</span>
         <h3>GTM Strategy & Execution</h3>
-        <div class="eng-sub">Diagnostic. Roadmap. Implementation.</div>
-        <p class="eng-body">A structured engagement that starts with a clear read of where you are — benchmarked, scored, honest — then builds a prioritized plan and works through it with your team. The deliverable is a working commercial system, not a presentation.</p>
-        <ul class="eng-list">
+        <div class="engage-subtitle">Diagnostic. Roadmap. Implementation.</div>
+        <p>A structured engagement that starts with a clear read of where you are — benchmarked, scored, honest — then builds a prioritized plan and works through it with your team.</p>
+        <ul>
           <li>GTM readiness assessment with gap scoring</li>
           <li>Prioritized roadmap with KPIs per initiative</li>
-          <li>Execution support through implementation</li>
           <li>Pricing architecture and packaging design</li>
-          <li>Service monetization and renewal motion</li>
           <li>Channel coverage and ROE redesign</li>
         </ul>
       </div>
@@ -461,159 +136,120 @@
   </div>
 </section>
 
-<hr class="rule">
+<hr class="section-rule">
 
-<!-- AI SECTION -->
-<section class="sec ai-section" id="ai">
-  <div class="w">
-    <div class="ai-grid">
-      <div class="rv">
-        <span class="sec-label">AI & Automation</span>
-        <h2 class="sec-h">Technology that<br>does the work,<br>not the <em>thinking.</em></h2>
-        <div class="ai-caveat">
-          <p>We'll be direct: AI does certain things well today — it accelerates research, surfaces data patterns, and removes manual repetition. It doesn't replace judgment, relationships, or strategy. We use it where it genuinely helps, and we won't oversell it.</p>
+<section class="ai">
+  <div class="container">
+    <div class="ai-intro r">
+      <span class="section-label">AI & Automation</span>
+      <h2>Technology that does the work, not the <em>thinking.</em></h2>
+      <p>AI accelerates research, surfaces data patterns, and removes manual repetition. It doesn't replace judgment, relationships, or strategy. We use it where it genuinely helps — and we won't oversell it.</p>
+    </div>
+    <div class="ai-layout">
+      <div class="terminal r">
+        <div class="terminal-bar">
+          <div class="terminal-dot red"></div>
+          <div class="terminal-dot yel"></div>
+          <div class="terminal-dot grn"></div>
+          <span class="terminal-title">pipeline-audit · weekly</span>
         </div>
-        <div class="term">
-          <div class="term-top">
-            <div class="td td-r"></div><div class="td td-y"></div><div class="td td-g"></div>
-            <div class="term-lbl">pipeline-audit · weekly</div>
-          </div>
-          <div class="term-body">
-<div class="tc">→ CRM scan complete · 214 open deals</div>
-<div class="tm">  Running hygiene checks...</div><br>
-<div class="ta">⚠  11 deals: no activity &gt; 21 days</div>
-<div class="ta">⚠  6 deals: close date elapsed</div>
-<div class="ta">⚠  9 deals: next step missing</div><br>
-<div class="tb">→  Risk-adjusted forecast: $1.02M</div>
-<div class="tc">   Gap to target flagged · ~$160K</div><br>
-<div class="tm">   Expansion signals:</div>
-<div class="tm">   — 2 renewals due &lt; 60 days</div>
-<div class="tm">   — 3 upsell opportunities scored</div><br>
-<div class="tc">✓  Report delivered to leadership</div>
-<div class="tm">   Next run: Monday 06:00 <span class="blink"></span></div>
-          </div>
+        <div class="terminal-body">
+          <div class="t-line gold" style="animation-delay:.2s">→ CRM scan complete · 214 open deals</div>
+          <div class="t-line dim" style="animation-delay:.5s">Running hygiene checks...</div>
+          <div class="t-line" style="animation-delay:1s">&nbsp;</div>
+          <div class="t-line warn" style="animation-delay:1.3s">⚠ 11 deals: no activity > 21 days</div>
+          <div class="t-line warn" style="animation-delay:1.6s">⚠ 6 deals: close date elapsed</div>
+          <div class="t-line warn" style="animation-delay:1.9s">⚠ 9 deals: next step missing</div>
+          <div class="t-line" style="animation-delay:2.2s">&nbsp;</div>
+          <div class="t-line gold" style="animation-delay:2.5s">→ Risk-adjusted forecast: $1.02M</div>
+          <div class="t-line" style="animation-delay:2.8s">Gap to target flagged · ~$160K</div>
+          <div class="t-line" style="animation-delay:3.1s">&nbsp;</div>
+          <div class="t-line" style="animation-delay:3.4s">Expansion signals:</div>
+          <div class="t-line" style="animation-delay:3.7s">— 2 renewals due < 60 days</div>
+          <div class="t-line" style="animation-delay:4s">— 3 upsell opportunities scored</div>
+          <div class="t-line" style="animation-delay:4.3s">&nbsp;</div>
+          <div class="t-line green" style="animation-delay:4.6s">✓ Report delivered to leadership</div>
+          <div class="t-line dim" style="animation-delay:4.9s">Next run: Monday 06:00</div>
         </div>
       </div>
-      <div class="ai-list rv d1">
-        <div class="ai-it"><div class="ai-it-n">01</div><div class="ai-it-title">Prospect Research & Account Intelligence</div><div class="ai-it-desc">AI-accelerated account profiling that surfaces relevant signals from public sources before your team engages — cutting hours of manual prep per opportunity without replacing the human judgment that converts it.</div></div>
-        <div class="ai-it"><div class="ai-it-n">02</div><div class="ai-it-title">Pipeline Quality & Forecast Reporting</div><div class="ai-it-desc">Automated review of CRM data that flags hygiene issues, stalled deals, and forecast gaps on a scheduled basis — turning a weekly manual task into a consistent, timestamped output leadership can act on.</div></div>
-        <div class="ai-it"><div class="ai-it-n">03</div><div class="ai-it-title">Sales Enablement at Speed</div><div class="ai-it-desc">Proposals, outreach sequences, and playbook content drafted from your knowledge base — reviewed and approved before anything reaches a customer. Speed without the risk of unsupervised output.</div></div>
-        <div class="ai-it"><div class="ai-it-n">04</div><div class="ai-it-title">Competitive & Market Monitoring</div><div class="ai-it-desc">Ongoing tracking of competitor positioning and market signals, distilled into a brief your team can actually use — not a raw export that requires another hour to interpret.</div></div>
+      <div class="ai-cards r">
+        <div class="ai-card"><span class="ai-card-num">01</span><h4>Prospect Research & Account Intelligence</h4><p>AI-accelerated account profiling that surfaces signals from public sources before your team engages — cutting hours of manual prep per opportunity.</p></div>
+        <div class="ai-card"><span class="ai-card-num">02</span><h4>Pipeline Quality & Forecast Reporting</h4><p>Automated CRM review that flags hygiene issues, stalled deals, and forecast gaps on a scheduled basis — consistent, timestamped output leadership can act on.</p></div>
+        <div class="ai-card"><span class="ai-card-num">03</span><h4>Sales Enablement at Speed</h4><p>Proposals, outreach sequences, and playbook content drafted from your knowledge base — reviewed and approved before anything reaches a customer.</p></div>
+        <div class="ai-card"><span class="ai-card-num">04</span><h4>Competitive & Market Monitoring</h4><p>Ongoing tracking of competitor positioning and market signals, distilled into a brief your team can actually use.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<hr class="section-rule">
 
-<hr class="rule">
-
-<!-- DIAGNOSTIC -->
-<section class="sec-sm" id="diagnostic-cta">
-  <div class="w">
-    <div class="diag-wrap rv">
+<section class="diag">
+  <div class="container">
+    <div class="diag-inner r">
       <div>
-        <span class="sec-label" style="margin-bottom:16px;">Free · 10 Minutes · No Email Required</span>
-        <div class="diag-h">Find out where your GTM is <em>costing you.</em></div>
-        <p class="diag-p">15 questions across five commercial dimensions. Scored results with prioritized recommendations built on real GTM benchmarks — not generic frameworks. Takes ten minutes. No registration required.</p>
+        <div class="diag-eyebrow">Free · 10 Minutes · No Email Required</div>
+        <h3>Find out where your GTM is <em>costing you.</em></h3>
+        <p>18 questions across six commercial dimensions. Scored results with prioritized recommendations built on real GTM benchmarks. No registration required.</p>
       </div>
       <div class="diag-right">
-        <a href="diagnostic.html" class="btn-primary" style="white-space:nowrap;">Take the Diagnostic →</a>
+        <a href="diagnostic.html" class="btn-primary">Take the Diagnostic →</a>
         <div class="diag-note">Instant results · No account needed</div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<hr class="section-rule">
 
-<!-- CONTACT -->
-<section class="sec" id="contact">
-  <div class="w">
+<section class="contact" id="contact">
+  <div class="container">
+    <span class="section-label r">Contact</span>
     <div class="contact-grid">
-      <div class="rv">
-        <span class="sec-label">Contact</span>
-        <h2 class="sec-h" style="margin-bottom:22px;">Let's have<br>a real <em>conversation.</em></h2>
-        <p class="contact-p">Whether you're evaluating a fractional engagement, scoping a project, or pressure-testing an idea with someone who's sat in the same chair — we're a straightforward conversation away.</p>
-        <div class="clinks">
-          <a href="mailto:eric@uptimecommercialgroup.com" class="clink">
-            <div class="clink-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <span class="clink-label">eric@uptimecommercialgroup.com</span>
-          </a>
-          <a href="https://www.linkedin.com/in/eric-elder" target="_blank" rel="noopener" class="clink">
-            <div class="clink-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-            <span class="clink-label">linkedin.com/in/eric-elder</span>
-          </a>
+      <div class="contact-left r">
+        <h2>Let's find the <em>root cause.</em></h2>
+        <p>Whether you're evaluating a fractional engagement, scoping a project, or pressure-testing an idea with someone who's sat in the same chair — we're one conversation away.</p>
+        <div class="contact-info">
+          <div><div class="ci-label">Email</div><a href="mailto:eric@uptimecommercialgroup.com">eric@uptimecommercialgroup.com</a></div>
+          <div><div class="ci-label">LinkedIn</div><a href="https://www.linkedin.com/in/eric-elder" target="_blank" rel="noopener">linkedin.com/in/eric-elder</a></div>
+          <div><div class="ci-label">Location</div><span>Serving clients nationally</span></div>
         </div>
       </div>
-      <div class="rv d1">
-        <form class="cform" data-formspree="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <div class="frow">
-            <div class="fld"><label class="flbl">Name</label><input type="text" name="name" class="finput" placeholder="Your name" required></div>
-            <div class="fld"><label class="flbl">Company</label><input type="text" name="company" class="finput" placeholder="Company name" required></div>
-          </div>
-          <div class="fld full"><label class="flbl">Email</label><input type="email" name="email" class="finput" placeholder="you@company.com" required></div>
-          <div class="fld full">
-            <label class="flbl">What are you working on?</label>
-            <select name="topic" class="finput">
-              <option value="">Select the closest fit</option>
-              <option>Fractional CRO / CCO engagement</option>
-              <option>GTM Strategy & Execution project</option>
-              <option>Service revenue growth</option>
-              <option>Channel strategy redesign</option>
-              <option>CRM / pipeline transformation</option>
-              <option>Commercial due diligence</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div class="fld full"><label class="flbl">Brief context</label><textarea name="message" class="finput" placeholder="Where you are, what you're trying to solve..."></textarea></div>
-          <button type="submit" class="fsub">Send Message</button>
-          <div class="form-ok" id="form-ok">✓ Received. We'll be in touch within one business day.</div>
-        </form>
+      <div class="r">
+        <div class="form-ok" id="fok">✓ Received. We'll be in touch within one business day.</div>
+        <div class="form-card">
+          <form onsubmit="go(event)">
+            <div class="form-grid">
+              <div class="form-row"><label>Name</label><input type="text" required></div>
+              <div class="form-row"><label>Company</label><input type="text"></div>
+            </div>
+            <div class="form-grid">
+              <div class="form-row"><label>Email</label><input type="email" required></div>
+              <div class="form-row"><label>What are you working on?</label>
+                <select><option value="">Select the closest fit</option><option>Fractional CRO / CCO engagement</option><option>GTM Strategy & Execution project</option><option>Service revenue growth</option><option>Channel strategy redesign</option><option>CRM / pipeline transformation</option><option>Commercial due diligence</option><option>Something else</option></select>
+              </div>
+            </div>
+            <div class="form-row"><label>Brief context</label><textarea placeholder="What's the situation? What would a good outcome look like?"></textarea></div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- FOOTER -->
 <footer>
-  <div class="w">
-    <div class="foot-inner">
-      <div>
-        <div class="foot-brand">Uptime <em>Commercial</em></div>
-        <p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p>
-      </div>
-      <div class="foot-links-row">
-        <div class="foot-col">
-          <div class="foot-col-title">Services</div>
-          <ul>
-            <li><a href="services.html#service-gtm">Service GTM</a></li>
-            <li><a href="services.html#channel">Channel Strategy</a></li>
-            <li><a href="services.html#pipeline">Pipeline Discipline</a></li>
-            <li><a href="services.html#pricing">Pricing Governance</a></li>
-            <li><a href="services.html#key-accounts">Key Accounts</a></li>
-            <li><a href="services.html#ma">M&A Support</a></li>
-          </ul>
-        </div>
-        <div class="foot-col">
-          <div class="foot-col-title">Company</div>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="insights.html">Insights</a></li>
-            <li><a href="diagnostic.html">GTM Diagnostic</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+  <div class="container">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Uptime <em>Commercial</em></div><p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p></div>
+      <div class="foot-col"><div class="foot-col-title">Services</div><a href="services.html#service-gtm">Service GTM</a><a href="services.html#channel">Channel Strategy</a><a href="services.html#pipeline">Pipeline Discipline</a><a href="services.html#pricing">Pricing Governance</a><a href="services.html#key-accounts">Key Accounts</a><a href="services.html#ma">M&A Support</a></div>
+      <div class="foot-col"><div class="foot-col-title">Company</div><a href="about.html">About</a><a href="insights.html">Insights</a><a href="diagnostic.html">GTM Diagnostic</a><a href="#contact">Contact</a></div>
     </div>
-    <div class="foot-bottom">
-      <div class="foot-copy">© 2026 Uptime Commercial Group. All rights reserved.</div>
-      <div class="foot-legal">uptimecommercialgroup.com</div>
-    </div>
+    <div class="foot-bottom"><span>© 2026 Uptime Commercial Group. All rights reserved.</span><span>uptimecommercialgroup.com</span></div>
   </div>
 </footer>
 
-<script src="js/global.js"></script>
+<script src="main.js"></script>
+<script>function go(e){e.preventDefault();document.getElementById('fok').classList.add('show');e.target.closest('.form-card').style.display='none'}</script>
 </body>
 </html>

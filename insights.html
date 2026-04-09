@@ -3,354 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insights — Uptime Commercial</title>
-<meta name="description" content="Practical thinking on GTM strategy, service monetization, channel design, and commercial operations for manufacturers and technology companies.">
+<title>Insights — Uptime Commercial Group</title>
+<meta name="description" content="Practical thinking on commercial operations. Patterns from the field, problems solved, and frameworks that work in manufacturing and technology companies.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
 <meta property="og:title" content="Insights — Uptime Commercial Group">
-<meta property="og:description" content="Frameworks, analyses, and perspectives on commercial execution for manufacturers and technology companies.">
+<meta property="og:description" content="Practical thinking on commercial operations. Patterns from the field, problems solved, and frameworks that work in manufacturing and technology companies.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://uptimecommercialgroup.com/insights.html">
 <link rel="canonical" href="https://uptimecommercialgroup.com/insights.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/global.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
-<style>
-/* INSIGHTS INDEX */
-.featured-post {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
-  padding: 72px 0; border-bottom: 1px solid var(--rule);
-}
-.featured-label {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 18px; display: block;
-}
-.featured-post h2 {
-  font-family: var(--serif); font-size: clamp(30px,4vw,52px);
-  font-weight: 300; color: var(--paper); line-height: 1.05;
-  letter-spacing: -0.02em; margin-bottom: 18px;
-}
-.featured-post h2 em { font-style: italic; color: var(--gold2); }
-.post-meta {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.14em; color: rgba(221,217,208,0.45);
-  text-transform: uppercase; margin-bottom: 20px;
-  display: flex; align-items: center; gap: 16px;
-}
-.post-meta span { display: flex; align-items: center; gap: 8px; }
-.post-meta span::before { content: '·'; opacity: 0.4; }
-.post-meta span:first-child::before { display: none; }
-.featured-excerpt {
-  font-size: 15px; color: var(--dim); line-height: 1.82;
-  font-weight: 400; margin-bottom: 32px;
-}
-.featured-visual {
-  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
-  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.featured-visual-inner {
-  font-family: var(--serif); font-size: clamp(60px,8vw,110px);
-  font-weight: 300; color: rgba(196,162,74,0.1);
-  letter-spacing: -0.04em; user-select: none; line-height: 1;
-}
-.featured-visual::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 70% 40%, rgba(196,162,74,0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-/* POST GRID */
-.posts-grid {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 2px; margin-top: 56px;
-}
-.post-card {
-  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
-  padding: 36px 32px; display: flex; flex-direction: column;
-  transition: background 0.22s; text-decoration: none;
-}
-.post-card:hover { background: rgba(221,217,208,0.055); }
-.post-card-cat {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 14px;
-}
-.post-card h3 {
-  font-family: var(--serif); font-size: clamp(19px,2vw,26px);
-  font-weight: 300; color: var(--paper); line-height: 1.15;
-  margin-bottom: 12px; transition: color 0.2s;
-}
-.post-card:hover h3 { color: var(--gold2); }
-.post-card-excerpt {
-  font-size: 13.5px; color: var(--dim); line-height: 1.72;
-  font-weight: 400; flex: 1; margin-bottom: 24px;
-}
-.post-card-foot {
-  border-top: 1px solid var(--rule); padding-top: 16px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.post-card-date {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.12em; color: rgba(221,217,208,0.42);
-}
-.post-card-read {
-  font-family: var(--mono); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.14em; color: var(--gold); opacity: 0.6;
-}
-
-/* PLACEHOLDER POSTS */
-.post-card.placeholder { opacity: 0.45; pointer-events: none; border-style: dashed; }
-.post-card.placeholder h3 { color: rgba(221,217,208,0.4); }
-
-/* NEWSLETTER */
-.newsletter-strip {
-  border: 1px solid var(--rule); padding: 52px 60px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center; margin-top: 80px;
-}
-.newsletter-copy h3 {
-  font-family: var(--serif); font-size: clamp(24px,3vw,36px);
-  font-weight: 300; color: var(--paper); line-height: 1.15; margin-bottom: 12px;
-}
-.newsletter-copy h3 em { font-style: italic; color: var(--gold2); }
-.newsletter-copy p { font-size: 14px; color: var(--dim); line-height: 1.75; font-weight: 400; }
-.newsletter-form { display: flex; gap: 0; }
-.newsletter-input {
-  flex: 1; background: rgba(221,217,208,0.04);
-  border: 1px solid var(--rule); border-right: none;
-  padding: 13px 16px; font-size: 14px; font-weight: 400;
-  color: var(--paper); font-family: var(--sans);
-  outline: none; transition: border-color 0.2s;
-}
-.newsletter-input:focus { border-color: rgba(196,162,74,0.45); }
-.newsletter-input::placeholder { color: rgba(221,217,208,0.42); }
-.newsletter-btn {
-  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--bg); background: var(--gold);
-  border: none; padding: 13px 20px; cursor: pointer;
-  white-space: nowrap; transition: background 0.2s; flex-shrink: 0;
-}
-.newsletter-btn:hover { background: var(--gold2); }
-
-/* FULL ARTICLE (for when clicking a post — same page expandable or link to article page) */
-
-@media (max-width: 1024px) {
-  .featured-post { grid-template-columns: 1fr; gap: 44px; }
-  .featured-visual { display: none; }
-  .posts-grid { grid-template-columns: 1fr; }
-  .newsletter-strip { grid-template-columns: 1fr; padding: 40px 32px; }
-  .newsletter-form { flex-direction: column; gap: 10px; }
-  .newsletter-input { border-right: 1px solid var(--rule); }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div class="cur-dot" id="cdot"></div>
-<div class="cur-ring" id="cring"></div>
-<div id="prog"></div>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
 
 <nav id="nav">
-  <a href="index.html" class="nav-logo">Uptime <em>Commercial</em></a>
-  <ul class="nav-mid">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="insights.html">Insights</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
-  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="index.html" class="nav-brand">Uptime <em>Commercial</em></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="insights.html" class="active">Insights</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
+  </div>
 </nav>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="page-hero-inner">
-    <div class="page-label">Insights & Perspectives</div>
-    <h1 class="page-h1">Practical thinking<br>on commercial <em>operations.</em></h1>
-    <p class="page-intro">Not theory. Patterns we've seen in the field, problems we've solved, and frameworks that actually work in manufacturing and technology companies.</p>
-  </div>
-</div>
-
-<hr class="rule">
-
-<!-- FEATURED POST -->
-<section class="sec">
-  <div class="w">
-    <div class="featured-post rv">
-      <div>
-        <span class="featured-label">Featured · Service GTM</span>
-        <div class="post-meta">
-          <span>March 2026</span>
-          <span>8 min read</span>
-        </div>
-        <h2>The Service Revenue<br>Gap: Why Most<br>Manufacturers Leave<br><em>Half the Money Behind</em></h2>
-        <p class="featured-excerpt">The average industrial manufacturer operates at 12-18% service attach on a hardware-heavy installed base. High-performing peers run 40-60%. The gap isn't a sales problem — it's an infrastructure problem. Here's what's actually in the way, and what it takes to close it.</p>
-        <a href="insights/service-revenue-gap.html" class="btn-primary">Read the Article →</a>
-      </div>
-      <div class="featured-visual rv d1">
-        <div class="featured-visual-inner">GTM</div>
-      </div>
-    </div>
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label r">Insights & Perspectives</span>
+    <h1 class="r">Practical thinking on commercial <em>operations.</em></h1>
+    <p class="r">Patterns we've seen in the field, problems we've solved, and frameworks that actually work in manufacturing and technology companies.</p>
   </div>
 </section>
 
-<hr class="rule">
+<hr class="section-rule">
 
-<!-- POSTS GRID -->
-<section class="sec-sm">
-  <div class="w">
-    <div class="rv">
-      <span class="sec-label">All Articles</span>
-    </div>
-    <div class="posts-grid">
-      <a href="insights/service-revenue-gap.html" class="post-card rv">
-        <div class="post-card-cat">Service GTM</div>
+<!-- FEATURED -->
+<section class="insight-featured">
+  <div class="container r">
+    <span class="section-label">Featured · Service GTM</span>
+    <div class="insight-meta">March 2026 · 8 min read</div>
+    <h2>The Service Revenue Gap: Why Most Manufacturers Leave <em>Half the Money Behind</em></h2>
+    <p>The average industrial manufacturer operates at 12-18% service attach on a hardware-heavy installed base. High-performing peers run 40-60%. The gap isn't a sales problem — it's an infrastructure problem. Here's what's actually in the way, and what it takes to close it.</p>
+    <a href="insights/service-revenue-gap.html" class="who-link">Read the Article →</a>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ALL ARTICLES -->
+<section style="padding:80px 48px">
+  <div class="container">
+    <span class="section-label r">All Articles</span>
+    <div class="insight-grid" style="margin-top:32px">
+      <a href="insights/service-revenue-gap.html" class="insight-card r">
+        <span class="ic-cat">Service GTM</span>
         <h3>The Service Revenue Gap: Why Most Manufacturers Leave Half the Money Behind</h3>
-        <p class="post-card-excerpt">12-18% attach vs. 40-60% for high performers. The gap isn't a sales problem — it's an infrastructure problem.</p>
-        <div class="post-card-foot">
-          <span class="post-card-date">March 2026</span>
-          <span class="post-card-read">8 min →</span>
-        </div>
+        <p>12-18% attach vs. 40-60% for high performers. The gap isn't a sales problem — it's an infrastructure problem.</p>
+        <span class="ic-meta">March 2026 · 8 min →</span>
       </a>
-      <div class="post-card placeholder rv d1">
-        <div class="post-card-cat">Pipeline & Forecast</div>
+      <div class="insight-card coming r">
+        <span class="ic-cat">Pipeline & Forecast</span>
         <h3>Why Your Forecast Is Always Wrong — and What to Do About It</h3>
-        <p class="post-card-excerpt">Forecast variance over 15% is almost never a CRM problem. It's a stage gate and inspection cadence problem. Here's the fix.</p>
-        <div class="post-card-foot">
-          <span class="post-card-date">Coming Soon</span>
-          <span class="post-card-read">6 min →</span>
-        </div>
+        <p>Forecast variance over 15% is almost never a CRM problem. It's a stage gate and inspection cadence problem.</p>
+        <span class="ic-meta">Coming Soon · 6 min</span>
       </div>
-      <div class="post-card placeholder rv d2">
-        <div class="post-card-cat">Channel Strategy</div>
+      <div class="insight-card coming r">
+        <span class="ic-cat">Channel Strategy</span>
         <h3>Rep-to-Direct: How to Make the Transition Without Losing the Customers</h3>
-        <p class="post-card-excerpt">The rep-to-direct transition is one of the highest-stakes moves in commercial operations. Most companies do it wrong twice before getting it right.</p>
-        <div class="post-card-foot">
-          <span class="post-card-date">Coming Soon</span>
-          <span class="post-card-read">7 min →</span>
-        </div>
-      </div>
-      <div class="post-card placeholder rv d1">
-        <div class="post-card-cat">Pricing</div>
-        <h3>The Discount Audit: How to Find Out Where Your Margin Is Actually Going</h3>
-        <p class="post-card-excerpt">Most commercial leaders are surprised by what a first discount audit reveals. Here's how to run one and what to do with what you find.</p>
-        <div class="post-card-foot">
-          <span class="post-card-date">Coming Soon</span>
-          <span class="post-card-read">5 min →</span>
-        </div>
-      </div>
-      <div class="post-card placeholder rv d2">
-        <div class="post-card-cat">AI & Automation</div>
-        <h3>What AI Actually Does Well in a Sales Organization (and What It Doesn't)</h3>
-        <p class="post-card-excerpt">An honest assessment of where AI-augmented sales tools deliver genuine ROI today — and where the hype outpaces the reality.</p>
-        <div class="post-card-foot">
-          <span class="post-card-date">Coming Soon</span>
-          <span class="post-card-read">6 min →</span>
-        </div>
-      </div>
-      <div class="post-card placeholder rv d3">
-        <div class="post-card-cat">Commercial Due Diligence</div>
-        <h3>What PE Sponsors Get Wrong About Commercial Due Diligence</h3>
-        <p class="post-card-excerpt">Standard commercial DD asks whether the market is big enough. The more important question is whether the commercial infrastructure can actually capture it.</p>
-        <div class="post-card-foot">
-          <span class="post-card-date">Coming Soon</span>
-          <span class="post-card-read">7 min →</span>
-        </div>
+        <p>The rep-to-direct transition is one of the highest-stakes moves in commercial operations.</p>
+        <span class="ic-meta">Coming Soon · 7 min</span>
       </div>
     </div>
   </div>
 </section>
+
+<hr class="section-rule">
 
 <!-- NEWSLETTER -->
-<section class="sec-sm">
-  <div class="w">
-    <div class="newsletter-strip rv">
-      <div class="newsletter-copy">
-        <h3>Practical GTM thinking,<br><em>when it's ready.</em></h3>
-        <p style="margin-top:12px;">No cadence commitment. When we publish something worth reading, we'll send it. That's it.</p>
-      </div>
-      <div>
-        <form class="newsletter-form" data-formspree="https://formspree.io/f/YOUR_FORM_ID" onsubmit="subNews(event)">
-          <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
-          <button type="submit" class="newsletter-btn">Subscribe →</button>
-        </form>
-        <p style="margin-top:12px;font-family:var(--mono);font-size:11px;color:rgba(221,217,208,0.42);letter-spacing:0.12em;">No spam. Unsubscribe anytime.</p>
-        <div id="news-ok" style="display:none;margin-top:12px;font-family:var(--mono);font-size:11px;color:#5cc98a;letter-spacing:0.08em;">✓ You're in.</div>
-      </div>
-    </div>
+<section class="newsletter">
+  <h3 class="r">Practical GTM thinking, <em>when it's ready.</em></h3>
+  <p class="r">No cadence commitment. When we publish something worth reading, we'll send it.</p>
+  <div class="nl-form r">
+    <input type="email" placeholder="you@company.com">
+    <button onclick="this.parentElement.style.display='none';document.querySelector('.nl-ok').classList.add('show')">Subscribe →</button>
   </div>
+  <div class="nl-note r">No spam. Unsubscribe anytime.</div>
+  <div class="nl-ok">✓ You're in.</div>
 </section>
 
-<hr class="rule">
+<hr class="section-rule">
 
 <footer>
-  <div class="w">
-    <div class="foot-inner">
-      <div>
-        <div class="foot-brand">Uptime <em>Commercial</em></div>
-        <p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p>
-      </div>
-      <div class="foot-links-row">
-        <div class="foot-col">
-          <div class="foot-col-title">Services</div>
-          <ul>
-            <li><a href="services.html#service-gtm">Service GTM</a></li>
-            <li><a href="services.html#channel">Channel Strategy</a></li>
-            <li><a href="services.html#pipeline">Pipeline Discipline</a></li>
-            <li><a href="services.html#pricing">Pricing Governance</a></li>
-            <li><a href="services.html#key-accounts">Key Accounts</a></li>
-            <li><a href="services.html#ma">M&A Support</a></li>
-          </ul>
-        </div>
-        <div class="foot-col">
-          <div class="foot-col-title">Company</div>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="insights.html">Insights</a></li>
-            <li><a href="diagnostic.html">GTM Diagnostic</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+  <div class="container">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Uptime <em>Commercial</em></div><p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p></div>
+      <div class="foot-col"><div class="foot-col-title">Services</div><a href="services.html#service-gtm">Service GTM</a><a href="services.html#channel">Channel Strategy</a><a href="services.html#pipeline">Pipeline Discipline</a><a href="services.html#pricing">Pricing Governance</a><a href="services.html#key-accounts">Key Accounts</a><a href="services.html#ma">M&A Support</a></div>
+      <div class="foot-col"><div class="foot-col-title">Company</div><a href="about.html">About</a><a href="insights.html">Insights</a><a href="diagnostic.html">GTM Diagnostic</a><a href="index.html#contact">Contact</a></div>
     </div>
-    <div class="foot-bottom">
-      <div class="foot-copy">© 2026 Uptime Commercial Group. All rights reserved.</div>
-      <div class="foot-legal">uptimecommercialgroup.com</div>
-    </div>
+    <div class="foot-bottom"><span>© 2026 Uptime Commercial Group. All rights reserved.</span><span>uptimecommercialgroup.com</span></div>
   </div>
 </footer>
 
-<script src="js/global.js"></script>
-<script>
-function subNews(e){
-  e.preventDefault();
-  const form = e.target;
-  const endpoint = form.dataset.formspree;
-  if (!endpoint || endpoint.includes('YOUR_FORM_ID')) {
-    document.querySelector('.nl-msg').textContent = 'Newsletter coming soon.';
-    document.querySelector('.nl-msg').style.display = 'block';
-    return;
-  }
-  fetch(endpoint, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  }).then(r => {
-    if (r.ok) {
-      document.querySelector('.nl-msg').textContent = "You're in.";
-      document.querySelector('.nl-msg').style.display = 'block';
-      form.querySelector('input').disabled = true;
-      form.querySelector('button').disabled = true;
-    } else {
-      document.querySelector('.nl-msg').textContent = 'Something went wrong. Try again.';
-      document.querySelector('.nl-msg').style.display = 'block';
-    }
-  });
-}
-</script>
+<script src="main.js"></script>
 </body>
 </html>

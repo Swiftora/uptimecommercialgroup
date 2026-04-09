@@ -3,200 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Service Revenue Gap — Uptime Commercial Insights</title>
-<meta name="description" content="The average industrial manufacturer operates at 12-18% service attach on its installed base. High performers run 40-60%. The gap isn't a sales problem — it's an infrastructure problem.">
+<title>The Service Revenue Gap — Uptime Commercial Group</title>
+<meta name="description" content="Why most manufacturers leave half the money behind. The infrastructure gap between 12-18% service attach and 40-60% for high performers.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
 <meta property="og:title" content="The Service Revenue Gap — Uptime Commercial Group">
-<meta property="og:description" content="Most manufacturers are sitting on 15-30% more service revenue than they realize.">
+<meta property="og:description" content="Why most manufacturers leave half the money behind. The infrastructure gap between 12-18% service attach and 40-60% for high performers.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://uptimecommercialgroup.com/insights/service-revenue-gap.html">
 <link rel="canonical" href="https://uptimecommercialgroup.com/insights/service-revenue-gap.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/global.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
-<style>
-/* ARTICLE */
-.article-hero { padding-top: 68px; min-height: 44vh; display: flex; align-items: flex-end; position: relative; overflow: hidden; }
-.article-hero::after { content: ''; position: absolute; top: -10%; right: -8%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(196,162,74,0.05) 0%, transparent 65%); pointer-events: none; }
-.article-hero-inner { padding: 64px 56px 52px; max-width: 1160px; margin: 0 auto; width: 100%; position: relative; z-index: 1; animation: ph 0.9s cubic-bezier(0.4,0,0.2,1) 0.1s both; }
-@keyframes ph { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
-.article-cat { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
-.article-cat::before { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.6; }
-.article-h1 { font-family: var(--serif); font-size: clamp(38px,5.5vw,76px); font-weight: 300; line-height: 1.0; letter-spacing: -0.025em; color: var(--paper); margin-bottom: 24px; }
-.article-h1 em { font-style: italic; color: var(--gold2); }
-.article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.article-meta-item { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(221,217,208,0.45); display: flex; align-items: center; gap: 8px; }
-.article-meta-item::before { content: '·'; }
-.article-meta-item:first-child::before { display: none; }
-.article-meta-author { font-family: var(--sans); font-size: 13px; font-weight: 500; color: rgba(221,217,208,0.52); }
-
-/* ARTICLE BODY */
-.article-body { max-width: 720px; margin: 0 auto; padding: 72px 56px 100px; }
-.article-lede { font-family: var(--serif); font-size: clamp(20px,2.5vw,28px); font-weight: 300; font-style: italic; color: rgba(221,217,208,0.68); line-height: 1.52; margin-bottom: 52px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
-.article-body p { font-size: 16px; color: var(--dim2); line-height: 1.88; font-weight: 400; margin-bottom: 26px; }
-.article-body p:last-child { margin-bottom: 0; }
-.article-body strong { color: rgba(221,217,208,0.82); font-weight: 600; }
-.article-h2 { font-family: var(--serif); font-size: clamp(24px,3vw,36px); font-weight: 300; color: var(--paper); line-height: 1.12; letter-spacing: -0.015em; margin: 52px 0 20px; }
-.article-h2 em { font-style: italic; color: var(--gold2); }
-.article-h3 { font-family: var(--serif); font-size: 22px; font-weight: 300; color: rgba(221,217,208,0.82); line-height: 1.2; margin: 36px 0 14px; }
-.pull-quote { font-family: var(--serif); font-style: italic; font-size: clamp(20px,2.5vw,28px); font-weight: 300; color: rgba(221,217,208,0.62); line-height: 1.45; border-left: 2px solid var(--gold); padding-left: 28px; margin: 44px 0; letter-spacing: -0.01em; }
-.article-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 24px 0 28px; }
-.article-list li { font-size: 15.5px; color: var(--dim2); display: flex; align-items: flex-start; gap: 14px; line-height: 1.72; font-weight: 400; }
-.article-list li::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 9px; opacity: 0.6; }
-.article-hr { border: none; border-top: 1px solid var(--rule); margin: 48px 0; }
-.article-cta { background: rgba(221,217,208,0.03); border: 1px solid var(--rule); padding: 40px 44px; margin-top: 64px; }
-.article-cta-label { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-.article-cta h3 { font-family: var(--serif); font-size: 26px; font-weight: 300; color: var(--paper); line-height: 1.2; margin-bottom: 12px; }
-.article-cta h3 em { font-style: italic; color: var(--gold2); }
-.article-cta p { font-size: 14px; color: var(--dim); line-height: 1.75; font-weight: 400; margin-bottom: 24px; }
-.article-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.back-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.2s; margin-bottom: 40px; }
-.back-link:hover { color: var(--gold); }
-.back-link::before { content: '←'; }
-
-@media (max-width: 1024px) { .article-hero-inner { padding: 52px 36px 44px; } .article-body { padding: 52px 36px 80px; } }
-@media (max-width: 640px) { .article-hero-inner { padding: 44px 22px 36px; } .article-body { padding: 44px 22px 72px; } }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-
-<div class="cur-dot" id="cdot"></div>
-<div class="cur-ring" id="cring"></div>
-<div id="prog"></div>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
 
 <nav id="nav">
-  <a href="../index.html" class="nav-logo">Uptime <em>Commercial</em></a>
-  <ul class="nav-mid">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../about.html">About</a></li>
-    <li><a href="../services.html">Services</a></li>
-    <li><a href="../insights.html">Insights</a></li>
-    <li><a href="../index.html#contact">Contact</a></li>
-  </ul>
-  <a href="../index.html#contact" class="nav-cta">Start the Conversation</a>
-  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="../index.html" class="nav-brand">Uptime <em>Commercial</em></a>
+  <div class="nav-links">
+    <a href="../about.html">About</a>
+    <a href="../services.html">Services</a>
+    <a href="../insights.html" class="active">Insights</a>
+    <a href="../index.html#contact">Contact</a>
+    <a href="../index.html#contact" class="nav-cta">Start the Conversation</a>
+  </div>
 </nav>
 
-<div class="article-hero">
-  <div class="article-hero-inner">
-    <div class="article-cat">Service GTM · Lifecycle Monetization</div>
-    <h1 class="article-h1">The Service Revenue Gap:<br>Why Most Manufacturers <em>Leave<br>Half the Money Behind</em></h1>
-    <div class="article-meta">
-      <span class="article-meta-author">Eric Elder</span>
-      <span class="article-meta-item">March 2026</span>
-      <span class="article-meta-item">8 min read</span>
-    </div>
+<article class="article">
+  <div class="article-meta r">Service GTM · Lifecycle Monetization</div>
+  <h1 class="r">The Service Revenue Gap: Why Most Manufacturers <em>Leave Half the Money Behind</em></h1>
+  <div class="article-byline r">Eric Elder</div>
+  <div class="article-date r">March 2026 · 8 min read</div>
+
+  <hr class="section-rule" style="margin-bottom:40px">
+
+  <p class="r" style="margin-bottom:8px"><a href="../insights.html" class="who-link">← Back to Insights</a></p>
+
+  <div class="article-body r">
+    <p>The average industrial manufacturer operates at 12-18% service attach on a hardware-heavy installed base. High-performing peers in the same markets run 40-60%. The gap isn't a sales problem. It's an infrastructure problem — and it's hiding an enormous amount of high-margin revenue in plain sight.</p>
+
+    <p>We've spent 15+ years inside manufacturing and technology companies, and we've seen this pattern consistently: a company builds a significant installed base, generates decent product revenue, and treats service as something that happens when customers ask for it. Meanwhile, a competitor in the same market runs a systematic service motion and quietly generates 35-40% of total revenue from the installed base that already exists.</p>
+
+    <p>The executives we've talked to about this gap almost always say the same thing: <strong>"We know it's there, but we haven't had the bandwidth to go after it properly."</strong> What they're describing isn't a strategy problem — they understand that service revenue is valuable. It's an infrastructure problem. They don't have the systems, processes, and team behaviors to capture it consistently.</p>
+
+    <h2>Why the gap exists</h2>
+
+    <p>Most manufacturers build their service business the same way they built their direct sales business in the early days: on relationships and heroic individual effort. A handful of people who understand the customer base keep service revenue humming through personal attention. It works until it doesn't — when they leave, when the installed base grows beyond personal relationship management, or when a new leadership team looks at the numbers and asks why service attach is 14% when it should be 45%.</p>
+
+    <p>There are five specific infrastructure gaps that create and sustain this problem:</p>
+
+    <ol>
+      <li>
+        <h3>No attach motion at point of sale</h3>
+        <p>In most companies, service is sold after the hardware deal closes — if at all. The hardware rep gets credit for the equipment, hands off to service, and moves on. There's no packaging, no expectation, and no accountability for service attach at the moment the customer relationship is newest and the value proposition is clearest. High-performing companies embed attach into the hardware sale itself, with standard tier offerings, quota expectations, and CRM tracking.</p>
+      </li>
+      <li>
+        <h3>Renewal is reactive, not proactive</h3>
+        <p>The typical service renewal motion at a mid-market manufacturer looks like this: a contract expires, someone notices, someone calls the customer. Maybe 60% of contracts get renewed. A proactive renewal motion starts 90 days out with a structured outreach sequence, uses CRM tracking to ensure nothing falls through the cracks, and treats renewal rate as a leading indicator that gets reviewed with the same rigor as new bookings.</p>
+      </li>
+      <li>
+        <h3>Packaging is undefined or too complex</h3>
+        <p>When we ask manufacturers to describe their service offerings, we typically get one of two answers: either "we quote everything custom" or a 47-line price list that nobody can explain in a conversation. Both kill attach rate. The right structure is three tiers with clear scope, standard pricing, and a simple story a rep can tell in two minutes. This alone typically moves attach rate 10-15 points within 12 months of implementation.</p>
+      </li>
+      <li>
+        <h3>No ARR visibility</h3>
+        <p>Most manufacturers can't answer the question "what is our service ARR and what is our renewal rate?" with confidence. Building ARR visibility into the CRM changes the conversation from "how did we do last year" to "what's at risk next quarter and what are we doing about it." It creates the data foundation for meaningful forecasting of service revenue.</p>
+      </li>
+      <li>
+        <h3>Service isn't in the sales conversation</h3>
+        <p>The deepest root cause is cultural. In companies where service is treated as a cost center — or as what happens after the "real" sale — sales reps don't think of service as their responsibility. Closing this gap requires changing what gets measured, what gets celebrated, and how reps position service as value rather than insurance.</p>
+      </li>
+    </ol>
+
+    <h2>What the infrastructure build actually looks like</h2>
+
+    <p>The companies that successfully close the service revenue gap do it systematically, not heroically:</p>
+
+    <ul>
+      <li><strong>Tier the offering.</strong> Define three standard service packages with fixed scope, standard pricing, and clear value differentiation. Publish the pricing. Remove the requirement for custom quoting on standard agreements.</li>
+      <li><strong>Embed attach in the sales process.</strong> Add a service line item to the hardware sales process. Set attach rate expectations by rep and territory. Track it in CRM. Review it in pipeline meetings.</li>
+      <li><strong>Build the renewal motion.</strong> Assign renewal ownership. Set a 90-day-out outreach trigger in CRM. Create a standard renewal proposal template. Review renewal rate monthly.</li>
+      <li><strong>Create ARR visibility.</strong> Build a CRM view of all active service contracts with value, expiry date, and renewal status. Review it in monthly commercial meetings as a leading indicator.</li>
+      <li><strong>Change the performance measurement.</strong> Add service attach rate and renewal rate to the sales performance scorecard alongside hardware bookings.</li>
+    </ul>
+
+    <div class="pull-quote">"The service revenue gap is almost always closable within 12-18 months when the installed base exists to support it. The investment is in infrastructure — not headcount."</div>
+
+    <p>The companies we've seen execute this well typically see attach rate move from the mid-teens to 35-45% within 18 months. Average service deal size increases as reps learn to position value rather than react to demand. Renewal rates move from 55-65% to 80-90%.</p>
+
+    <p>The investment required is almost entirely in process and systems — not headcount. The installed base is already there. The customer relationships already exist. What's missing is the commercial infrastructure to capture the revenue systematically rather than occasionally.</p>
+
+    <p>If you're looking at a service attach rate under 25% and a renewal rate under 75%, the gap between where you are and where you could be is probably the most actionable near-term EBITDA opportunity in your commercial operation. It doesn't require a new product, a new market, or a new team. It requires building the systems that capture the value your installed base already represents.</p>
+
+    <p>That's the work we do at Uptime Commercial. If it's the right time to take a hard look at your service revenue infrastructure, the GTM diagnostic below is a useful starting point.</p>
   </div>
-</div>
+</article>
 
-<hr class="rule">
+<hr class="section-rule">
 
-<div class="article-body">
-  <a href="../insights.html" class="back-link">Back to Insights</a>
-
-  <p class="article-lede">The average industrial manufacturer operates at 12-18% service attach on a hardware-heavy installed base. High-performing peers in the same markets run 40-60%. The gap isn't a sales problem. It's an infrastructure problem — and it's hiding an enormous amount of high-margin revenue in plain sight.</p>
-
-  <p>I've spent 15 years inside manufacturing and technology companies, and I've seen this pattern consistently: a company builds a significant installed base, generates decent product revenue, and treats service as something that happens when customers ask for it. Meanwhile, a competitor in the same market runs a systematic service motion and quietly generates 35-40% of total revenue from the installed base that already exists.</p>
-
-  <p>The executives I've talked to about this gap almost always say the same thing: <strong>"We know it's there, but we haven't had the bandwidth to go after it properly."</strong> What they're describing isn't a strategy problem — they understand that service revenue is valuable. It's an infrastructure problem. They don't have the systems, processes, and team behaviors to capture it consistently.</p>
-
-  <div class="article-h2">Why the gap exists</div>
-
-  <p>Most manufacturers build their service business the same way they built their direct sales business in the early days: on relationships and heroic individual effort. A handful of people who understand the customer base keep service revenue humming through personal attention. It works until it doesn't — when they leave, when the installed base grows beyond personal relationship management, or when a new leadership team looks at the numbers and asks why service attach is 14% when it should be 45%.</p>
-
-  <p>There are five specific infrastructure gaps that create and sustain this problem:</p>
-
-  <div class="article-h3">1. No attach motion at point of sale</div>
-  <p>In most companies, service is sold after the hardware deal closes — if at all. The hardware rep gets credit for the equipment, hands off to service, and moves on to the next opportunity. There's no packaging, no expectation, and no accountability for service attach at the moment the customer relationship is newest and the value proposition is clearest. High-performing companies embed attach into the hardware sale itself, with standard tier offerings, quota expectations, and CRM tracking. The math is simple: every $100K hardware deal closed without a service conversation is a lost attach opportunity that gets harder to recover the longer the customer has the equipment without a service relationship.</p>
-
-  <div class="article-h3">2. Renewal is reactive, not proactive</div>
-  <p>The typical service renewal motion at a mid-market manufacturer looks like this: a contract expires, someone notices, someone calls the customer. Maybe 60% of contracts get renewed. The other 40% lapse and become reactive service customers — or, worse, they become an opening for a competitor. A proactive renewal motion starts 90 days out with a structured outreach sequence, uses CRM tracking to ensure nothing falls through the cracks, and treats renewal rate as a leading indicator of service health that gets reviewed with the same rigor as new bookings.</p>
-
-  <div class="article-h3">3. Packaging is undefined or too complex</div>
-  <p>When I ask manufacturers to describe their service offerings, I typically get one of two answers: either "we quote everything custom" or a 47-line price list that no one has memorized and no one can explain to a customer in a conversation. Both are fatal to attach rate. Custom quoting creates friction that kills impulse attachment. An incomprehensible menu creates confusion that defaults to "I'll think about it." The right structure is three tiers — call them Essential, Advanced, and Elite, or whatever fits your brand — with clear scope, standard pricing, and a simple story a rep can tell in two minutes. This alone typically moves attach rate 10-15 points within 12 months of implementation.</p>
-
-  <div class="article-h3">4. No ARR visibility</div>
-  <p>Most manufacturers can't answer the question "what is our service ARR and what is our renewal rate?" with confidence. They can tell you what service revenue was last year, but they can't tell you what's under contract, when it expires, and what's at risk. This isn't a technology problem — it's a data model and process problem. Building ARR visibility into the CRM changes the conversation from "how did we do last year" to "what's at risk next quarter and what are we doing about it." It also changes how leadership evaluates commercial performance, and it creates the data foundation for meaningful forecasting of service revenue.</p>
-
-  <div class="article-h3">5. Service isn't in the sales conversation</div>
-  <p>The deepest root cause of the service revenue gap is cultural. In companies where service is treated as a cost center — or as what happens after the "real" sale is done — sales reps don't think of service as their responsibility. They're measured on equipment bookings. Service is someone else's problem. Closing this gap requires changing what gets measured, what gets celebrated, and how reps are trained to position service as value rather than insurance. This is the hardest part of the infrastructure build, and it's also the most durable once it takes hold.</p>
-
-  <div class="article-hr"></div>
-
-  <div class="article-h2">What the infrastructure build actually looks like</div>
-
-  <p>The companies that successfully close the service revenue gap do it systematically, not heroically. Here's what the build typically looks like in sequence:</p>
-
-  <ul class="article-list">
-    <li><strong>Tier the offering.</strong> Define three standard service packages with fixed scope, standard pricing, and clear value differentiation between tiers. Publish the pricing. Remove the requirement for custom quoting on standard service agreements.</li>
-    <li><strong>Embed attach in the sales process.</strong> Add a service line item to the hardware sales process. Set attach rate expectations by rep and territory. Track it in CRM. Review it in pipeline meetings.</li>
-    <li><strong>Build the renewal motion.</strong> Assign renewal ownership. Set a 90-day-out outreach trigger in CRM. Create a standard renewal proposal template. Review renewal rate monthly alongside new bookings.</li>
-    <li><strong>Create ARR visibility.</strong> Build a CRM view of all active service contracts with value, expiry date, and renewal status. Review it in monthly commercial meetings as a leading indicator.</li>
-    <li><strong>Change the performance measurement.</strong> Add service attach rate and renewal rate to the sales performance scorecard alongside hardware bookings. Make service metrics visible and reviewed consistently.</li>
-  </ul>
-
-  <div class="pull-quote">"The service revenue gap is almost always closable within 12-18 months when the installed base exists to support it. The investment is in infrastructure — not headcount."</div>
-
-  <p>The companies I've seen execute this well typically see attach rate move from the mid-teens to 35-45% within 18 months. Average service deal size increases as reps learn to position value rather than react to demand. Renewal rates move from 55-65% to 80-90%. And service revenue, which was previously episodic and hard to forecast, starts appearing in the revenue forecast with the same confidence as hardware.</p>
-
-  <p>The investment required is almost entirely in process and systems — not headcount. The installed base is already there. The customer relationships already exist. The capability to deliver the service is already in the organization. What's missing is the commercial infrastructure to capture the revenue systematically rather than occasionally.</p>
-
-  <div class="article-hr"></div>
-
-  <p>If you're looking at a service attach rate under 25% and a renewal rate under 75%, the gap between where you are and where you could be is probably the most actionable near-term EBITDA opportunity in your commercial operation. It doesn't require a new product, a new market, or a new team. It requires building the systems that capture the value your installed base already represents.</p>
-
-  <p>That's the work we do at Uptime Commercial. If it's the right time to take a hard look at your service revenue infrastructure, the GTM diagnostic below is a useful starting point.</p>
-
-  <div class="article-cta">
-    <div class="article-cta-label">Related</div>
-    <h3>Find out where your service GTM<br>actually <em>stands.</em></h3>
-    <p>15 questions across five commercial dimensions, including service GTM maturity. Scored results with specific recommendations. Takes ten minutes.</p>
-    <div class="article-cta-btns">
+<section class="diag" style="max-width:900px;margin:0 auto">
+  <div class="diag-inner r">
+    <div>
+      <span class="section-label">Related</span>
+      <h3>Find out where your service GTM actually <em>stands.</em></h3>
+      <p>18 questions across six commercial dimensions, including service GTM maturity. Scored results with specific recommendations.</p>
+    </div>
+    <div class="diag-right">
       <a href="../diagnostic.html" class="btn-primary">Take the Free Diagnostic →</a>
-      <a href="../index.html#contact" class="btn-secondary">Talk to Us</a>
+      <div style="margin-top:12px"><a href="../index.html#contact" class="who-link">Talk to Us</a></div>
     </div>
   </div>
-</div>
+</section>
 
-<hr class="rule">
+<hr class="section-rule">
 
 <footer>
-  <div class="w">
-    <div class="foot-inner">
-      <div>
-        <div class="foot-brand">Uptime <em>Commercial</em></div>
-        <p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p>
-      </div>
-      <div class="foot-links-row">
-        <div class="foot-col">
-          <div class="foot-col-title">Services</div>
-          <ul>
-            <li><a href="../services.html#service-gtm">Service GTM</a></li>
-            <li><a href="../services.html#channel">Channel Strategy</a></li>
-            <li><a href="../services.html#pipeline">Pipeline Discipline</a></li>
-            <li><a href="../services.html#pricing">Pricing Governance</a></li>
-            <li><a href="../services.html#key-account">Key Account Architecture</a></li>
-            <li><a href="../services.html#ma">M&A Commercial Diligence</a></li>
-          </ul>
-        </div>
-        <div class="foot-col">
-          <div class="foot-col-title">Company</div>
-          <ul>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../insights.html">Insights</a></li>
-            <li><a href="../diagnostic.html">GTM Diagnostic</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+  <div class="container">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Uptime <em>Commercial</em></div><p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p></div>
+      <div class="foot-col"><div class="foot-col-title">Services</div><a href="../services.html#service-gtm">Service GTM</a><a href="../services.html#channel">Channel Strategy</a><a href="../services.html#pipeline">Pipeline Discipline</a><a href="../services.html#pricing">Pricing Governance</a><a href="../services.html#key-accounts">Key Accounts</a><a href="../services.html#ma">M&A Support</a></div>
+      <div class="foot-col"><div class="foot-col-title">Company</div><a href="../about.html">About</a><a href="../insights.html">Insights</a><a href="../diagnostic.html">GTM Diagnostic</a><a href="../index.html#contact">Contact</a></div>
     </div>
-    <div class="foot-bottom">
-      <div class="foot-copy">© 2026 Uptime Commercial Group. All rights reserved.</div>
-      <p class="foot-legal">This site does not collect personal data beyond what you voluntarily submit through the contact form.</p>
-    </div>
+    <div class="foot-bottom"><span>© 2026 Uptime Commercial Group. All rights reserved.</span><span>uptimecommercialgroup.com</span></div>
   </div>
 </footer>
 
-<script src="../js/global.js"></script>
+<script src="../main.js"></script>
 </body>
 </html>
