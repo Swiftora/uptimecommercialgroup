@@ -11,1233 +11,554 @@
 <meta property="og:url" content="https://uptimecommercialgroup.com/diagnostic.html">
 <link rel="canonical" href="https://uptimecommercialgroup.com/diagnostic.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
 <style>
-:root {
-  --ink: #111214;
-  --ink2: #2a2d33;
-  --mid: #6b7280;
-  --muted: #9ca3af;
-  --faint: #e5e7eb;
-  --bg: #fafaf9;
-  --white: #ffffff;
-  --amber: #b45309;
-  --amber-light: #fef3c7;
-  --amber-mid: #d97706;
-  --amber-border: #fcd34d;
-  --red-soft: #fef2f2;
-  --red: #dc2626;
-  --yellow-soft: #fffbeb;
-  --green-soft: #f0fdf4;
-  --green: #16a34a;
-  --blue-soft: #eff6ff;
-  --blue: #2563eb;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'Instrument Sans', sans-serif;
-  --mono: 'DM Mono', monospace;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
-  --shadow-lg: 0 4px 6px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.10);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ─── LAYOUT ─── */
-.page { min-height: 100vh; }
-.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-.container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+/* ─── DIAGNOSTIC OVERRIDES ─── */
+/* Uses global.css tokens: --bg, --paper, --gold, --gold2, --dim, --dim2, --rule, --serif, --sans, --mono */
 
 /* ─── SCREENS ─── */
-.screen { display: none; animation: fadeIn 0.35s ease; }
+.screen { display: none; animation: fadeIn 0.35s var(--ease); }
 .screen.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ─── NAV ─── */
-.nav {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--faint);
-  background: var(--white);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.nav-avatar {
-  width: 36px; height: 36px;
-  background: var(--ink);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-}
-.nav-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.2;
-}
-.nav-title {
-  font-size: 11px;
-  color: var(--mid);
-  line-height: 1;
-}
-.nav-cta {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--amber);
-  text-decoration: none;
-  border: 1px solid var(--amber-border);
-  background: var(--amber-light);
-  padding: 7px 14px;
-  border-radius: 6px;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-.nav-cta:hover { background: #fde68a; }
+/* ─── CONTAINER ─── */
+.diag-container { max-width: 720px; margin: 0 auto; padding: 0 56px; }
+.diag-container-wide { max-width: 960px; margin: 0 auto; padding: 0 56px; }
 
 /* ─── HERO ─── */
-.hero {
-  padding: 72px 0 60px;
-}
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--amber-light);
-  border: 1px solid var(--amber-border);
-  color: var(--amber);
-  font-size: 11px;
-  font-family: var(--mono);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 100px;
-  margin-bottom: 28px;
-}
-.hero-eyebrow span { width: 6px; height: 6px; background: var(--amber-mid); border-radius: 50%; }
-.hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(38px, 6vw, 58px);
-  line-height: 1.12;
-  color: var(--ink);
-  margin-bottom: 22px;
-  letter-spacing: -0.01em;
-}
-.hero h1 em {
-  font-style: italic;
-  color: var(--amber);
-}
-.hero-lead {
-  font-size: 18px;
-  color: var(--mid);
-  line-height: 1.7;
-  max-width: 580px;
-  margin-bottom: 36px;
-}
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--ink);
-  color: var(--white);
-  font-size: 15px;
-  font-weight: 600;
-  padding: 14px 28px;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: var(--sans);
-  text-decoration: none;
-}
-.btn-primary:hover { background: var(--ink2); box-shadow: 0 4px 16px rgba(0,0,0,0.15); transform: translateY(-1px); }
-.btn-primary:active { transform: translateY(0); }
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  color: var(--mid);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 14px 20px;
-  border-radius: var(--radius);
-  border: 1px solid var(--faint);
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: var(--sans);
-}
-.btn-secondary:hover { border-color: #d1d5db; color: var(--ink); background: var(--white); }
-
-.hero-note {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* ─── PROOF STRIP ─── */
-.proof-strip {
-  padding: 28px 0;
-  border-top: 1px solid var(--faint);
-  border-bottom: 1px solid var(--faint);
-  background: var(--white);
-  margin-bottom: 64px;
-}
-.proof-inner {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-}
-.proof-item {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  flex-shrink: 0;
-}
-.proof-val {
-  font-family: var(--serif);
-  font-size: 26px;
-  color: var(--ink);
-  line-height: 1;
-}
-.proof-label {
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.proof-divider {
-  width: 1px;
-  height: 40px;
-  background: var(--faint);
-  flex-shrink: 0;
-}
-
-/* ─── BIO SECTION ─── */
-.bio-section {
-  padding-bottom: 64px;
-}
-.bio-card {
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-radius: 12px;
-  padding: 36px 40px;
-  box-shadow: var(--shadow);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.bio-intro {
-  font-family: var(--serif);
-  font-size: 21px;
-  line-height: 1.5;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-.bio-body {
-  font-size: 14px;
-  color: var(--mid);
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-.bio-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.bio-tag {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink);
-  background: var(--faint);
-  padding: 4px 10px;
-  border-radius: 100px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.bio-credentials {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.bio-cred {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 14px 16px;
-  background: var(--bg);
-  border-radius: 8px;
-  border: 1px solid var(--faint);
-}
-.bio-cred-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-  line-height: 1;
-  margin-top: 1px;
-}
-.bio-cred-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 2px;
-}
-.bio-cred-sub {
-  font-size: 12px;
-  color: var(--mid);
-  line-height: 1.4;
-}
-
-/* ─── WHAT I HELP WITH ─── */
-.services-section {
-  padding-bottom: 64px;
-}
-.section-label {
-  font-size: 11px;
-  font-family: var(--mono);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-.section-heading {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 38px);
-  color: var(--ink);
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-.section-sub {
-  font-size: 16px;
-  color: var(--mid);
-  max-width: 540px;
-  line-height: 1.65;
-  margin-bottom: 36px;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-}
-.service-card {
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-radius: 10px;
-  padding: 22px 22px;
-  transition: all 0.2s;
-}
-.service-card:hover {
-  box-shadow: var(--shadow);
-  border-color: #d1d5db;
-  transform: translateY(-2px);
-}
-.service-icon {
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-.service-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-.service-desc {
-  font-size: 13px;
-  color: var(--mid);
-  line-height: 1.6;
-}
-
-/* ─── DIAGNOSTIC CTA BANNER ─── */
-.diag-banner {
-  background: var(--ink);
-  border-radius: 12px;
-  padding: 48px 48px;
-  margin-bottom: 64px;
+.diag-hero {
+  padding: 140px 0 80px;
   position: relative;
   overflow: hidden;
 }
+.diag-hero::after {
+  content: '';
+  position: absolute; top: -10%; right: -5%;
+  width: 55vw; height: 55vw;
+  background: radial-gradient(circle, rgba(196,162,74,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.diag-hero-eyebrow {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.diag-hero-eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.6;
+}
+.diag-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 300; line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin-bottom: 24px;
+}
+.diag-hero h1 em { font-style: italic; color: var(--gold2); }
+.diag-hero-lead {
+  font-size: 17px; font-weight: 400;
+  color: var(--dim2); line-height: 1.76;
+  max-width: 560px; margin-bottom: 40px;
+}
+.diag-hero-actions {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.diag-hero-note {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); margin-top: 18px;
+  display: flex; align-items: center; gap: 8px;
+  letter-spacing: 0.06em;
+}
+.diag-hero-note svg { opacity: 0.5; }
+
+/* ─── DIAGNOSTIC CTA BANNER ─── */
+.diag-banner {
+  border: 1px solid var(--rule);
+  padding: 64px 70px;
+  margin-bottom: 80px;
+  position: relative; overflow: hidden;
+}
 .diag-banner::before {
   content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 240px; height: 240px;
-  background: radial-gradient(circle, rgba(217,119,6,0.3) 0%, transparent 70%);
+  position: absolute; top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(196,162,74,0.07) 0%, transparent 65%);
   pointer-events: none;
 }
 .diag-banner-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--amber-mid);
-  margin-bottom: 14px;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
 }
 .diag-banner h2 {
   font-family: var(--serif);
-  font-size: clamp(24px, 4vw, 34px);
-  color: var(--white);
-  line-height: 1.25;
-  margin-bottom: 14px;
+  font-size: clamp(24px, 3.5vw, 42px);
+  font-weight: 300; color: var(--paper);
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 16px;
 }
+.diag-banner h2 em { font-style: italic; color: var(--gold2); }
 .diag-banner p {
-  font-size: 15px;
-  color: #9ca3af;
-  line-height: 1.65;
-  max-width: 480px;
-  margin-bottom: 28px;
+  font-size: 15px; color: var(--dim);
+  line-height: 1.78; font-weight: 400;
+  max-width: 500px; margin-bottom: 32px;
 }
-.btn-amber {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--amber-mid);
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 13px 26px;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: var(--sans);
-}
-.btn-amber:hover { background: var(--amber); box-shadow: 0 4px 20px rgba(180,83,9,0.4); }
 
-/* ─── ASSESSMENT SCREEN ─── */
+/* ─── BUTTONS ─── */
+.dbtn-primary {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold);
+  padding: 14px 28px; border: none; cursor: pointer;
+  transition: background 0.2s; display: inline-block;
+  text-decoration: none;
+}
+.dbtn-primary:hover { background: var(--gold2); }
+.dbtn-secondary {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dim2); border: 1px solid rgba(221,217,208,0.25);
+  padding: 13px 24px; text-decoration: none;
+  transition: all 0.2s; display: inline-block;
+  background: transparent; cursor: pointer;
+}
+.dbtn-secondary:hover { color: var(--paper); border-color: rgba(221,217,208,0.42); }
+.dbtn-back {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dim); background: transparent;
+  border: 1px solid var(--rule); padding: 12px 22px;
+  cursor: pointer; transition: all 0.2s;
+}
+.dbtn-back:hover { color: var(--paper); border-color: rgba(221,217,208,0.3); }
+.dbtn-next {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold);
+  padding: 13px 26px; border: none; cursor: pointer;
+  transition: all 0.2s;
+}
+.dbtn-next:hover:not(:disabled) { background: var(--gold2); }
+.dbtn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+.dbtn-ghost {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dim); background: transparent;
+  border: 1px solid var(--rule); padding: 11px 20px;
+  cursor: pointer; transition: all 0.2s;
+}
+.dbtn-ghost:hover { color: var(--paper); border-color: rgba(221,217,208,0.3); }
+
+/* ─── ASSESS HEADER ─── */
 .assess-header {
   padding: 40px 0 32px;
-  border-bottom: 1px solid var(--faint);
+  border-bottom: 1px solid var(--rule);
   margin-bottom: 40px;
 }
 .assess-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 20px; flex-wrap: wrap;
 }
 .assess-section-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--amber);
-  background: var(--amber-light);
-  border: 1px solid var(--amber-border);
-  padding: 5px 12px;
-  border-radius: 100px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
 }
 .assess-progress-wrap { flex: 1; max-width: 240px; }
 .assess-progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 6px;
-  font-family: var(--mono);
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); margin-bottom: 6px;
 }
-.progress-track {
-  height: 3px;
-  background: var(--faint);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--amber-mid);
-  border-radius: 3px;
-  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-}
+.progress-track { height: 2px; background: var(--rule); overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); transition: width 0.5s var(--ease); }
 .assess-section-title {
-  font-family: var(--serif);
-  font-size: 28px;
-  color: var(--ink);
-  margin-top: 12px;
-  line-height: 1.25;
+  font-family: var(--serif); font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 300; color: var(--paper); margin-top: 14px; line-height: 1.12;
 }
 .assess-section-desc {
-  font-size: 14px;
-  color: var(--mid);
-  margin-top: 6px;
-  line-height: 1.6;
+  font-size: 15px; color: var(--dim); margin-top: 8px; line-height: 1.7; font-weight: 400;
 }
 
-/* ─── QUESTIONS ─── */
+/* ─── QUESTION BLOCKS ─── */
 .question-block {
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-radius: 10px;
-  padding: 28px 30px;
-  margin-bottom: 16px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--rule); padding: 28px 32px;
+  margin-bottom: 14px; transition: border-color 0.2s;
+  background: rgba(221,217,208,0.02);
 }
-.question-block.answered {
-  border-color: #d1fae5;
-  box-shadow: 0 0 0 1px #d1fae5;
-}
+.question-block.answered { border-color: rgba(196,162,74,0.25); }
 .q-num {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 10px;
 }
 .q-text {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 5px;
-  line-height: 1.45;
+  font-size: 16px; font-weight: 600; color: var(--paper);
+  margin-bottom: 6px; line-height: 1.45;
 }
 .q-hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 20px;
-  line-height: 1.5;
+  font-size: 14px; color: var(--dim); margin-bottom: 22px; line-height: 1.6;
 }
 .options { display: flex; flex-direction: column; gap: 8px; }
 .opt {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--bg);
-  border: 1px solid var(--faint);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-align: left;
-  width: 100%;
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 18px; background: rgba(221,217,208,0.02);
+  border: 1px solid var(--rule); cursor: pointer;
+  transition: all 0.15s; text-align: left; width: 100%;
   font-family: var(--sans);
 }
-.opt:hover { background: var(--white); border-color: #d1d5db; }
-.opt.selected {
-  background: #eff6ff;
-  border-color: #93c5fd;
-}
+.opt:hover { background: rgba(221,217,208,0.04); border-color: rgba(221,217,208,0.18); }
+.opt.selected { background: rgba(196,162,74,0.06); border-color: rgba(196,162,74,0.3); }
 .opt-radio {
-  width: 18px; height: 18px;
-  border: 1.5px solid #d1d5db;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 2px;
+  width: 16px; height: 16px;
+  border: 1.5px solid rgba(221,217,208,0.25);
+  border-radius: 50%; flex-shrink: 0; margin-top: 2px;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.15s;
 }
-.opt.selected .opt-radio {
-  border-color: var(--blue);
-  background: var(--blue);
-}
+.opt.selected .opt-radio { border-color: var(--gold); background: var(--gold); }
 .opt.selected .opt-radio::after {
-  content: '';
-  width: 6px; height: 6px;
-  background: white;
-  border-radius: 50%;
+  content: ''; width: 5px; height: 5px;
+  background: var(--bg); border-radius: 50%;
 }
 .opt-label {
-  font-size: 13px;
-  color: var(--mid);
-  line-height: 1.5;
-  transition: color 0.15s;
-  padding-top: 1px;
+  font-size: 14px; color: var(--dim); line-height: 1.55;
+  transition: color 0.15s; padding-top: 1px;
 }
-.opt.selected .opt-label { color: var(--ink); }
+.opt.selected .opt-label { color: var(--paper); }
 
 /* ─── INTAKE FORM ─── */
-.intake-section {
-  padding-bottom: 64px;
-}
+.intake-section { padding-bottom: 40px; }
 .intake-card {
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-radius: 12px;
-  padding: 36px 40px;
-  box-shadow: var(--shadow);
+  border: 1px solid var(--rule); padding: 40px 44px;
+  background: rgba(221,217,208,0.02);
 }
 .intake-heading {
-  font-family: var(--serif);
-  font-size: 26px;
-  color: var(--ink);
-  margin-bottom: 6px;
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  color: var(--paper); margin-bottom: 8px;
 }
 .intake-sub {
-  font-size: 14px;
-  color: var(--mid);
-  margin-bottom: 28px;
-  line-height: 1.6;
+  font-size: 14px; color: var(--dim); margin-bottom: 32px; line-height: 1.6;
 }
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-field { display: flex; flex-direction: column; gap: 7px; }
 .form-field.full { grid-column: 1 / -1; }
 .form-label {
-  font-size: 11px;
-  font-weight: 600;
-  font-family: var(--mono);
-  color: var(--mid);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.14em; text-transform: uppercase;
 }
-.form-label .req { color: var(--amber-mid); }
+.form-label .req { color: var(--gold); }
 .form-control {
-  background: var(--bg);
-  border: 1px solid var(--faint);
-  border-radius: 7px;
-  padding: 10px 14px;
-  font-size: 14px;
-  color: var(--ink);
-  font-family: var(--sans);
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  width: 100%;
+  background: rgba(221,217,208,0.04); border: 1px solid var(--rule);
+  padding: 13px 15px; font-size: 14px; font-weight: 400;
+  color: var(--paper); font-family: var(--sans);
+  outline: none; width: 100%; transition: border-color 0.2s;
+  -webkit-appearance: none;
 }
-.form-control:focus {
-  border-color: #93c5fd;
-  box-shadow: 0 0 0 3px rgba(147,197,253,0.25);
-  background: var(--white);
-}
-.form-control::placeholder { color: var(--muted); }
+.form-control:focus { border-color: rgba(196,162,74,0.45); }
+.form-control::placeholder { color: rgba(221,217,208,0.38); }
 select.form-control { appearance: none; cursor: pointer; }
+select.form-control option { background: #141920; color: var(--paper); }
 .form-error {
-  font-size: 11px;
-  color: var(--red);
-  margin-top: -4px;
-  display: none;
+  font-family: var(--mono); font-size: 11px; color: #ef4444;
+  margin-top: -4px; display: none; letter-spacing: 0.06em;
 }
 .form-error.visible { display: block; }
 
 /* ─── NAV BUTTONS ─── */
 .assess-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--faint);
+  display: flex; align-items: center;
+  justify-content: space-between; margin-top: 44px;
+  padding-top: 32px; border-top: 1px solid var(--rule);
 }
-.btn-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 1px solid var(--faint);
-  color: var(--mid);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: all 0.15s;
-}
-.btn-back:hover { border-color: #d1d5db; color: var(--ink); }
-.btn-next {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--ink);
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 26px;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: all 0.15s;
-}
-.btn-next:hover:not(:disabled) { background: var(--ink2); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
-.btn-next:disabled { opacity: 0.38; cursor: not-allowed; }
-.btn-next.amber-btn { background: var(--amber-mid); }
-.btn-next.amber-btn:hover:not(:disabled) { background: var(--amber); }
 
 /* ─── LOADING ─── */
-.loading-screen {
-  padding: 120px 0;
-  text-align: center;
-}
-.loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 24px;
-}
+.loading-screen { padding: 140px 0; text-align: center; }
+.loader { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 28px; }
 .loader-dot {
-  width: 8px; height: 8px;
-  background: var(--amber-mid);
-  border-radius: 50%;
-  animation: loaderPulse 1.2s ease-in-out infinite;
+  width: 7px; height: 7px; background: var(--gold);
+  border-radius: 50%; animation: loaderPulse 1.2s ease-in-out infinite;
 }
 .loader-dot:nth-child(2) { animation-delay: 0.2s; }
 .loader-dot:nth-child(3) { animation-delay: 0.4s; }
-@keyframes loaderPulse {
-  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-  40% { transform: scale(1); opacity: 1; }
-}
+@keyframes loaderPulse { 0%,80%,100% { transform:scale(0.6);opacity:0.4; } 40% { transform:scale(1);opacity:1; } }
 .loading-title {
-  font-family: var(--serif);
-  font-size: 22px;
-  color: var(--ink);
-  margin-bottom: 8px;
+  font-family: var(--serif); font-size: 24px; font-weight: 300;
+  color: var(--paper); margin-bottom: 8px;
 }
-.loading-sub {
-  font-size: 14px;
-  color: var(--muted);
-}
+.loading-sub { font-size: 14px; color: var(--dim); }
 
 /* ─── RESULTS ─── */
 .results-screen { padding-bottom: 80px; }
 .results-hero {
   padding: 48px 0 40px;
-  border-bottom: 1px solid var(--faint);
-  margin-bottom: 48px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 52px;
 }
 .results-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.2em; color: var(--dim);
+  text-transform: uppercase; margin-bottom: 10px;
 }
 .results-company {
   font-family: var(--serif);
-  font-size: clamp(28px,4vw,40px);
-  color: var(--ink);
-  line-height: 1.15;
-  margin-bottom: 28px;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300; color: var(--paper);
+  line-height: 1.15; margin-bottom: 28px;
 }
 .score-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 32px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
+  display: flex; align-items: flex-end;
+  gap: 32px; flex-wrap: wrap; margin-bottom: 24px;
 }
 .score-big { line-height: 1; }
 .score-number {
-  font-family: var(--serif);
-  font-size: 80px;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-family: var(--serif); font-size: 80px;
+  line-height: 1; letter-spacing: -0.02em;
 }
-.score-number.low { color: var(--red); }
-.score-number.mid { color: #b45309; }
-.score-number.high { color: var(--green); }
+.score-number.low { color: #ef4444; }
+.score-number.mid { color: var(--gold); }
+.score-number.high { color: #22c55e; }
 .score-suffix {
-  font-family: var(--sans);
-  font-size: 22px;
-  color: var(--muted);
-  font-weight: 400;
+  font-family: var(--sans); font-size: 22px;
+  color: var(--dim); font-weight: 400;
 }
 .score-tier-wrap { padding-bottom: 8px; }
 .score-tier {
-  font-family: var(--serif);
-  font-size: 26px;
-  color: var(--ink);
-  margin-bottom: 4px;
-  line-height: 1.2;
+  font-family: var(--serif); font-size: 26px; font-weight: 300;
+  color: var(--paper); margin-bottom: 4px; line-height: 1.2;
 }
 .score-desc {
-  font-size: 13px;
-  color: var(--muted);
-  font-family: var(--mono);
-  letter-spacing: 0.06em;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.08em;
 }
 .score-bar-wrap {
-  height: 6px;
-  background: var(--faint);
-  border-radius: 6px;
-  overflow: hidden;
-  max-width: 480px;
-  margin-bottom: 20px;
+  height: 3px; background: var(--rule); overflow: hidden;
+  max-width: 480px; margin-bottom: 24px;
 }
-.score-bar-fill {
-  height: 100%;
-  border-radius: 6px;
-  transition: width 1.2s cubic-bezier(0.4,0,0.2,1) 0.3s;
-}
-.score-bar-fill.low { background: linear-gradient(90deg, #fca5a5, var(--red)); }
-.score-bar-fill.mid { background: linear-gradient(90deg, #fcd34d, var(--amber-mid)); }
-.score-bar-fill.high { background: linear-gradient(90deg, #86efac, var(--green)); }
+.score-bar-fill { height: 100%; transition: width 1.2s var(--ease) 0.3s; }
+.score-bar-fill.low { background: linear-gradient(90deg, #fca5a5, #ef4444); }
+.score-bar-fill.mid { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+.score-bar-fill.high { background: linear-gradient(90deg, #86efac, #22c55e); }
 .results-summary {
-  font-size: 16px;
-  color: var(--mid);
-  line-height: 1.75;
-  max-width: 640px;
-  padding: 20px 24px;
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-left: 3px solid var(--amber-mid);
-  border-radius: 0 8px 8px 0;
+  font-size: 16px; color: var(--dim2); line-height: 1.78; font-weight: 400;
+  max-width: 640px; padding: 22px 28px;
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--gold);
 }
 
 /* ─── DIMENSION CARDS ─── */
-.dim-section { margin-bottom: 48px; }
-.dim-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
+.dim-section { margin-bottom: 52px; }
+.dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .dim-card {
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-radius: 10px;
-  padding: 20px 22px;
+  background: rgba(221,217,208,0.03); border: 1px solid var(--rule);
+  padding: 22px 24px; transition: background 0.2s;
 }
+.dim-card:hover { background: rgba(221,217,208,0.05); }
 .dim-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 12px;
 }
-.dim-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.3;
-  max-width: 160px;
-}
-.dim-score {
-  font-family: var(--mono);
-  font-size: 20px;
-  font-weight: 500;
-}
-.dim-score.low { color: var(--red); }
-.dim-score.mid { color: var(--amber-mid); }
-.dim-score.high { color: var(--green); }
-.dim-bar {
-  height: 3px;
-  background: var(--faint);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.dim-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 1s cubic-bezier(0.4,0,0.2,1) 0.5s;
-}
-.dim-fill.low { background: var(--red); }
-.dim-fill.mid { background: var(--amber-mid); }
-.dim-fill.high { background: var(--green); }
+.dim-name { font-size: 13px; font-weight: 600; color: var(--paper); line-height: 1.3; max-width: 170px; }
+.dim-score { font-family: var(--mono); font-size: 20px; font-weight: 400; }
+.dim-score.low { color: #ef4444; }
+.dim-score.mid { color: var(--gold); }
+.dim-score.high { color: #22c55e; }
+.dim-bar { height: 2px; background: var(--rule); overflow: hidden; margin-bottom: 10px; }
+.dim-fill { height: 100%; transition: width 1s var(--ease) 0.5s; }
+.dim-fill.low { background: #ef4444; }
+.dim-fill.mid { background: var(--gold); }
+.dim-fill.high { background: #22c55e; }
 .dim-status {
-  font-size: 11px;
-  font-family: var(--mono);
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase;
 }
 
 /* ─── REC CARDS ─── */
-.rec-section { margin-bottom: 48px; }
-.rh {
-  margin-bottom: 20px;
+.rec-section { margin-bottom: 52px; }
+.rh { margin-bottom: 22px; }
+.rh .section-label {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px; display: block;
+}
+.rh h3 {
+  font-family: var(--serif); font-size: 26px; font-weight: 300;
+  color: var(--paper); line-height: 1.15;
 }
 .rec-card {
-  background: var(--white);
-  border: 1px solid var(--faint);
-  border-radius: 10px;
-  padding: 22px 24px;
-  margin-bottom: 12px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  border: 1px solid var(--rule); padding: 24px 28px;
+  margin-bottom: 10px; display: flex; gap: 18px;
+  align-items: flex-start; background: rgba(221,217,208,0.02);
+  transition: background 0.2s;
 }
+.rec-card:hover { background: rgba(221,217,208,0.04); }
 .rec-badge {
-  flex-shrink: 0;
-  min-width: 80px;
-  padding: 3px 10px;
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 3px;
+  flex-shrink: 0; min-width: 76px;
+  padding: 4px 10px; font-family: var(--mono);
+  font-size: 10px; font-weight: 400; letter-spacing: 0.1em;
+  text-transform: uppercase; text-align: center; margin-top: 3px;
+  border: 1px solid;
 }
-.rec-badge.critical { background: var(--red-soft); color: var(--red); border: 1px solid #fecaca; }
-.rec-badge.high { background: var(--yellow-soft); color: var(--amber); border: 1px solid var(--amber-border); }
-.rec-badge.medium { background: var(--green-soft); color: var(--green); border: 1px solid #bbf7d0; }
+.rec-badge.critical { color: #ef4444; border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.06); }
+.rec-badge.high { color: var(--gold); border-color: rgba(196,162,74,0.25); background: rgba(196,162,74,0.06); }
+.rec-badge.medium { color: #22c55e; border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.06); }
 .rec-dim {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 4px;
 }
 .rec-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 6px;
-  line-height: 1.3;
+  font-size: 15px; font-weight: 600; color: var(--paper);
+  margin-bottom: 6px; line-height: 1.3;
 }
-.rec-body {
-  font-size: 13px;
-  color: var(--mid);
-  line-height: 1.65;
-}
+.rec-body { font-size: 14px; color: var(--dim); line-height: 1.72; }
 
 /* ─── CONTACT CTA ─── */
 .contact-cta {
-  background: var(--ink);
-  border-radius: 12px;
-  padding: 44px 44px;
-  margin-bottom: 32px;
-  position: relative;
-  overflow: hidden;
+  border: 1px solid var(--rule); padding: 52px 56px;
+  margin-bottom: 36px; position: relative; overflow: hidden;
 }
 .contact-cta::after {
   content: '';
-  position: absolute;
-  bottom: -40px; right: -40px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(217,119,6,0.25) 0%, transparent 70%);
+  position: absolute; bottom: -40px; right: -40px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(196,162,74,0.07) 0%, transparent 65%);
   pointer-events: none;
 }
 .cta-top {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--amber-mid);
-  margin-bottom: 12px;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
 }
 .cta-h {
   font-family: var(--serif);
-  font-size: clamp(22px,3vw,30px);
-  color: var(--white);
-  line-height: 1.25;
-  margin-bottom: 12px;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 300; color: var(--paper);
+  line-height: 1.15; margin-bottom: 14px;
 }
+.cta-h em { font-style: italic; color: var(--gold2); }
 .cta-p {
-  font-size: 14px;
-  color: #9ca3af;
-  line-height: 1.65;
-  max-width: 480px;
-  margin-bottom: 24px;
+  font-size: 15px; color: var(--dim); line-height: 1.78; font-weight: 400;
+  max-width: 480px; margin-bottom: 28px;
 }
-.cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-.btn-white {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: white;
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 24px;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: all 0.15s;
-  text-decoration: none;
-}
-.btn-white:hover { background: #f9fafb; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.cta-buttons { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
 .cta-email {
-  font-size: 13px;
-  color: #6b7280;
-  font-family: var(--mono);
-  letter-spacing: 0.06em;
+  font-family: var(--mono); font-size: 12px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.06em;
 }
 
-/* ─── PRINT ─── */
-.print-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 1px solid var(--faint);
-  color: var(--mid);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 10px 18px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: all 0.15s;
-}
-.btn-ghost:hover { border-color: #d1d5db; color: var(--ink); }
+/* ─── PRINT ROW ─── */
+.print-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
-/* ─── FOOTER ─── */
-.footer {
-  margin-top: 64px;
-  padding: 28px 0;
-  border-top: 1px solid var(--faint);
+/* ─── DIAG FOOTER ─── */
+.diag-footer {
+  margin-top: 72px; padding: 28px 0;
+  border-top: 1px solid var(--rule);
 }
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
+.diag-footer-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 12px;
 }
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 17px;
-  color: var(--ink);
+.diag-footer-brand {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper);
 }
-.footer-copy {
-  font-size: 12px;
-  color: var(--muted);
+.diag-footer-brand em { font-style: normal; color: var(--gold); }
+.diag-footer-copy {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--dim); letter-spacing: 0.06em;
 }
 
 /* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .diag-container, .diag-container-wide { padding: 0 36px; }
+  .diag-banner, .intake-card, .contact-cta { padding: 40px 36px; }
+  .diag-hero { padding: 120px 0 60px; }
+}
 @media (max-width: 640px) {
-  .bio-card { grid-template-columns: 1fr; }
-  .services-grid { grid-template-columns: 1fr 1fr; }
+  .diag-container, .diag-container-wide { padding: 0 22px; }
   .form-grid { grid-template-columns: 1fr; }
   .form-field.full { grid-column: 1; }
   .dim-grid { grid-template-columns: 1fr; }
-  .diag-banner, .intake-card, .contact-cta { padding: 28px 24px; }
+  .diag-banner, .intake-card, .contact-cta { padding: 28px 22px; }
   .score-number { font-size: 60px; }
-  .proof-inner { gap: 24px; }
-}
-@media (max-width: 480px) {
-  .services-grid { grid-template-columns: 1fr; }
+  .diag-hero { padding: 100px 0 48px; }
 }
 
-/* ─── PRINT STYLES ─── */
+/* ─── PRINT ─── */
 @media print {
-  .nav, .hero-actions, .diag-banner, .btn-primary, .btn-secondary,
-  .btn-amber, .btn-back, .btn-next, .btn-white, .btn-ghost,
-  .assess-nav, .print-row, .footer { display: none !important; }
+  nav, .diag-hero-actions, .diag-banner, .dbtn-primary, .dbtn-secondary,
+  .dbtn-back, .dbtn-next, .dbtn-ghost, .assess-nav, .print-row,
+  .diag-footer, .nav-toggle { display: none !important; }
   body { background: white; color: black; }
+  .screen { display: block !important; }
   .results-screen { padding: 0; }
 }
 </style>
 </head>
 <body>
 
-<!-- ─── STICKY NAV ─── -->
-<nav class="nav">
-  <div class="container-wide nav-inner">
-    <div class="nav-brand">
-      <div class="nav-avatar" style="background:#c4a24a;color:#0a0e14;font-family:monospace;font-size:11px;font-weight:700">UC</div>
-      <div>
-        <div class="nav-name">Uptime Commercial</div>
-        <div class="nav-title">Industrial GTM · VP Sales & Customer Success</div>
-      </div>
-    </div>
-    <a href="index.html" class="nav-cta">← Back to Site</a>
-  </div>
+<div class="cur-dot" id="cdot"></div>
+<div class="cur-ring" id="cring"></div>
+<div id="prog"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Uptime <em>Commercial</em></a>
+  <ul class="nav-mid">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
+  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ══════════════════════════════════════ -->
 <!-- SCREEN: LANDING                        -->
 <!-- ══════════════════════════════════════ -->
 <div id="screen-landing" class="screen active page">
-  <div class="container">
+  <div class="diag-container">
 
     <!-- HERO -->
-    <div class="hero">
-      <div class="hero-eyebrow"><span></span>Free GTM Diagnostic · Industrial & Aerospace</div>
+    <div class="diag-hero">
+      <div class="diag-hero-eyebrow">Free GTM Diagnostic</div>
       <h1>Where is your commercial<br>engine <em>leaving money?</em></h1>
-      <p class="hero-lead">Most manufacturing and technology companies have strong products and talented people — but the commercial infrastructure holding it together is underdeveloped. This diagnostic tells you exactly where the gaps are across six dimensions, including AI and automation readiness.</p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="showIntake()">Take the Free Diagnostic →</button>
-        <button class="btn-secondary" onclick="scrollToBio()">About Eric ↓</button>
+      <p class="diag-hero-lead">Most manufacturing and technology companies have strong products and talented people — but the commercial infrastructure holding it together is underdeveloped. This diagnostic tells you exactly where the gaps are across six dimensions, including AI and automation readiness.</p>
+      <div class="diag-hero-actions">
+        <button class="dbtn-primary" onclick="showIntake()">Take the Free Diagnostic →</button>
       </div>
-      <div class="hero-note">
+      <div class="diag-hero-note">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         No email required to get results. Takes ~10 minutes.
       </div>
     </div>
 
-    <!-- PROOF STRIP -->
-    <div class="proof-strip">
-      <div class="proof-inner">
-        <div class="proof-item">
-          <span class="proof-val">15+</span>
-          <span class="proof-label">Years industrial GTM</span>
-        </div>
-        <div class="proof-divider"></div>
-        <div class="proof-item">
-          <span class="proof-val">$55M</span>
-          <span class="proof-label">Commercial portfolio owned</span>
-        </div>
-        <div class="proof-divider"></div>
-        <div class="proof-item">
-          <span class="proof-val">2.4×</span>
-          <span class="proof-label">Services P&L turned around</span>
-        </div>
-        <div class="proof-divider"></div>
-        <div class="proof-item">
-          <span class="proof-val">3%→18%</span>
-          <span class="proof-label">EBITDA margin expanded</span>
-        </div>
-        <div class="proof-divider"></div>
-        <div class="proof-item">
-          <span class="proof-val">3×</span>
-          <span class="proof-label">Ownership models navigated</span>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <!-- BIO -->
-    <div class="bio-section" id="bio-section">
-      <div class="section-label">About Eric</div>
-      <div class="bio-card">
-        <div>
-          <div class="bio-intro">I've spent 15 years inside industrial technology companies building the commercial infrastructure that turns good products into predictable revenue.</div>
-          <p class="bio-body">I've spent 15+ years inside manufacturing and technology companies — leading commercial teams, owning P&Ls, running channel transformations, and rebuilding service GTM from scratch. I've been in the rooms where the hard commercial decisions get made, and I understand the difference between a strategy that sounds right and one that holds when a quarter goes sideways.<br><br>Uptime Commercial works with business owners and PE operating partners to build the commercial infrastructure that makes revenue predictable — and applies AI and automation to make that infrastructure self-sustaining.</p>
-          <div class="bio-tags">
-            <span class="bio-tag">Services GTM</span>
-            <span class="bio-tag">Channel Strategy</span>
-            <span class="bio-tag">RevOps</span>
-            <span class="bio-tag">P&L Turnaround</span>
-            <span class="bio-tag">Industrial</span>
-            <span class="bio-tag">Aerospace</span>
-            <span class="bio-tag">PE-Backed</span>
-          </div>
-        </div>
-        <div class="bio-credentials">
-          <div class="bio-cred">
-            <div class="bio-cred-icon">🏭</div>
-            <div>
-              <div class="bio-cred-title">Ascential Technologies (AEA Investors)</div>
-              <div class="bio-cred-sub">VP Sales Americas & Global Customer Success · 2024–Present</div>
-            </div>
-          </div>
-          <div class="bio-cred">
-            <div class="bio-cred-icon">⚡</div>
-            <div>
-              <div class="bio-cred-title">Fluke Reliability / PRUFTECHNIK (Fortive)</div>
-              <div class="bio-cred-sub">Sales Director → NA East Leader → Services P&L Owner · 2012–2024</div>
-            </div>
-          </div>
-          <div class="bio-cred">
-            <div class="bio-cred-icon">✍️</div>
-            <div>
-              <div class="bio-cred-title">Published Author</div>
-              <div class="bio-cred-sub">Advanced Manufacturing, Quality Magazine, AISTech Conference Proceedings</div>
-            </div>
-          </div>
-          <div class="bio-cred">
-            <div class="bio-cred-icon">🎓</div>
-            <div>
-              <div class="bio-cred-title">Certified Reliability Leader</div>
-              <div class="bio-cred-sub">Reliabilityweb.com · FAA A&P License · Penn College of Technology</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <hr class="rule">
 
-    <!-- WHAT I HELP WITH -->
-    <div class="services-section">
-      <div class="section-label">What I Help With</div>
-      <h2 class="section-heading">Not just service revenue.<br>The whole commercial engine.</h2>
-      <p class="section-sub">I work across every dimension of industrial GTM — from the strategy layer down to the operating cadences that make it stick.</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🔧</div>
-          <div class="service-name">Service GTM & Lifecycle Monetization</div>
-          <div class="service-desc">Attach motions, renewal packaging, ARR mechanics, and service P&L architecture that actually scales.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🗺️</div>
-          <div class="service-name">Channel & Distribution Strategy</div>
-          <div class="service-desc">Rep-to-direct transitions, hybrid coverage design, distributor governance, and channel ROE that eliminates conflict.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">📊</div>
-          <div class="service-name">Pipeline & Forecast Discipline</div>
-          <div class="service-desc">CRM transformation, stage hygiene, inspection cadences, and forecast methodology that gives PE boards confidence.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">💰</div>
-          <div class="service-name">Pricing & Discount Governance</div>
-          <div class="service-desc">Value-based pricing frameworks, tiered packaging, discount approval matrices, and margin protection mechanisms.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🏢</div>
-          <div class="service-name">Key Account & Enterprise Expansion</div>
-          <div class="service-desc">Multi-site account strategy, exec sponsorship models, and expansion playbooks for $500K+ opportunity pursuit.</div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🤝</div>
-          <div class="service-name">Commercial Due Diligence & M&A</div>
-          <div class="service-desc">GTM assessment, commercial integration planning, and revenue quality analysis for PE-backed acquisition targets.</div>
-        </div>
-      </div>
-    </div>
-
+  <div class="diag-container">
     <!-- DIAGNOSTIC CTA BANNER -->
-    <div class="diag-banner">
-      <div class="diag-banner-label">Free · 10 Minutes · Instant Results</div>
-      <h2>Find out where your GTM and AI maturity<br>are holding revenue back.</h2>
-      <p>Answer 18 questions across six commercial dimensions — including AI and automation maturity. Get a scored, prioritized diagnostic with specific recommendations tailored to your situation.</p>
-      <button class="btn-amber" onclick="showIntake()">Start the Diagnostic →</button>
+    <div style="padding: 80px 0;">
+      <div class="diag-banner">
+        <div class="diag-banner-label">Free · 10 Minutes · Instant Results</div>
+        <h2>Find out where your GTM<br>and AI maturity are <em>holding revenue back.</em></h2>
+        <p>Answer 18 questions across six commercial dimensions — including AI and automation maturity. Get a scored, prioritized diagnostic with specific recommendations tailored to your situation.</p>
+        <button class="dbtn-primary" onclick="showIntake()">Start the Diagnostic →</button>
+      </div>
     </div>
+  </div>
 
-  </div><!-- /container -->
-
-  <div class="container-wide">
-    <div class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">Uptime Commercial Group</div>
-        <div class="footer-copy">uptimecommercialgroup.com · eric@uptimecommercialgroup.com</div>
+  <div class="diag-container-wide">
+    <div class="diag-footer">
+      <div class="diag-footer-inner">
+        <div class="diag-footer-brand">Uptime <em>Commercial</em></div>
+        <div class="diag-footer-copy">uptimecommercialgroup.com</div>
       </div>
     </div>
   </div>
@@ -1247,9 +568,9 @@ select.form-control { appearance: none; cursor: pointer; }
 <!-- SCREEN: INTAKE FORM                    -->
 <!-- ══════════════════════════════════════ -->
 <div id="screen-intake" class="screen page">
-  <div class="container">
-    <div style="padding: 40px 0 0;">
-      <button class="btn-back" onclick="showLanding()">← Back</button>
+  <div class="diag-container">
+    <div style="padding: 100px 0 0;">
+      <button class="dbtn-back" onclick="showLanding()">← Back</button>
     </div>
     <div class="assess-header">
       <div class="assess-meta">
@@ -1351,8 +672,8 @@ select.form-control { appearance: none; cursor: pointer; }
     </div>
 
     <div class="assess-nav">
-      <button class="btn-back" onclick="showLanding()">← Back</button>
-      <button class="btn-next amber-btn" onclick="startAssessment()">Begin Diagnostic →</button>
+      <button class="dbtn-back" onclick="showLanding()">← Back</button>
+      <button class="dbtn-next" onclick="startAssessment()">Begin Diagnostic →</button>
     </div>
 
   </div>
@@ -1362,7 +683,7 @@ select.form-control { appearance: none; cursor: pointer; }
 <!-- SCREEN: ASSESSMENT                     -->
 <!-- ══════════════════════════════════════ -->
 <div id="screen-assessment" class="screen page">
-  <div class="container">
+  <div class="diag-container">
     <div class="assess-header">
       <div class="assess-meta">
         <div class="assess-section-pill" id="section-pill">Section 1 of 5</div>
@@ -1381,8 +702,8 @@ select.form-control { appearance: none; cursor: pointer; }
     <div id="questions-wrap"></div>
 
     <div class="assess-nav">
-      <button class="btn-back" id="btn-prev" onclick="prevSection()">← Previous</button>
-      <button class="btn-next" id="btn-next" onclick="nextSection()" disabled>Continue →</button>
+      <button class="dbtn-back" id="btn-prev" onclick="prevSection()">← Previous</button>
+      <button class="dbtn-next" id="btn-next" onclick="nextSection()" disabled>Continue →</button>
     </div>
   </div>
 </div>
@@ -1391,14 +712,14 @@ select.form-control { appearance: none; cursor: pointer; }
 <!-- SCREEN: LOADING                        -->
 <!-- ══════════════════════════════════════ -->
 <div id="screen-loading" class="screen page">
-  <div class="container">
+  <div class="diag-container">
     <div class="loading-screen">
       <div class="loader">
         <div class="loader-dot"></div>
         <div class="loader-dot"></div>
         <div class="loader-dot"></div>
       </div>
-      <div class="loading-title">Analyzing your responses…</div>
+      <div class="loading-title">Analyzing your responses...</div>
       <div class="loading-sub">Building your personalized GTM diagnostic report</div>
     </div>
   </div>
@@ -1408,13 +729,12 @@ select.form-control { appearance: none; cursor: pointer; }
 <!-- SCREEN: RESULTS                        -->
 <!-- ══════════════════════════════════════ -->
 <div id="screen-results" class="screen page">
-  <div class="container">
+  <div class="diag-container">
     <div class="results-screen" id="results-body"></div>
   </div>
 </div>
 
-<!-- ─── FOOTER (all screens except landing) ─── -->
-
+<script src="js/global.js"></script>
 <script>
 /* ══════════════════════════════════════════
    DATA
@@ -1655,7 +975,7 @@ const SECTIONS = [
       },
       {
         id: 'ai_adoption',
-        text: 'How would you describe your sales team's current use of AI tools in their day-to-day work?',
+        text: 'How would you describe your sales team\'s current use of AI tools in their day-to-day work?',
         hint: 'Across outreach, proposals, follow-ups, meeting prep — not just awareness of AI, but actual usage.',
         opts: [
           { score: 1, label: 'No meaningful AI usage — the team is aware of tools like ChatGPT but not applying them in commercial work.' },
@@ -1685,13 +1005,9 @@ function showScreen(id) {
 }
 
 function showLanding() { showScreen('landing'); }
-function scrollToBio() {
-  document.getElementById('bio-section').scrollIntoView({ behavior: 'smooth' });
-}
 function showIntake() { showScreen('intake'); }
 
 function startAssessment() {
-  // Validate required fields
   let valid = true;
   const name = document.getElementById('f-name').value.trim();
   const company = document.getElementById('f-company').value.trim();
@@ -1787,13 +1103,7 @@ function updateNextBtn() {
   const allAnswered = sec.questions.every(q => answers[q.id] !== undefined);
   const btn = document.getElementById('btn-next');
   btn.disabled = !allAnswered;
-  const isLast = curSection === SECTIONS.length - 1;
-  btn.textContent = isLast ? 'Generate My Report →' : 'Continue →';
-  if (isLast && allAnswered) {
-    btn.classList.add('amber-btn');
-  } else {
-    btn.classList.remove('amber-btn');
-  }
+  btn.textContent = curSection === SECTIONS.length - 1 ? 'Generate My Report →' : 'Continue →';
 }
 
 function prevSection() {
@@ -1853,7 +1163,6 @@ function buildFallbackReport(dims, overall) {
   const strongest = sorted[sorted.length - 1];
   const tier = scoreTier(overall);
 
-  // Market-aware context
   const marketCtx = {
     aerospace: 'aerospace and defense',
     industrial: 'industrial manufacturing',
@@ -1864,7 +1173,6 @@ function buildFallbackReport(dims, overall) {
     other: 'industrial'
   }[intake.market] || 'industrial';
 
-  // Service mix context
   const svcCtx = {
     none: 'with no current service revenue',
     u10: 'with a nascent services business (under 10% of revenue)',
@@ -1873,19 +1181,17 @@ function buildFallbackReport(dims, overall) {
     o40: 'where services represent a significant portion (40%+) of revenue'
   }[intake.svc] || '';
 
-  // Challenge-aware
   const challengeHint = {
-    forecast: 'Forecast predictability is your stated primary challenge — this diagnostic confirms the root cause.',
-    services: 'Growing service revenue is your stated focus — the gap analysis below pinpoints exactly where to start.',
-    channel: 'Channel conflict and coverage are your stated pain points — the data here reflects that clearly.',
-    margin: 'Margin erosion is your stated challenge — discount governance and value-selling maturity are the levers.',
-    scale: 'Scaling the sales team is your stated goal — infrastructure gaps must be closed before headcount helps.',
-    crm: 'CRM adoption is your stated challenge — this diagnostic surfaces the underlying process issues driving it.',
-    enterprise: 'Winning larger accounts is your stated goal — the key account and enterprise motion gaps are mapped below.',
-    ai: 'AI adoption in sales ops is your stated goal — the AI & Automation dimension below shows exactly where to start.'
+    forecast: 'Forecast predictability is the stated primary challenge — this diagnostic confirms the root cause.',
+    services: 'Growing service revenue is the stated focus — the gap analysis below pinpoints exactly where to start.',
+    channel: 'Channel conflict and coverage are the stated pain points — the data here reflects that clearly.',
+    margin: 'Margin erosion is the stated challenge — discount governance and value-selling maturity are the levers.',
+    scale: 'Scaling the sales team is the stated goal — infrastructure gaps must be closed before headcount helps.',
+    crm: 'CRM adoption is the stated challenge — this diagnostic surfaces the underlying process issues driving it.',
+    enterprise: 'Winning larger accounts is the stated goal — the key account and enterprise motion gaps are mapped below.',
+    ai: 'AI adoption in sales ops is the stated goal — the AI & Automation dimension below shows exactly where to start.'
   }[intake.challenge] || '';
 
-  // Summaries by score band
   let summary = '';
   if (overall >= 65) {
     summary = `${intake.company} has meaningful commercial infrastructure in place — the fundamentals exist. The opportunity is to systematize and enforce what's already working rather than build from scratch. In ${marketCtx} ${svcCtx}, companies at this maturity level typically unlock the next growth tier by closing specific operating cadence gaps rather than adding headcount. ${challengeHint}`;
@@ -1895,10 +1201,8 @@ function buildFallbackReport(dims, overall) {
     summary = `${intake.company} is operating with limited commercial infrastructure — significant revenue and margin are being left on the table. This is a common profile in ${marketCtx} companies ${svcCtx} that have grown on product strength and relationships but haven't invested in the operating architecture that makes growth predictable and scalable. The path forward is a phased commercial build. ${challengeHint}`;
   }
 
-  // Generate targeted recommendations
   const recs = [];
 
-  // Always include the weakest dimension
   const weakRecMap = {
     pipeline: [
       { priority: 'critical', title: 'Implement a Weekly Pipeline Inspection Cadence', body: 'Industrial companies with sub-10% forecast variance consistently cite weekly structured pipeline review as the single highest-impact change. Define 5–7 standard inspection questions, enforce CRM stage gate discipline, and separate "forecast commit" from "pipeline" clearly. This is the foundation everything else builds on.' },
@@ -1919,26 +1223,24 @@ function buildFallbackReport(dims, overall) {
 
   if (weakRecMap[weakest[0]]) recs.push(weakRecMap[weakest[0]][0]);
 
-  // Add dimension-specific recs based on scores
   if (dims.service_gtm.pct < 60 && weakest[0] !== 'service_gtm') {
-    recs.push({ priority: 'high', dim: 'Service GTM', title: 'Define a 90-Day Service Renewal Motion', body: 'The gap between reactive and proactive renewal is almost entirely a process gap. Assign a renewal owner, set a 90-day-out outreach trigger in CRM, create a standard renewal proposal template. In reliability and industrial services, companies that implement this typically improve renewal rates by 15–25 points within two quarters.' });
+    recs.push({ priority: 'high', dim: 'Service GTM', title: 'Define a 90-Day Service Renewal Motion', body: 'The gap between reactive and proactive renewal is almost entirely a process gap. Assign a renewal owner, set a 90-day-out outreach trigger in CRM, create a standard renewal proposal template. Companies that implement this typically improve renewal rates by 15–25 points within two quarters.' });
   }
   if (dims.pipeline.pct < 60 && weakest[0] !== 'pipeline') {
-    recs.push({ priority: 'high', dim: 'Pipeline', title: 'Establish CRM Stage Gate Discipline Before Adding Headcount', body: 'More reps into a broken pipeline process produces more noise, not more revenue. Define clear stage entry criteria (what evidence is required to advance a deal), make stage advancement a manager-inspection moment, and track average stage duration. This surfaces real bottlenecks — usually proposal quality or demo-to-close conversion — faster than any dashboard.' });
+    recs.push({ priority: 'high', dim: 'Pipeline', title: 'Establish CRM Stage Gate Discipline Before Adding Headcount', body: 'More reps into a broken pipeline process produces more noise, not more revenue. Define clear stage entry criteria (what evidence is required to advance a deal), make stage advancement a manager-inspection moment, and track average stage duration. This surfaces real bottlenecks faster than any dashboard.' });
   }
   if (dims.pricing.pct < 60 && weakest[0] !== 'pricing') {
-    recs.push({ priority: 'high', dim: 'Pricing', title: 'Build One ROI Tool for Your Most Common Use Case', body: 'Value-based selling stalls when reps can\'t quantify the business case. Build a simple Excel or web-based ROI calculator for your top use case (uptime value, cost avoidance, efficiency gain). Industrial buyers respond to downtime cost and productivity math faster than any other value lever. One good tool used consistently beats a library of collateral that\'s never opened.' });
+    recs.push({ priority: 'high', dim: 'Pricing', title: 'Build One ROI Tool for Your Most Common Use Case', body: 'Value-based selling stalls when reps can\'t quantify the business case. Build a simple Excel or web-based ROI calculator for your top use case (uptime value, cost avoidance, efficiency gain). Industrial buyers respond to downtime cost and productivity math faster than any other value lever.' });
   }
   if (dims.channel.pct < 60 && weakest[0] !== 'channel') {
     recs.push({ priority: 'high', dim: 'Channel', title: 'Score Your Channel Partners Before This Year Ends', body: 'Not all rep firms and distributors are equal, and treating them equally suppresses your top performers. Create a simple 4-factor scorecard: revenue vs. target, activity (pipeline generated), capability (technical training completion), and strategic fit. Tier partners into A/B/C and differentiate your support investment accordingly.' });
   }
   if (dims.org.pct < 65) {
-    recs.push({ priority: 'medium', dim: 'Operating Cadence', title: 'Establish a Monthly Commercial Operating Review', body: 'A monthly review that covers pipeline health, forecast, service attach rate, and key account status creates accountability without micromanagement. The cadence forces cross-functional alignment (sales, service, ops) and surfaces problems 30–60 days earlier than they would otherwise appear. In PE-backed environments, this is also the foundation of board-ready commercial reporting.' });
+    recs.push({ priority: 'medium', dim: 'Operating Cadence', title: 'Establish a Monthly Commercial Operating Review', body: 'A monthly review that covers pipeline health, forecast, service attach rate, and key account status creates accountability without micromanagement. The cadence forces cross-functional alignment (sales, service, ops) and surfaces problems 30–60 days earlier than they would otherwise appear.' });
   }
 
-  // Add a services-specific rec if relevant
   if (intake.svc && intake.svc !== 'none' && dims.service_gtm.pct >= 50) {
-    recs.push({ priority: 'medium', dim: 'Service GTM', title: 'Map Your Installed Base for Expansion Revenue', body: 'Installed base targeting is consistently the highest-ROI prospecting activity in industrial services — yet most companies manage it manually or not at all. Create a CRM view of all accounts with active equipment, filter by last service date, contract expiry, and product generation, and run a quarterly "expansion sweep" on the top 20% of accounts by revenue potential. This motion alone typically generates 15–30% of incremental service revenue.' });
+    recs.push({ priority: 'medium', dim: 'Service GTM', title: 'Map Your Installed Base for Expansion Revenue', body: 'Installed base targeting is consistently the highest-ROI prospecting activity in industrial services — yet most companies manage it manually or not at all. Create a CRM view of all accounts with active equipment, filter by last service date, contract expiry, and product generation, and run a quarterly "expansion sweep" on the top 20% of accounts by revenue potential.' });
   }
 
   return { summary, tier, recs: recs.slice(0, 5), strengths: buildStrengths(dims) };
@@ -1949,11 +1251,11 @@ function buildStrengths(dims) {
   Object.entries(dims).forEach(([key, d]) => {
     if (d.pct >= 65) {
       const msgs = {
-        pipeline: 'Your pipeline and forecast discipline is a genuine asset — the ability to call a number with confidence is rare in industrial SMBs and creates real PE/board credibility.',
-        service_gtm: 'Your service GTM maturity is ahead of most industrial peers — a systematized service attach and renewal motion is a significant competitive moat.',
-        channel: 'Your channel governance is solid — defined ROE and partner accountability structures reduce conflict and make channel expansion far less risky.',
-        pricing: 'Your pricing discipline is a margin protector — the ability to sell on value rather than price is the single biggest profitability lever in industrial markets.',
-        org: 'Your commercial operating infrastructure is a scale enabler — documented playbooks and key account programs mean new reps ramp faster and top accounts grow more predictably.'
+        pipeline: 'Pipeline and forecast discipline is a genuine asset — the ability to call a number with confidence is rare in industrial SMBs and creates real PE/board credibility.',
+        service_gtm: 'Service GTM maturity is ahead of most industrial peers — a systematized service attach and renewal motion is a significant competitive moat.',
+        channel: 'Channel governance is solid — defined ROE and partner accountability structures reduce conflict and make channel expansion far less risky.',
+        pricing: 'Pricing discipline is a margin protector — the ability to sell on value rather than price is the single biggest profitability lever in industrial markets.',
+        org: 'Commercial operating infrastructure is a scale enabler — documented playbooks and key account programs mean new reps ramp faster and top accounts grow more predictably.'
       };
       if (msgs[key]) strengths.push(msgs[key]);
     }
@@ -1968,11 +1270,8 @@ function runAnalysis() {
   showScreen('loading');
 
   const { dims, overall } = computeScores();
-
-  // Try API, always fall back gracefully
   const prompt = buildPrompt(dims, overall);
 
-  // Small delay for UX
   setTimeout(async () => {
     let report = null;
     try {
@@ -2003,9 +1302,9 @@ function buildPrompt(dims, overall) {
     `${d.name}: ${d.pct}/100`
   ).join('\n');
   const intake_str = `Name: ${intake.name}, Company: ${intake.company}, Role: ${intake.role}, Revenue: ${intake.revenue}, Market: ${intake.market}, Sales model: ${intake.model}, Services %: ${intake.svc}, Biggest challenge: ${intake.challenge}`;
-  return `You are Eric Elder — a senior industrial GTM advisor with 15 years in industrial technology, aerospace, reliability equipment, and services P&L leadership. You've run $17M–$55M commercial portfolios at Fortive and PE-backed companies. You are direct, specific, and use real industrial GTM vocabulary (attach rates, ARR, rep-to-direct, stage hygiene, renewal motion, ROE).
+  return `You are a senior industrial GTM advisor with deep experience in industrial technology, aerospace, reliability equipment, and services P&L leadership. You are direct, specific, and use real industrial GTM vocabulary (attach rates, ARR, rep-to-direct, stage hygiene, renewal motion, ROE).
 
-A prospect just completed your GTM Readiness Diagnostic:
+A prospect just completed the Uptime Commercial GTM Readiness Diagnostic:
 ${intake_str}
 Overall Score: ${overall}/100
 ${dimLines}
@@ -2048,8 +1347,8 @@ function renderResults(dims, overall, report) {
   const strengthCards = (report.strengths || []).length > 0
     ? (report.strengths || []).map(s => `
         <div class="rec-card">
-          <span style="font-size:18px;margin-top:2px;flex-shrink:0">✓</span>
-          <div class="rec-body"><div class="rec-body">${s}</div></div>
+          <span style="font-size:16px;margin-top:2px;flex-shrink:0;color:var(--gold)">&#10003;</span>
+          <div><div class="rec-body">${s}</div></div>
         </div>
       `).join('')
     : '';
@@ -2068,14 +1367,14 @@ function renderResults(dims, overall, report) {
   document.getElementById('results-body').innerHTML = `
     <div class="results-hero">
       <div class="results-eyebrow">GTM Readiness Report · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
-      <div class="results-company">${intake.company}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--muted);font-family:var(--sans);font-weight:400">${intake.name} · ${intake.market ? intake.market.replace(/_/g,' ') : ''}</span></div>
+      <div class="results-company">${intake.company}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${intake.name} · ${intake.market ? intake.market.replace(/_/g,' ') : ''}</span></div>
       <div class="score-row">
         <div class="score-big">
           <span class="score-number ${colorClass}">${overall}</span><span class="score-suffix">/100</span>
         </div>
         <div class="score-tier-wrap">
           <div class="score-tier">${report.tier || tier.label}</div>
-          <div class="score-desc">GTM Readiness · 5 Dimensions · 15 Questions</div>
+          <div class="score-desc">GTM Readiness · 6 Dimensions · 18 Questions</div>
         </div>
       </div>
       <div class="score-bar-wrap">
@@ -2087,7 +1386,7 @@ function renderResults(dims, overall, report) {
     <div class="dim-section">
       <div class="rh">
         <div class="section-label">Dimension Breakdown</div>
-        <h3 style="font-family:var(--serif);font-size:26px;color:var(--ink);">How you score across each commercial dimension</h3>
+        <h3>How you score across each commercial dimension</h3>
       </div>
       <div class="dim-grid">${dimCards}</div>
     </div>
@@ -2096,7 +1395,7 @@ function renderResults(dims, overall, report) {
     <div class="rec-section">
       <div class="rh">
         <div class="section-label">Observed Strengths</div>
-        <h3 style="font-family:var(--serif);font-size:26px;color:var(--ink);">Where your commercial foundation is solid</h3>
+        <h3>Where your commercial foundation is solid</h3>
       </div>
       ${strengthCards}
     </div>` : ''}
@@ -2104,31 +1403,30 @@ function renderResults(dims, overall, report) {
     <div class="rec-section">
       <div class="rh">
         <div class="section-label">Prioritized Recommendations</div>
-        <h3 style="font-family:var(--serif);font-size:26px;color:var(--ink);">Where to focus, in order of revenue impact</h3>
+        <h3>Where to focus, in order of revenue impact</h3>
       </div>
       ${recCards}
     </div>
 
     <div class="contact-cta">
       <div class="cta-top">Ready to Act on This?</div>
-      <h2 class="cta-h">Let's turn this diagnostic into a 90-day commercial action plan.</h2>
-      <p class="cta-p">I work directly with industrial SMBs and PE-backed companies to close the gaps surfaced here — not as a generalist, but as someone who has built these exact operating systems inside companies like yours.</p>
+      <h2 class="cta-h">Let's turn this diagnostic into a <em>90-day commercial action plan.</em></h2>
+      <p class="cta-p">Uptime Commercial works directly with industrial SMBs and PE-backed companies to close the gaps surfaced here — not as generalists, but as operators who have built these exact commercial systems inside companies like yours.</p>
       <div class="cta-buttons">
-        <a href="https://www.linkedin.com/in/eric-elder" target="_blank" class="btn-white">Connect on LinkedIn →</a>
-        <a href="mailto:eric@uptimecommercialgroup.com?subject=GTM Diagnostic - ${encodeURIComponent(intake.company)}&body=Hi Eric, I just completed your GTM diagnostic and scored ${overall}/100. I'd like to discuss a few of the recommendations." class="btn-amber">Email Eric Directly</a>
+        <a href="index.html#contact" class="dbtn-primary">Start the Conversation →</a>
+        <a href="mailto:eric@uptimecommercialgroup.com?subject=GTM Diagnostic - ${encodeURIComponent(intake.company)}&body=Hi, we just completed the GTM diagnostic and scored ${overall}/100. We'd like to discuss a few of the recommendations." class="dbtn-secondary">Email Directly</a>
       </div>
-      <div class="cta-email" style="margin-top:16px;">eric@uptimecommercialgroup.com</div>
+      <div class="cta-email" style="margin-top:18px;">eric@uptimecommercialgroup.com</div>
     </div>
 
     <div class="print-row">
-      <button class="btn-ghost" onclick="window.print()">🖨 Print / Save as PDF</button>
-      <button class="btn-ghost" onclick="retake()">↺ Retake Assessment</button>
+      <button class="dbtn-ghost" onclick="window.print()">Print / Save as PDF</button>
+      <button class="dbtn-ghost" onclick="retake()">Retake Assessment</button>
     </div>
   `;
 
   showScreen('results');
 
-  // Animate bars after render
   requestAnimationFrame(() => {
     setTimeout(() => {
       const mainBar = document.getElementById('main-bar');
