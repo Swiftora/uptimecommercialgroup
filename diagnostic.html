@@ -1326,6 +1326,8 @@ Return ONLY valid JSON (no markdown, no preamble):
 4–5 recommendations, ordered by priority. Calibrate to their market, revenue, and stated challenge.`;
 }
 
+function esc(s) { const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
+
 function renderResults(dims, overall, report) {
   const tier = scoreTier(overall);
   const colorClass = tier.color;
@@ -1348,7 +1350,7 @@ function renderResults(dims, overall, report) {
     ? (report.strengths || []).map(s => `
         <div class="rec-card">
           <span style="font-size:16px;margin-top:2px;flex-shrink:0;color:var(--gold)">&#10003;</span>
-          <div><div class="rec-body">${s}</div></div>
+          <div><div class="rec-body">${esc(s)}</div></div>
         </div>
       `).join('')
     : '';
@@ -1357,9 +1359,9 @@ function renderResults(dims, overall, report) {
     <div class="rec-card">
       <div class="rec-badge ${r.priority}">${r.priority}</div>
       <div>
-        <div class="rec-dim">${r.dim || ''}</div>
-        <div class="rec-title">${r.title}</div>
-        <div class="rec-body">${r.body}</div>
+        <div class="rec-dim">${esc(r.dim || '')}</div>
+        <div class="rec-title">${esc(r.title)}</div>
+        <div class="rec-body">${esc(r.body)}</div>
       </div>
     </div>
   `).join('');
@@ -1367,20 +1369,20 @@ function renderResults(dims, overall, report) {
   document.getElementById('results-body').innerHTML = `
     <div class="results-hero">
       <div class="results-eyebrow">GTM Readiness Report · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
-      <div class="results-company">${intake.company}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${intake.name} · ${intake.market ? intake.market.replace(/_/g,' ') : ''}</span></div>
+      <div class="results-company">${esc(intake.company)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${esc(intake.name)} · ${intake.market ? esc(intake.market.replace(/_/g,' ')) : ''}</span></div>
       <div class="score-row">
         <div class="score-big">
           <span class="score-number ${colorClass}">${overall}</span><span class="score-suffix">/100</span>
         </div>
         <div class="score-tier-wrap">
-          <div class="score-tier">${report.tier || tier.label}</div>
+          <div class="score-tier">${esc(report.tier || tier.label)}</div>
           <div class="score-desc">GTM Readiness · 6 Dimensions · 18 Questions</div>
         </div>
       </div>
       <div class="score-bar-wrap">
         <div class="score-bar-fill ${colorClass}" id="main-bar" style="width:0%"></div>
       </div>
-      <div class="results-summary">${report.summary}</div>
+      <div class="results-summary">${esc(report.summary)}</div>
     </div>
 
     <div class="dim-section">
