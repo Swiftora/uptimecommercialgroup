@@ -9,11 +9,17 @@
 <meta property="og:description" content="A guided self-assessment to identify gaps in your go-to-market infrastructure.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://uptimecommercialgroup.com/diagnostic.html">
+<meta property="og:image" content="https://uptimecommercialgroup.com/logo.svg">
+<meta property="og:site_name" content="Uptime Commercial Group">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GTM Diagnostic — Uptime Commercial Group">
+<meta name="twitter:description" content="A guided self-assessment to identify gaps in your go-to-market infrastructure.">
+<meta name="twitter:image" content="https://uptimecommercialgroup.com/logo.svg">
 <link rel="canonical" href="https://uptimecommercialgroup.com/diagnostic.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
 <style>
 /* ─── BRIDGE OLD VARS TO NEW STYLESHEET TOKENS ─── */
 body {
@@ -600,6 +606,11 @@ select.form-control option { background: #141920; color: var(--paper); }
             <div class="form-error" id="err-company">Please enter your company name</div>
           </div>
           <div class="form-field">
+            <label class="form-label">Work Email <span class="req">*</span></label>
+            <input type="email" class="form-control" id="f-email" placeholder="jane@acmeindustrial.com">
+            <div class="form-error" id="err-email">Please enter a valid work email</div>
+          </div>
+          <div class="form-field">
             <label class="form-label">Your Role</label>
             <select class="form-control" id="f-role">
               <option value="">Select your role</option>
@@ -1017,19 +1028,23 @@ function startAssessment() {
   let valid = true;
   const name = document.getElementById('f-name').value.trim();
   const company = document.getElementById('f-company').value.trim();
+  const email = document.getElementById('f-email').value.trim();
   const market = document.getElementById('f-market').value;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!name) { document.getElementById('err-name').classList.add('visible'); valid = false; }
   else { document.getElementById('err-name').classList.remove('visible'); }
   if (!company) { document.getElementById('err-company').classList.add('visible'); valid = false; }
   else { document.getElementById('err-company').classList.remove('visible'); }
+  if (!email || !emailRe.test(email)) { document.getElementById('err-email').classList.add('visible'); valid = false; }
+  else { document.getElementById('err-email').classList.remove('visible'); }
   if (!market) { document.getElementById('err-market').classList.add('visible'); valid = false; }
   else { document.getElementById('err-market').classList.remove('visible'); }
 
   if (!valid) return;
 
   intake = {
-    name, company, market,
+    name, company, email, market,
     role: document.getElementById('f-role').value,
     revenue: document.getElementById('f-revenue').value,
     model: document.getElementById('f-model').value,
@@ -1337,6 +1352,39 @@ function esc(s) { const d = document.createElement('div'); d.textContent = Strin
 function renderResults(dims, overall, report) {
   const tier = scoreTier(overall);
   const colorClass = tier.color;
+
+  // ── Lead capture: fire once per completion (non-blocking) ────────
+  if (!window.__ucgLeadSent) {
+    window.__ucgLeadSent = true;
+    try {
+      const sectionScores = {};
+      for (const [k, d] of Object.entries(dims || {})) {
+        sectionScores[d && d.name ? d.name : k] = d && typeof d.pct !== 'undefined' ? d.pct : null;
+      }
+      const leadData = {
+        _subject: 'UCG Diagnostic Completed: ' + (intake.name || 'Unknown') + ' / ' + (intake.company || 'Unknown'),
+        name: intake.name || '',
+        email: intake.email || '',
+        company: intake.company || '',
+        role: intake.role || '',
+        revenue: intake.revenue || '',
+        market: intake.market || '',
+        sales_model: intake.model || '',
+        services_pct: intake.svc || '',
+        challenge: intake.challenge || '',
+        overall_score: overall,
+        tier: tier && tier.label ? tier.label : '',
+        section_scores: JSON.stringify(sectionScores),
+        summary: report && report.summary ? report.summary : '',
+        completed_at: new Date().toISOString()
+      };
+      fetch('https://formspree.io/f/mwvaqlgj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(leadData)
+      }).catch(err => console.warn('Lead capture failed:', err));
+    } catch (e) { console.warn('Lead capture error:', e); }
+  }
 
   const dimCards = Object.entries(dims).map(([key, d]) => {
     const c = dimColor(d.pct);
