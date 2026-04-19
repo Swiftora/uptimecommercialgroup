@@ -9,11 +9,17 @@
 <meta property="og:description" content="A guided self-assessment to identify gaps in your go-to-market infrastructure.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://uptimecommercialgroup.com/diagnostic.html">
+<meta property="og:image" content="https://uptimecommercialgroup.com/logo.svg">
+<meta property="og:site_name" content="Uptime Commercial Group">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GTM Diagnostic — Uptime Commercial Group">
+<meta name="twitter:description" content="A guided self-assessment to identify gaps in your go-to-market infrastructure.">
+<meta name="twitter:image" content="https://uptimecommercialgroup.com/logo.svg">
 <link rel="canonical" href="https://uptimecommercialgroup.com/diagnostic.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
 <style>
 /* ─── BRIDGE OLD VARS TO NEW STYLESHEET TOKENS ─── */
 body {
@@ -513,13 +519,14 @@ select.form-control option { background: #141920; color: var(--paper); }
 <div class="cursor-ring"></div>
 
 <nav id="nav">
-  <a href="index.html" class="nav-brand">Uptime <em>Commercial</em></a>
+  <a href="index.html" class="nav-brand" aria-label="Uptime Commercial &mdash; home"><img src="logo.svg" alt="Uptime Commercial" class="nav-logo"></a>
   <div class="nav-links">
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
     <a href="insights.html">Insights</a>
+    <a href="diagnostic.html" class="active">Diagnostic</a>
     <a href="index.html#contact">Contact</a>
-    <a href="index.html#contact" class="nav-cta">Start the Conversation</a>
+    <a href="index.html#contact" class="nav-cta">Start a Conversation</a>
   </div>
 </nav>
 
@@ -562,7 +569,7 @@ select.form-control option { background: #141920; color: var(--paper); }
   <div class="diag-container-wide">
     <div class="diag-footer">
       <div class="diag-footer-inner">
-        <div class="diag-footer-brand">Uptime <em>Commercial</em></div>
+        <div class="diag-footer-brand"><img src="logo.svg" alt="Uptime Commercial" class="foot-logo"></div>
         <div class="diag-footer-copy">uptimecommercialgroup.com</div>
       </div>
     </div>
@@ -597,6 +604,11 @@ select.form-control option { background: #141920; color: var(--paper); }
             <label class="form-label">Company Name <span class="req">*</span></label>
             <input type="text" class="form-control" id="f-company" placeholder="Acme Industrial">
             <div class="form-error" id="err-company">Please enter your company name</div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Work Email <span class="req">*</span></label>
+            <input type="email" class="form-control" id="f-email" placeholder="jane@acmeindustrial.com">
+            <div class="form-error" id="err-email">Please enter a valid work email</div>
           </div>
           <div class="form-field">
             <label class="form-label">Your Role</label>
@@ -1016,19 +1028,23 @@ function startAssessment() {
   let valid = true;
   const name = document.getElementById('f-name').value.trim();
   const company = document.getElementById('f-company').value.trim();
+  const email = document.getElementById('f-email').value.trim();
   const market = document.getElementById('f-market').value;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!name) { document.getElementById('err-name').classList.add('visible'); valid = false; }
   else { document.getElementById('err-name').classList.remove('visible'); }
   if (!company) { document.getElementById('err-company').classList.add('visible'); valid = false; }
   else { document.getElementById('err-company').classList.remove('visible'); }
+  if (!email || !emailRe.test(email)) { document.getElementById('err-email').classList.add('visible'); valid = false; }
+  else { document.getElementById('err-email').classList.remove('visible'); }
   if (!market) { document.getElementById('err-market').classList.add('visible'); valid = false; }
   else { document.getElementById('err-market').classList.remove('visible'); }
 
   if (!valid) return;
 
   intake = {
-    name, company, market,
+    name, company, email, market,
     role: document.getElementById('f-role').value,
     revenue: document.getElementById('f-revenue').value,
     model: document.getElementById('f-model').value,
@@ -1248,7 +1264,7 @@ function buildFallbackReport(dims, overall) {
     recs.push({ priority: 'medium', dim: 'Service GTM', title: 'Map Your Installed Base for Expansion Revenue', body: 'Installed base targeting is consistently the highest-ROI prospecting activity in industrial services — yet most companies manage it manually or not at all. Create a CRM view of all accounts with active equipment, filter by last service date, contract expiry, and product generation, and run a quarterly "expansion sweep" on the top 20% of accounts by revenue potential.' });
   }
 
-  return { summary, tier, recs: recs.slice(0, 5), strengths: buildStrengths(dims) };
+  return { summary, tier: tier.label, recs: recs.slice(0, 5), strengths: buildStrengths(dims) };
 }
 
 function buildStrengths(dims) {
@@ -1337,6 +1353,39 @@ function renderResults(dims, overall, report) {
   const tier = scoreTier(overall);
   const colorClass = tier.color;
 
+  // ── Lead capture: fire once per completion (non-blocking) ────────
+  if (!window.__ucgLeadSent) {
+    window.__ucgLeadSent = true;
+    try {
+      const sectionScores = {};
+      for (const [k, d] of Object.entries(dims || {})) {
+        sectionScores[d && d.name ? d.name : k] = d && typeof d.pct !== 'undefined' ? d.pct : null;
+      }
+      const leadData = {
+        _subject: 'UCG Diagnostic Completed: ' + (intake.name || 'Unknown') + ' / ' + (intake.company || 'Unknown'),
+        name: intake.name || '',
+        email: intake.email || '',
+        company: intake.company || '',
+        role: intake.role || '',
+        revenue: intake.revenue || '',
+        market: intake.market || '',
+        sales_model: intake.model || '',
+        services_pct: intake.svc || '',
+        challenge: intake.challenge || '',
+        overall_score: overall,
+        tier: tier && tier.label ? tier.label : '',
+        section_scores: JSON.stringify(sectionScores),
+        summary: report && report.summary ? report.summary : '',
+        completed_at: new Date().toISOString()
+      };
+      fetch('https://formspree.io/f/mwvaqlgj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(leadData)
+      }).catch(err => console.warn('Lead capture failed:', err));
+    } catch (e) { console.warn('Lead capture error:', e); }
+  }
+
   const dimCards = Object.entries(dims).map(([key, d]) => {
     const c = dimColor(d.pct);
     return `
@@ -1374,7 +1423,7 @@ function renderResults(dims, overall, report) {
   document.getElementById('results-body').innerHTML = `
     <div class="results-hero">
       <div class="results-eyebrow">GTM Readiness Report · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
-      <div class="results-company">${esc(intake.company)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${esc(intake.name)} · ${intake.market ? esc(intake.market.replace(/_/g,' ')) : ''}</span></div>
+      <div class="results-company">${esc(intake.company)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${esc(intake.name)} · ${intake.market ? esc({aerospace:'Aerospace & Defense',industrial:'Industrial Manufacturing',reliability:'Reliability / Condition Monitoring',oil_gas:'Oil & Gas / Energy',automation:'Factory Automation / Robotics',mro:'MRO / Aftermarket Services',other:'Other Industrial'}[intake.market]||intake.market) : ''}</span></div>
       <div class="score-row">
         <div class="score-big">
           <span class="score-number ${colorClass}">${overall}</span><span class="score-suffix">/100</span>
@@ -1420,7 +1469,7 @@ function renderResults(dims, overall, report) {
       <h2 class="cta-h">Let's turn this diagnostic into a <em>90-day commercial action plan.</em></h2>
       <p class="cta-p">Uptime Commercial works directly with industrial SMBs and PE-backed companies to close the gaps surfaced here — not as generalists, but as operators who have built these exact commercial systems inside companies like yours.</p>
       <div class="cta-buttons">
-        <a href="index.html#contact" class="dbtn-primary">Start the Conversation →</a>
+        <a href="index.html#contact" class="dbtn-primary">Start a Conversation →</a>
         <a href="mailto:eric@uptimecommercialgroup.com?subject=GTM Diagnostic - ${encodeURIComponent(intake.company)}&body=Hi, we just completed the GTM diagnostic and scored ${overall}/100. We'd like to discuss a few of the recommendations." class="dbtn-secondary">Email Directly</a>
       </div>
       <div class="cta-email" style="margin-top:18px;">eric@uptimecommercialgroup.com</div>
@@ -1452,5 +1501,36 @@ function retake() {
   showScreen('landing');
 }
 </script>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="logo.svg" alt="Uptime Commercial" class="foot-logo"></div>
+        <p class="foot-tagline">Building the commercial infrastructure that makes revenue as reliable as the products you sell.</p>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-title">Services</div>
+        <a href="services.html#service-gtm">Service GTM</a>
+        <a href="services.html#channel">Channel Strategy</a>
+        <a href="services.html#pipeline">Pipeline Discipline</a>
+        <a href="services.html#pricing">Pricing Governance</a>
+        <a href="services.html#key-accounts">Key Accounts</a>
+        <a href="services.html#ma">M&A Support</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-title">Company</div>
+        <a href="about.html">About</a>
+        <a href="insights.html">Insights</a>
+        <a href="diagnostic.html">GTM Diagnostic</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Uptime Commercial Group. All rights reserved.</span>
+      <span>uptimecommercialgroup.com</span>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 /* ── RESET ───────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Google Sans Flex',-apple-system,sans-serif;background:var(--ink);color:var(--body);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;font-weight:300;line-height:1.75}
+body{font-family:'Google Sans Flex',system-ui,-apple-system,sans-serif;background:var(--ink);color:var(--body);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;font-weight:400;line-height:1.75}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
 img{display:block;max-width:100%}
@@ -21,9 +21,9 @@ img{display:block;max-width:100%}
   --dim:rgba(240,237,230,0.5);
   --faint:rgba(240,237,230,0.07);
   --rule:rgba(240,237,230,0.14);
-  --serif:'Google Sans Flex',Georgia,serif;
-  --sans:'Google Sans Flex',-apple-system,sans-serif;
-  --mono:'Google Sans Flex',monospace;
+  --serif:'Google Sans Flex',system-ui,-apple-system,sans-serif;
+  --sans:'Google Sans Flex',system-ui,-apple-system,sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
 }
 
 /* ── CURSOR ──────────────────────────── */
@@ -35,13 +35,14 @@ body:hover .cursor{opacity:1}
 /* ── NAV ─────────────────────────────── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
 nav.up{background:rgba(10,14,20,.92);backdrop-filter:blur(12px);padding:14px 48px;box-shadow:0 1px 0 var(--rule)}
-.nav-brand{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:.01em;color:var(--paper)}
-.nav-brand em{color:var(--gold);font-style:normal}
-.nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{font-size:13px;font-weight:100;letter-spacing:.14em;text-transform:uppercase;color:var(--body);transition:color .2s}
+/* .nav-brand typography rules moved to LOGO section (nav-brand now wraps an image) */
+.nav-links{display:flex;gap:20px;align-items:center;flex-wrap:nowrap}
+@media(min-width:1100px){.nav-links{gap:32px}}
+.nav-links a{font-size:13px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--body);transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--paper)}
 .nav-links a.active{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--ink);padding:10px 22px;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
+.nav-cta{background:var(--gold);color:var(--ink);padding:8px 14px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;white-space:nowrap;flex-shrink:0}
+@media(min-width:1100px){.nav-cta{padding:9px 18px;letter-spacing:.08em;font-size:12px}}
 .nav-cta:hover{background:var(--gold2)}
 @media(max-width:768px){nav{padding:16px 20px}nav.up{padding:12px 20px}.nav-links{display:none}.nav-cta{font-size:11px;padding:8px 16px}}
 
@@ -85,7 +86,7 @@ nav.up{background:rgba(10,14,20,.92);backdrop-filter:blur(12px);padding:14px 48p
 .s-body strong{color:var(--paper);font-weight:600}
 
 /* ── BLOCKQUOTE ──────────────────────── */
-.pull-quote{border-left:2px solid var(--gold);padding:20px 0 20px 28px;margin:40px 0;font-family:var(--serif);font-size:20px;font-weight:300;font-style:normal;line-height:1.5;color:var(--paper)}
+.pull-quote{border-left:3px solid var(--gold);padding:20px 0 20px 28px;margin:40px 0;font-family:var(--serif);font-size:21px;font-weight:500;font-style:normal;line-height:1.4;color:var(--paper);letter-spacing:-0.01em;max-width:720px}
 
 /* ── ENGAGEMENT CARDS ────────────────── */
 .engage-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
@@ -202,8 +203,7 @@ nav.up{background:rgba(10,14,20,.92);backdrop-filter:blur(12px);padding:14px 48p
 /* ── FOOTER ──────────────────────────── */
 footer{border-top:1px solid var(--rule);padding:64px 48px 40px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.foot-brand{font-family:var(--sans);font-size:20px;font-weight:700;color:var(--paper);margin-bottom:8px}
-.foot-brand em{color:var(--gold);font-style:normal}
+/* .foot-brand typography rules moved to LOGO section (foot-brand now wraps an image) */
 .foot-tagline{font-size:14px;line-height:1.6;color:var(--mid);max-width:320px;font-weight:300}
 .foot-col-title{font-family:var(--mono);font-size:11px;font-weight:100;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
 .foot-col a{display:block;font-size:13.5px;color:var(--mid);padding:4px 0;transition:color .2s;font-weight:300}
@@ -317,3 +317,11 @@ footer{border-top:1px solid var(--rule);padding:64px 48px 40px}
 .nl-ok{display:none;font-size:14px;color:var(--gold);margin-top:12px}
 .nl-ok.show{display:block}
 @media(max-width:768px){.newsletter{padding:60px 20px}.nl-form{flex-direction:column}}
+
+/* ── LOGO ──────────────────────────────────────────── */
+.nav-logo{height:28px;width:auto;display:block}
+@media(min-width:768px){.nav-logo{height:32px}}
+@media(min-width:1100px){.nav-logo{height:36px}}
+.foot-logo{height:26px;width:auto;display:block;margin-bottom:12px}
+.nav-brand{display:flex;align-items:center;line-height:1;padding:4px 0}
+.foot-brand{line-height:1}
