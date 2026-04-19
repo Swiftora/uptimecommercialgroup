@@ -1248,7 +1248,7 @@ function buildFallbackReport(dims, overall) {
     recs.push({ priority: 'medium', dim: 'Service GTM', title: 'Map Your Installed Base for Expansion Revenue', body: 'Installed base targeting is consistently the highest-ROI prospecting activity in industrial services — yet most companies manage it manually or not at all. Create a CRM view of all accounts with active equipment, filter by last service date, contract expiry, and product generation, and run a quarterly "expansion sweep" on the top 20% of accounts by revenue potential.' });
   }
 
-  return { summary, tier, recs: recs.slice(0, 5), strengths: buildStrengths(dims) };
+  return { summary, tier: tier.label, recs: recs.slice(0, 5), strengths: buildStrengths(dims) };
 }
 
 function buildStrengths(dims) {
@@ -1374,7 +1374,7 @@ function renderResults(dims, overall, report) {
   document.getElementById('results-body').innerHTML = `
     <div class="results-hero">
       <div class="results-eyebrow">GTM Readiness Report · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
-      <div class="results-company">${esc(intake.company)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${esc(intake.name)} · ${intake.market ? esc(intake.market.replace(/_/g,' ')) : ''}</span></div>
+      <div class="results-company">${esc(intake.company)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${esc(intake.name)} · ${intake.market ? esc({aerospace:'Aerospace & Defense',industrial:'Industrial Manufacturing',reliability:'Reliability / Condition Monitoring',oil_gas:'Oil & Gas / Energy',automation:'Factory Automation / Robotics',mro:'MRO / Aftermarket Services',other:'Other Industrial'}[intake.market]||intake.market) : ''}</span></div>
       <div class="score-row">
         <div class="score-big">
           <span class="score-number ${colorClass}">${overall}</span><span class="score-suffix">/100</span>
