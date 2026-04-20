@@ -603,14 +603,18 @@ select.form-control option { background: #141920; color: var(--paper); }
             <div class="form-error" id="err-name">Please enter your name</div>
           </div>
           <div class="form-field">
-            <label class="form-label">Company Name <span class="req">*</span></label>
-            <input type="text" class="form-control" id="f-company" placeholder="Acme Industrial">
-            <div class="form-error" id="err-company">Please enter your company name</div>
-          </div>
-          <div class="form-field">
             <label class="form-label">Work Email <span class="req">*</span></label>
             <input type="email" class="form-control" id="f-email" placeholder="jane@acmeindustrial.com">
+            <div class="intake-help">So we can send you the results and any follow-up.</div>
             <div class="form-error" id="err-email">Please enter a valid work email</div>
+          </div>
+          <div class="intake-optional-note" style="grid-column:1/-1">
+            <span class="intake-optional-label">Optional — helps calibrate benchmarks</span>
+            <p class="intake-optional-body">Everything below is optional. You'll get your full scored report either way, but providing this context lets us compare your results to similarly sized peer companies.</p>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="f-company" placeholder="Acme Industrial">
           </div>
           <div class="form-field">
             <label class="form-label">Your Role</label>
@@ -637,7 +641,7 @@ select.form-control option { background: #141920; color: var(--paper); }
             </select>
           </div>
           <div class="form-field">
-            <label class="form-label">Primary Market <span class="req">*</span></label>
+            <label class="form-label">Primary Market</label>
             <select class="form-control" id="f-market">
               <option value="">Select market</option>
               <option value="aerospace">Aerospace & Defense</option>
@@ -648,7 +652,6 @@ select.form-control option { background: #141920; color: var(--paper); }
               <option value="mro">MRO / Aftermarket Services</option>
               <option value="other">Other Industrial</option>
             </select>
-            <div class="form-error" id="err-market">Please select your market</div>
           </div>
           <div class="form-field">
             <label class="form-label">Current Sales Model</label>
@@ -1027,31 +1030,30 @@ function showLanding() { showScreen('landing'); }
 function showIntake() { showScreen('intake'); }
 
 function startAssessment() {
+  // v4.4-icp: only Name + Email are required; everything else optional
   let valid = true;
   const name = document.getElementById('f-name').value.trim();
-  const company = document.getElementById('f-company').value.trim();
   const email = document.getElementById('f-email').value.trim();
+  const company = document.getElementById('f-company').value.trim();
   const market = document.getElementById('f-market').value;
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!name) { document.getElementById('err-name').classList.add('visible'); valid = false; }
   else { document.getElementById('err-name').classList.remove('visible'); }
-  if (!company) { document.getElementById('err-company').classList.add('visible'); valid = false; }
-  else { document.getElementById('err-company').classList.remove('visible'); }
   if (!email || !emailRe.test(email)) { document.getElementById('err-email').classList.add('visible'); valid = false; }
   else { document.getElementById('err-email').classList.remove('visible'); }
-  if (!market) { document.getElementById('err-market').classList.add('visible'); valid = false; }
-  else { document.getElementById('err-market').classList.remove('visible'); }
 
   if (!valid) return;
 
   intake = {
-    name, company, email, market,
-    role: document.getElementById('f-role').value,
-    revenue: document.getElementById('f-revenue').value,
-    model: document.getElementById('f-model').value,
-    svc: document.getElementById('f-svc').value,
-    challenge: document.getElementById('f-challenge').value,
+    name, email,
+    company: company || '',
+    market: market || '',
+    role: document.getElementById('f-role').value || '',
+    revenue: document.getElementById('f-revenue').value || '',
+    model: document.getElementById('f-model').value || '',
+    svc: document.getElementById('f-svc').value || '',
+    challenge: document.getElementById('f-challenge').value || '',
   };
 
   curSection = 0;
@@ -1215,13 +1217,14 @@ function buildFallbackReport(dims, overall) {
     ai: 'AI adoption in sales ops is the stated goal — the AI & Automation dimension below shows exactly where to start.'
   }[intake.challenge] || '';
 
+  const companyLabel = intake.company || 'Your company';
   let summary = '';
   if (overall >= 65) {
-    summary = `${intake.company} has meaningful commercial infrastructure in place — the fundamentals exist. The opportunity is to systematize and enforce what's already working rather than build from scratch. In ${marketCtx} ${svcCtx}, companies at this maturity level typically unlock the next growth tier by closing specific operating cadence gaps rather than adding headcount. ${challengeHint}`;
+    summary = `${companyLabel} has meaningful commercial infrastructure in place — the fundamentals exist. The opportunity is to systematize and enforce what's already working rather than build from scratch. In ${marketCtx} ${svcCtx}, companies at this maturity level typically unlock the next growth tier by closing specific operating cadence gaps rather than adding headcount. ${challengeHint}`;
   } else if (overall >= 42) {
-    summary = `${intake.company} has pockets of solid commercial practice alongside meaningful structural gaps. The pattern is common in ${marketCtx} companies ${svcCtx}: strong product knowledge and customer relationships, but the operating infrastructure to monetize them predictably is underdeveloped. The recommendations below address the highest-leverage gaps first. ${challengeHint}`;
+    summary = `${companyLabel} has pockets of solid commercial practice alongside meaningful structural gaps. The pattern is common in ${marketCtx} companies ${svcCtx}: strong product knowledge and customer relationships, but the operating infrastructure to monetize them predictably is underdeveloped. The recommendations below address the highest-leverage gaps first. ${challengeHint}`;
   } else {
-    summary = `${intake.company} is operating with limited commercial infrastructure — significant revenue and margin are being left on the table. This is a common profile in ${marketCtx} companies ${svcCtx} that have grown on product strength and relationships but haven't invested in the operating architecture that makes growth predictable and scalable. The path forward is a phased commercial build. ${challengeHint}`;
+    summary = `${companyLabel} is operating with limited commercial infrastructure — significant revenue and margin are being left on the table. This is a common profile in ${marketCtx} companies ${svcCtx} that have grown on product strength and relationships but haven't invested in the operating architecture that makes growth predictable and scalable. The path forward is a phased commercial build. ${challengeHint}`;
   }
 
   const recs = [];
@@ -1324,7 +1327,8 @@ function buildPrompt(dims, overall) {
   const dimLines = Object.entries(dims).map(([k, d]) =>
     `${d.name}: ${d.pct}/100`
   ).join('\n');
-  const intake_str = `Name: ${intake.name}, Company: ${intake.company}, Role: ${intake.role}, Revenue: ${intake.revenue}, Market: ${intake.market}, Sales model: ${intake.model}, Services %: ${intake.svc}, Biggest challenge: ${intake.challenge}`;
+  const na = v => v || 'Not provided';
+  const intake_str = `Name: ${intake.name}, Company: ${na(intake.company)}, Role: ${na(intake.role)}, Revenue: ${na(intake.revenue)}, Market: ${na(intake.market)}, Sales model: ${na(intake.model)}, Services %: ${na(intake.svc)}, Biggest challenge: ${na(intake.challenge)}`;
   return `You are a senior industrial GTM advisor with deep experience in industrial technology, aerospace, reliability equipment, and services P&L leadership. You are direct, specific, and use real industrial GTM vocabulary (attach rates, ARR, rep-to-direct, stage hygiene, renewal motion, ROE).
 
 A prospect just completed the Uptime Commercial GTM Readiness Diagnostic:
@@ -1425,7 +1429,7 @@ function renderResults(dims, overall, report) {
   document.getElementById('results-body').innerHTML = `
     <div class="results-hero">
       <div class="results-eyebrow">GTM Readiness Report · ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
-      <div class="results-company">${esc(intake.company)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${esc(intake.name)} · ${intake.market ? esc({aerospace:'Aerospace & Defense',industrial:'Industrial Manufacturing',reliability:'Reliability / Condition Monitoring',oil_gas:'Oil & Gas / Energy',automation:'Factory Automation / Robotics',mro:'MRO / Aftermarket Services',other:'Other Industrial'}[intake.market]||intake.market) : ''}</span></div>
+      <div class="results-company">${esc(intake.company || intake.name)}<br><span style="font-size:clamp(16px,2vw,22px);color:var(--dim);font-family:var(--sans);font-weight:400">${intake.company ? esc(intake.name) + ' · ' : ''}${intake.market ? esc({aerospace:'Aerospace & Defense',industrial:'Industrial Manufacturing',reliability:'Reliability / Condition Monitoring',oil_gas:'Oil & Gas / Energy',automation:'Factory Automation / Robotics',mro:'MRO / Aftermarket Services',other:'Other Industrial'}[intake.market]||intake.market) : (intake.company ? '' : 'GTM Readiness Assessment')}</span></div>
       <div class="score-row">
         <div class="score-big">
           <span class="score-number ${colorClass}">${overall}</span><span class="score-suffix">/100</span>
@@ -1472,7 +1476,7 @@ function renderResults(dims, overall, report) {
       <p class="cta-p">Uptime Commercial works directly with industrial SMBs and PE-backed companies to close the gaps surfaced here — not as generalists, but as operators who have built these exact commercial systems inside companies like yours.</p>
       <div class="cta-buttons">
         <a href="index.html#contact" class="dbtn-primary">Start a Conversation →</a>
-        <a href="mailto:eric@uptimecommercialgroup.com?subject=GTM Diagnostic - ${encodeURIComponent(intake.company)}&body=Hi, we just completed the GTM diagnostic and scored ${overall}/100. We'd like to discuss a few of the recommendations." class="dbtn-secondary">Email Directly</a>
+        <a href="mailto:eric@uptimecommercialgroup.com?subject=GTM Diagnostic - ${encodeURIComponent(intake.company || intake.name || 'Follow-up')}&body=Hi, we just completed the GTM diagnostic and scored ${overall}/100. We'd like to discuss a few of the recommendations." class="dbtn-secondary">Email Directly</a>
       </div>
       <div class="cta-email" style="margin-top:18px;">eric@uptimecommercialgroup.com</div>
     </div>
