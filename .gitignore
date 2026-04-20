@@ -23,3 +23,9 @@ Thumbs.db
 *.log
 npm-debug.log*
 .claude/
+
+# ------- Standardization (added 2026-04-20) -------
+# Framework / build output not covered above
+.next/
+.cache/
+.wrangler/
