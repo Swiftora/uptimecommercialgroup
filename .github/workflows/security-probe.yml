@@ -1,0 +1,59 @@
+name: Security probe (production)
+
+# Runs a lightweight DAST pass against the live marketing site. Fails the
+# workflow if the home page is unhealthy or if any blocklisted path returns a
+# non-404 response. Hosted on GitHub Pages — adapt the probe list if the site
+# ever moves to a different platform.
+
+on:
+  schedule:
+    - cron: '23 8 * * *'   # 08:23 UTC daily — off-peak, non-round-minute
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: security-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    name: Probe production
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      DOMAIN: www.uptimecommercialgroup.com
+      MARKER: Uptime Commercial
+      UA: GitHubActions-SecurityProbe/1.0
+    steps:
+      - name: Home page alive
+        run: |
+          set -eo pipefail
+          code=$(curl -sL -o /tmp/body -w "%{http_code}" -A "$UA" "https://$DOMAIN/")
+          if [ "$code" != "200" ]; then
+            echo "::error::Home page returned $code (expected 200)"
+            exit 1
+          fi
+          grep -q "$MARKER" /tmp/body || { echo "::error::Marker '$MARKER' missing from home"; exit 1; }
+          echo "Home OK (HTTP 200, marker present)"
+
+      - name: Exposure paths must return 404
+        run: |
+          FAIL=0
+          for path in \
+            ".git/HEAD" ".git/config" ".git/index" ".git/logs/HEAD" \
+            ".env" ".env.local" ".env.production" \
+            "package.json" "package-lock.json" "yarn.lock" \
+            "node_modules/x" "src/index.js" \
+            ".github/workflows/security-probe.yml" \
+            "wrangler.toml" ".vscode/settings.json" ".idea/workspace.xml" \
+            ".gitignore" "Dockerfile"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -A "$UA" "https://$DOMAIN/$path")
+            if [ "$code" = "200" ]; then
+              echo "::error::/$path returned 200 (expected 404) — EXPOSURE"
+              FAIL=1
+            elif [ "$code" != "404" ]; then
+              echo "::warning::/$path returned $code (expected 404)"
+            fi
+          done
+          exit $FAIL
